@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: cmsData?.seoDescription || "Calculate and estimate precisely with FinanceToolsLab.",
     keywords: cmsData?.seoKeywords || "calculator, finance, tools",
     alternates: {
-      canonical: `https://financetoolslab.com/cagr-calculator`,
+      canonical: `https://financetoolslab.com/cagr-calculator/`,
     },
   };
 }

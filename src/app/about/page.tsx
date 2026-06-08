@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: cmsData?.seoDescription || "Learn about FinanceToolsLab.com, our commitment to accuracy, and why we are the trusted choice for millions of users worldwide.",
     keywords: cmsData?.seoKeywords || "about financetoolslab, financial tools mission, expert verified calculators, accurate finance tools",
     alternates: {
-      canonical: 'https://financetoolslab.com/about',
+      canonical: 'https://financetoolslab.com/about/',
     },
   };
 }

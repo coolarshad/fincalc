@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: cmsData?.seoDescription || "Get in touch with the FinanceToolsLab team for feedback, suggestions, or support.",
     keywords: cmsData?.seoKeywords || "contact us, feedback, support",
     alternates: {
-      canonical: 'https://financetoolslab.com/contact',
+      canonical: 'https://financetoolslab.com/contact/',
     },
   };
 }

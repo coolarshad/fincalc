@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: cmsData?.seoDescription || "Read our privacy policy to understand how we protect your data. At FinanceToolsLab.com, your privacy is our top priority.",
     keywords: cmsData?.seoKeywords || "privacy policy, data protection, financetoolslab privacy",
     alternates: {
-      canonical: 'https://financetoolslab.com/privacy',
+      canonical: 'https://financetoolslab.com/privacy/',
     },
   };
 }
