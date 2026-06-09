@@ -28,8 +28,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const navItems = [
     { name: 'Home', path: '/', icon: Home },
     { name: 'Calculators', path: '/#calculators', icon: Calculator, onClick: handleCalculatorsClick },
-    { name: 'About', path: '/about', icon: Info },
-    { name: 'Contact', path: '/contact', icon: Mail },
+    { name: 'About', path: '/about/', icon: Info },
+    { name: 'Contact', path: '/contact/', icon: Mail },
   ];
 
   return (
@@ -153,47 +153,47 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <span className="text-xs font-bold uppercase tracking-widest">Trusted by 1M+ Users Monthly</span>
               </div>
               <div className="flex space-x-4">
-                <Link href="/about" className="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-400 transition-colors">About</Link>
-                <Link href="/contact" className="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-400 transition-colors">Contact</Link>
-                <Link href="/privacy" className="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-400 transition-colors">Privacy</Link>
+                <Link href="/about/" className="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-400 transition-colors">About</Link>
+                <Link href="/contact/" className="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-400 transition-colors">Contact</Link>
+                <Link href="/privacy/" className="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-400 transition-colors">Privacy</Link>
               </div>
             </div>
 
             <div>
               <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Financial Tools</h3>
               <ul className="space-y-3 text-sm font-medium">
-                <li><Link href="/loan-calculator" className="hover:text-indigo-400 transition-colors">Loan Calculator</Link></li>
-                <li><Link href="/mortgage-calculator" className="hover:text-indigo-400 transition-colors">Mortgage Calculator</Link></li>
-                <li><Link href="/investment-calculator" className="hover:text-indigo-400 transition-colors">Investment Calculator</Link></li>
-                <li><Link href="/sip-calculator" className="hover:text-indigo-400 transition-colors">SIP Calculator</Link></li>
-                <li><Link href="/fd-calculator" className="hover:text-indigo-400 transition-colors">FD Calculator</Link></li>
-                <li><Link href="/interest-calculator" className="hover:text-indigo-400 transition-colors">Interest Calculator</Link></li>
-                <li><Link href="/cagr-calculator" className="hover:text-indigo-400 transition-colors">CAGR Calculator</Link></li>
+                <li><Link href="/loan-calculator/" className="hover:text-indigo-400 transition-colors">Loan Calculator</Link></li>
+                <li><Link href="/mortgage-calculator/" className="hover:text-indigo-400 transition-colors">Mortgage Calculator</Link></li>
+                <li><Link href="/investment-calculator/" className="hover:text-indigo-400 transition-colors">Investment Calculator</Link></li>
+                <li><Link href="/sip-calculator/" className="hover:text-indigo-400 transition-colors">SIP Calculator</Link></li>
+                <li><Link href="/fd-calculator/" className="hover:text-indigo-400 transition-colors">FD Calculator</Link></li>
+                <li><Link href="/interest-calculator/" className="hover:text-indigo-400 transition-colors">Interest Calculator</Link></li>
+                <li><Link href="/cagr-calculator/" className="hover:text-indigo-400 transition-colors">CAGR Calculator</Link></li>
               </ul>
             </div>
 
             <div>
               <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Health & Life</h3>
               <ul className="space-y-3 text-sm font-medium">
-                <li><Link href="/bmi-calculator" className="hover:text-indigo-400 transition-colors">BMI Calculator</Link></li>
-                <li><Link href="/calorie-calculator" className="hover:text-indigo-400 transition-colors">Calorie Calculator</Link></li>
-                <li><Link href="/body-fat-calculator" className="hover:text-indigo-400 transition-colors">Body Fat Calculator</Link></li>
-                <li><Link href="/pregnancy-calculator" className="hover:text-indigo-400 transition-colors">Pregnancy Calculator</Link></li>
-                <li><Link href="/salary-calculator" className="hover:text-indigo-400 transition-colors">Salary Calculator</Link></li>
-                <li><Link href="/inflation-calculator" className="hover:text-indigo-400 transition-colors">Inflation Calculator</Link></li>
+                <li><Link href="/bmi-calculator/" className="hover:text-indigo-400 transition-colors">BMI Calculator</Link></li>
+                <li><Link href="/calorie-calculator/" className="hover:text-indigo-400 transition-colors">Calorie Calculator</Link></li>
+                <li><Link href="/body-fat-calculator/" className="hover:text-indigo-400 transition-colors">Body Fat Calculator</Link></li>
+                <li><Link href="/pregnancy-calculator/" className="hover:text-indigo-400 transition-colors">Pregnancy Calculator</Link></li>
+                <li><Link href="/salary-calculator/" className="hover:text-indigo-400 transition-colors">Salary Calculator</Link></li>
+                <li><Link href="/inflation-calculator/" className="hover:text-indigo-400 transition-colors">Inflation Calculator</Link></li>
               </ul>
             </div>
 
             <div>
               <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Business & Utility</h3>
               <ul className="space-y-3 text-sm font-medium">
-                <li><Link href="/margin-calculator" className="hover:text-indigo-400 transition-colors">Margin Calculator</Link></li>
-                <li><Link href="/gst-calculator" className="hover:text-indigo-400 transition-colors">GST Calculator</Link></li>
-                <li><Link href="/break-even-calculator" className="hover:text-indigo-400 transition-colors">Break-even Calculator</Link></li>
-                <li><Link href="/cash-flow-calculator" className="hover:text-indigo-400 transition-colors">Cash Flow Calculator</Link></li>
-                <li><Link href="/credit-card-calculator" className="hover:text-indigo-400 transition-colors">Credit Card Interest</Link></li>
-                <li><Link href="/currency-calculator" className="hover:text-indigo-400 transition-colors">Currency Converter</Link></li>
-                <li><Link href="/loan-eligibility-calculator" className="hover:text-indigo-400 transition-colors">Loan Eligibility</Link></li>
+                <li><Link href="/margin-calculator/" className="hover:text-indigo-400 transition-colors">Margin Calculator</Link></li>
+                <li><Link href="/gst-calculator/" className="hover:text-indigo-400 transition-colors">GST Calculator</Link></li>
+                <li><Link href="/break-even-calculator/" className="hover:text-indigo-400 transition-colors">Break-even Calculator</Link></li>
+                <li><Link href="/cash-flow-calculator/" className="hover:text-indigo-400 transition-colors">Cash Flow Calculator</Link></li>
+                <li><Link href="/credit-card-calculator/" className="hover:text-indigo-400 transition-colors">Credit Card Interest</Link></li>
+                <li><Link href="/currency-calculator/" className="hover:text-indigo-400 transition-colors">Currency Converter</Link></li>
+                <li><Link href="/loan-eligibility-calculator/" className="hover:text-indigo-400 transition-colors">Loan Eligibility</Link></li>
               </ul>
             </div>
           </div>

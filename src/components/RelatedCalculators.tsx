@@ -22,140 +22,140 @@ import {
 const allCalculators = [
   {
     title: 'Loan Calculator',
-    path: '/loan-calculator',
+    path: '/loan-calculator/',
     icon: Banknote,
     color: 'bg-blue-500',
     category: 'Finance'
   },
   {
     title: 'Mortgage Calculator',
-    path: '/mortgage-calculator',
+    path: '/mortgage-calculator/',
     icon: Home,
     color: 'bg-indigo-500',
     category: 'Finance'
   },
   {
     title: 'Salary Calculator',
-    path: '/salary-calculator',
+    path: '/salary-calculator/',
     icon: DollarSign,
     color: 'bg-emerald-500',
     category: 'Finance'
   },
   {
     title: 'Interest Calculator',
-    path: '/interest-calculator',
+    path: '/interest-calculator/',
     icon: Percent,
     color: 'bg-amber-500',
     category: 'Finance'
   },
   {
     title: 'Investment Calculator',
-    path: '/investment-calculator',
+    path: '/investment-calculator/',
     icon: TrendingUp,
     color: 'bg-cyan-500',
     category: 'Finance'
   },
   {
     title: 'Credit Card Interest',
-    path: '/credit-card-calculator',
+    path: '/credit-card-calculator/',
     icon: CreditCard,
     color: 'bg-rose-500',
     category: 'Finance'
   },
   {
     title: 'BMI Calculator',
-    path: '/bmi-calculator',
+    path: '/bmi-calculator/',
     icon: Scale,
     color: 'bg-orange-500',
     category: 'Health'
   },
   {
     title: 'Calorie Calculator',
-    path: '/calorie-calculator',
+    path: '/calorie-calculator/',
     icon: Utensils,
     color: 'bg-red-500',
     category: 'Health'
   },
   {
     title: 'Body Fat Calculator',
-    path: '/body-fat-calculator',
+    path: '/body-fat-calculator/',
     icon: Activity,
     color: 'bg-pink-500',
     category: 'Health'
   },
   {
     title: 'Pregnancy Calculator',
-    path: '/pregnancy-calculator',
+    path: '/pregnancy-calculator/',
     icon: Baby,
     color: 'bg-purple-500',
     category: 'Health'
   },
   {
     title: 'Currency Converter',
-    path: '/currency-calculator',
+    path: '/currency-calculator/',
     icon: Globe,
     color: 'bg-teal-500',
     category: 'Utility'
   },
   {
     title: 'Inflation Calculator',
-    path: '/inflation-calculator',
+    path: '/inflation-calculator/',
     icon: TrendingUp,
     color: 'bg-slate-500',
     category: 'Finance'
   },
   {
     title: 'Margin Calculator',
-    path: '/margin-calculator',
+    path: '/margin-calculator/',
     icon: Percent,
     color: 'bg-indigo-400',
     category: 'Business'
   },
   {
     title: 'Break-even Point',
-    path: '/break-even-calculator',
+    path: '/break-even-calculator/',
     icon: Target,
     color: 'bg-slate-700',
     category: 'Business'
   },
   {
     title: 'Cash Flow',
-    path: '/cash-flow-calculator',
+    path: '/cash-flow-calculator/',
     icon: Banknote,
     color: 'bg-emerald-400',
     category: 'Finance'
   },
   {
     title: 'FD Calculator',
-    path: '/fd-calculator',
+    path: '/fd-calculator/',
     icon: Landmark,
     color: 'bg-blue-600',
     category: 'Finance'
   },
   {
     title: 'Loan Eligibility',
-    path: '/loan-eligibility-calculator',
+    path: '/loan-eligibility-calculator/',
     icon: ShieldCheck,
     color: 'bg-violet-500',
     category: 'Finance'
   },
   {
     title: 'SIP Calculator',
-    path: '/sip-calculator',
+    path: '/sip-calculator/',
     icon: TrendingUp,
     color: 'bg-emerald-600',
     category: 'Finance'
   },
   {
     title: 'CAGR Calculator',
-    path: '/cagr-calculator',
+    path: '/cagr-calculator/',
     icon: Target,
     color: 'bg-indigo-600',
     category: 'Finance'
   },
   {
     title: 'GST Calculator',
-    path: '/gst-calculator',
+    path: '/gst-calculator/',
     icon: Receipt,
     color: 'bg-amber-500',
     category: 'Business'

@@ -28,7 +28,7 @@ const calculators = [
     title: 'Loan Calculator',
     description: 'Calculate monthly payments, interest rates, and total cost of any loan.',
     icon: Banknote,
-    path: '/loan-calculator',
+    path: '/loan-calculator/',
     color: 'bg-blue-500',
     category: 'Finance'
   },
@@ -36,7 +36,7 @@ const calculators = [
     title: 'Mortgage Calculator',
     description: 'Estimate your monthly mortgage payments including taxes and insurance.',
     icon: Home,
-    path: '/mortgage-calculator',
+    path: '/mortgage-calculator/',
     color: 'bg-indigo-500',
     category: 'Finance'
   },
@@ -44,7 +44,7 @@ const calculators = [
     title: 'Salary Calculator',
     description: 'Convert your hourly, daily, or monthly wage into an annual salary and vice versa.',
     icon: DollarSign,
-    path: '/salary-calculator',
+    path: '/salary-calculator/',
     color: 'bg-emerald-500',
     category: 'Finance'
   },
@@ -52,7 +52,7 @@ const calculators = [
     title: 'Interest Calculator',
     description: 'Calculate simple or compound interest on your savings or investments.',
     icon: Percent,
-    path: '/interest-calculator',
+    path: '/interest-calculator/',
     color: 'bg-amber-500',
     category: 'Finance'
   },
@@ -60,7 +60,7 @@ const calculators = [
     title: 'Investment Calculator',
     description: 'Project the future value of your investments based on contributions and returns.',
     icon: TrendingUp,
-    path: '/investment-calculator',
+    path: '/investment-calculator/',
     color: 'bg-cyan-500',
     category: 'Finance'
   },
@@ -68,7 +68,7 @@ const calculators = [
     title: 'Credit Card Interest',
     description: 'See how long it will take to pay off your credit card balance.',
     icon: CreditCard,
-    path: '/credit-card-calculator',
+    path: '/credit-card-calculator/',
     color: 'bg-rose-500',
     category: 'Finance'
   },
@@ -76,7 +76,7 @@ const calculators = [
     title: 'BMI Calculator',
     description: 'Calculate your Body Mass Index and find your healthy weight range.',
     icon: Scale,
-    path: '/bmi-calculator',
+    path: '/bmi-calculator/',
     color: 'bg-orange-500',
     category: 'Health'
   },
@@ -84,7 +84,7 @@ const calculators = [
     title: 'Calorie Calculator',
     description: 'Estimate how many calories you need daily to maintain or lose weight.',
     icon: Utensils,
-    path: '/calorie-calculator',
+    path: '/calorie-calculator/',
     color: 'bg-red-500',
     category: 'Health'
   },
@@ -92,7 +92,7 @@ const calculators = [
     title: 'Body Fat Calculator',
     description: 'Estimate your body fat percentage using various methods.',
     icon: Activity,
-    path: '/body-fat-calculator',
+    path: '/body-fat-calculator/',
     color: 'bg-pink-500',
     category: 'Health'
   },
@@ -100,7 +100,7 @@ const calculators = [
     title: 'Pregnancy Calculator',
     description: 'Calculate your due date and track your pregnancy progress.',
     icon: Baby,
-    path: '/pregnancy-calculator',
+    path: '/pregnancy-calculator/',
     color: 'bg-purple-500',
     category: 'Health'
   },
@@ -108,7 +108,7 @@ const calculators = [
     title: 'Currency Converter',
     description: 'Convert between global currencies with real-time exchange rates.',
     icon: Globe,
-    path: '/currency-calculator',
+    path: '/currency-calculator/',
     color: 'bg-teal-500',
     category: 'Utility'
   },
@@ -116,7 +116,7 @@ const calculators = [
     title: 'Inflation Calculator',
     description: 'See how the value of money has changed over time due to inflation.',
     icon: TrendingUp,
-    path: '/inflation-calculator',
+    path: '/inflation-calculator/',
     color: 'bg-slate-500',
     category: 'Finance'
   },
@@ -124,7 +124,7 @@ const calculators = [
     title: 'Margin Calculator',
     description: 'Calculate profit margins, stock trading margins, and currency exchange margins.',
     icon: Percent,
-    path: '/margin-calculator',
+    path: '/margin-calculator/',
     color: 'bg-indigo-400',
     category: 'Business'
   },
@@ -132,7 +132,7 @@ const calculators = [
     title: 'Break-even Point',
     description: 'Find the sales volume needed to cover all your business costs.',
     icon: Target,
-    path: '/break-even-calculator',
+    path: '/break-even-calculator/',
     color: 'bg-slate-700',
     category: 'Business'
   },
@@ -140,7 +140,7 @@ const calculators = [
     title: 'Cash Flow',
     description: 'Track your monthly income and expenses to monitor financial health.',
     icon: Banknote,
-    path: '/cash-flow-calculator',
+    path: '/cash-flow-calculator/',
     color: 'bg-emerald-400',
     category: 'Finance'
   },
@@ -148,7 +148,7 @@ const calculators = [
     title: 'FD Calculator',
     description: 'Calculate maturity value and interest for fixed deposits.',
     icon: Landmark,
-    path: '/fd-calculator',
+    path: '/fd-calculator/',
     color: 'bg-blue-600',
     category: 'Finance'
   },
@@ -156,7 +156,7 @@ const calculators = [
     title: 'Loan Eligibility',
     description: 'Check how much loan you can afford based on your income.',
     icon: ShieldCheck,
-    path: '/loan-eligibility-calculator',
+    path: '/loan-eligibility-calculator/',
     color: 'bg-violet-500',
     category: 'Finance'
   },
@@ -164,7 +164,7 @@ const calculators = [
     title: 'SIP Calculator',
     description: 'Calculate the future value of your systematic monthly investments.',
     icon: TrendingUp,
-    path: '/sip-calculator',
+    path: '/sip-calculator/',
     color: 'bg-emerald-600',
     category: 'Finance'
   },
@@ -172,7 +172,7 @@ const calculators = [
     title: 'CAGR Calculator',
     description: 'Calculate the compound annual growth rate of your investments.',
     icon: Target,
-    path: '/cagr-calculator',
+    path: '/cagr-calculator/',
     color: 'bg-indigo-600',
     category: 'Finance'
   },
@@ -180,7 +180,7 @@ const calculators = [
     title: 'GST Calculator',
     description: 'Quickly calculate GST amounts with CGST and SGST breakdowns.',
     icon: Receipt,
-    path: '/gst-calculator',
+    path: '/gst-calculator/',
     color: 'bg-amber-500',
     category: 'Business'
   }
