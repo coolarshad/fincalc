@@ -1,0 +1,25 @@
+# Enable Rewrite Engine
+RewriteEngine On
+
+# 1. Redirect HTTP or WWW (missing trailing slash) directly to HTTPS + non-WWW + Trailing Slash (1 hop)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !(.*)\.(xml|txt|html|css|js|png|jpg|jpeg|gif|svg|ico|json)$
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^(.*)$ https://financetoolslab.com/$1/ [L,R=301]
+
+# 2. Redirect HTTP or WWW (with trailing slash or for files/homepage) to HTTPS + non-WWW
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^(.*)$ https://financetoolslab.com/$1 [L,R=301]
+
+# 3. Add trailing slash to non-WWW, HTTPS requests that are missing it (excluding files)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteCond %{REQUEST_URI} !(.*)\.(xml|txt|html|css|js|png|jpg|jpeg|gif|svg|ico|json)$
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(.*)$ https://financetoolslab.com/$1/ [L,R=301]
+
+# 4. Redirect old /calculators/ paths to new root paths
+RedirectMatch 301 ^/calculators/([^/]+)/?$ https://financetoolslab.com/$1/
