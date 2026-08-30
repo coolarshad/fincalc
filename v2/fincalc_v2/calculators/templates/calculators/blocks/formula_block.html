@@ -1,0 +1,36 @@
+{% load seo_tags %}
+<div class="editorial-block">
+  <div class="formula-card">
+    <h2>{{ value.title|default:"Mathematical Formula & Methodology" }}</h2>
+    
+    <div class="formula-math-display">
+      {{ value.formula_expression }}
+    </div>
+
+    {% if value.explanation %}
+    <div class="formula-narrative">
+      {{ value.explanation }}
+    </div>
+    {% endif %}
+
+    {% if value.variables %}
+    <h3 style="font-size: 1.1rem; margin-top: 1.25rem;">Variable Definitions:</h3>
+    <ul class="variables-list">
+      {% for v in value.variables %}
+      <li class="variable-item">
+        <span class="var-symbol">{{ v.symbol }}</span>
+        <div>
+          <strong>{{ v.name }}</strong>: <span>{{ v.description }}</span>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if value.notes %}
+    <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 1rem; font-style: italic;">
+      Note: {{ value.notes }}
+    </p>
+    {% endif %}
+  </div>
+</div>

@@ -1,3 +1,4 @@
+# Node & Dependencies
 node_modules/
 build/
 dist/
@@ -7,6 +8,21 @@ coverage/
 .env*
 !.env.example
 
-# Next.js
+# Next.js & Exports
 .next/
+out/
 next-env.d.ts
+deploy.zip
+
+# Python & Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+media/
+*.egg-info/
+.pytest_cache/

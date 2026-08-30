@@ -1,28 +1,52 @@
 import { Metadata } from 'next';
 import { getPageContent, firebaseConfig } from '@/lib/firebase';
 import HomeClient from './HomeClient';
+import { SEO_DATA } from '@/lib/seo-config';
+import JsonLd from '@/components/JsonLd';
 
 export async function generateMetadata(): Promise<Metadata> {
   let cmsData = null;
-  if (firebaseConfig.projectId !== 'YOUR_PROJECT_ID') {
+  if (firebaseConfig.projectId && firebaseConfig.projectId !== 'YOUR_PROJECT_ID') {
     cmsData = await getPageContent('home');
   }
 
+  const seo = SEO_DATA['home'];
+  const title = cmsData?.seoTitle || seo.title;
+  const description = cmsData?.seoDescription || seo.description;
+  const keywords = cmsData?.seoKeywords ? cmsData.seoKeywords.split(',').map((k: string) => k.trim()) : seo.keywords;
+
   return {
-    title: cmsData?.seoTitle || "FinanceToolsLab.com - Free Online Financial & Health Calculators",
-    description: cmsData?.seoDescription || "Access a comprehensive suite of free, accurate online calculators for finance, health, and business. Mobile-first and lightweight for maximum performance.",
-    keywords: cmsData?.seoKeywords || "financetoolslab, loan calculator, mortgage calculator, bmi calculator, salary calculator, interest calculator, sip calculator",
+    title,
+    description,
+    keywords,
     alternates: {
-      canonical: 'https://financetoolslab.com/',
+      canonical: seo.canonical,
+    },
+    openGraph: {
+      title,
+      description,
+      url: seo.canonical,
+      type: 'website',
+      siteName: 'FinanceToolsLab.com',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
     },
   };
 }
 
 export default async function Page() {
   let cmsData = null;
-  if (firebaseConfig.projectId !== 'YOUR_PROJECT_ID') {
+  if (firebaseConfig.projectId && firebaseConfig.projectId !== 'YOUR_PROJECT_ID') {
     cmsData = await getPageContent('home');
   }
 
-  return <HomeClient cmsData={cmsData} />;
+  return (
+    <>
+      <JsonLd seo={SEO_DATA['home']} />
+      <HomeClient cmsData={cmsData} />
+    </>
+  );
 }

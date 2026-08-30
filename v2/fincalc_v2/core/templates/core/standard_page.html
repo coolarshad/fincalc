@@ -1,0 +1,47 @@
+{% extends "core/base.html" %}
+{% load static wagtailcore_tags seo_tags %}
+
+{% block content %}
+<div class="site-container">
+  {% render_breadcrumbs page %}
+
+  <article class="editorial-content-area" style="padding-top: 1.5rem;">
+    <header style="margin-bottom: 2rem;">
+      <h1 class="calc-page-title" style="margin-bottom: 0.5rem;">{{ page.title }}</h1>
+      {% if page.subtitle %}
+      <p style="font-size: 1.15rem; color: var(--primary); font-weight: 500;">{{ page.subtitle }}</p>
+      {% endif %}
+    </header>
+
+    {% if page.intro %}
+    <div style="font-size: 1.1rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 2rem; padding: 1.25rem; background: var(--bg-surface); border-left: 4px solid var(--primary); border-radius: var(--radius-md);">
+      {{ page.intro }}
+    </div>
+    {% endif %}
+
+    <div class="standard-body-content" style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8;">
+      {% for block in page.body %}
+        {% if block.block_type == 'heading' %}
+          <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin-top: 2rem; margin-bottom: 1rem;">
+            {{ block.value }}
+          </h2>
+        {% elif block.block_type == 'paragraph' %}
+          <div style="margin-bottom: 1.5rem;">
+            {{ block.value|richtext }}
+          </div>
+        {% elif block.block_type == 'faq' %}
+          <div class="faq-item" style="margin-bottom: 1rem;">
+            <button class="faq-question" type="button">
+              <span>{{ block.value.question }}</span>
+              <span class="faq-icon-chevron">{% render_icon "chevron-right" %}</span>
+            </button>
+            <div class="faq-answer">
+              {{ block.value.answer|richtext }}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </article>
+</div>
+{% endblock %}

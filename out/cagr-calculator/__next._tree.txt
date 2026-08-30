@@ -1,3 +1,3 @@
-:HL["/_next/static/chunks/0vf~g0wq49xlr.css","style"]
+:HL["/_next/static/chunks/02b0ftc-8pvpw.css","style"]
 :HC["/",""]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"cagr-calculator","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"SFPq09aqox2MG_8XtCLQP"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"cagr-calculator","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"EjC863_OZCkSdUiJB8ZBf"}

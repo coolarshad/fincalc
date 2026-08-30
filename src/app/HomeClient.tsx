@@ -192,11 +192,7 @@ export default function HomeClient({ cmsData }: { cmsData: any }) {
     <div className="bg-white">
       {/* SEO is handled by the server component */}
       
-      {firebaseConfig.projectId === 'YOUR_PROJECT_ID' && (
-        <div className="bg-yellow-50 text-yellow-800 p-2 text-center text-sm font-medium">
-          Firebase is not connected. Showing fallback content. Add VITE_FIREBASE_PROJECT_ID to your .env file.
-        </div>
-      )}
+      
 
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden bg-slate-900">

@@ -1,0 +1,331 @@
+{% extends "core/base.html" %}
+{% load static wagtailcore_tags seo_tags %}
+
+{% block content %}
+<div class="homepage-wrapper">
+
+  {# 1. Hero Section (Slate 900 Background with Dot Pattern) #}
+  <section class="hero-v1">
+    <div class="hero-v1-grid-pattern"></div>
+    <div class="max-w-7xl" style="position:relative; z-index:2;">
+      <h1 class="hero-v1-title">
+        FinanceTools<span style="color:var(--indigo-400);">Lab</span>.com
+      </h1>
+      <p class="hero-v1-subtitle">
+        Precision tools for smarter financial decisions. Accurate, free, and optimized for mobile performance.
+      </p>
+      <div>
+        <a href="#calculators" class="btn-hero-explore">
+          Explore All Tools
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {# 2. Calculator Grid Section #}
+  <section id="calculators" class="calculators-section">
+    <div class="max-w-7xl">
+      <div class="section-header-center">
+        <h2 class="section-title">Professional Calculator Suite</h2>
+        <p class="section-subtitle">
+          Our lab-tested tools provide the accuracy you need for critical financial and health decisions.
+        </p>
+      </div>
+
+      <div class="v1-calc-grid">
+        {# Calculator 1: Loan Calculator #}
+        <a href="/finance/loan-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-blue-500">{% render_icon "banknote" %}</div>
+          <div><span class="v1-calc-badge">Finance</span></div>
+          <h3 class="v1-calc-title">Loan Calculator</h3>
+          <p class="v1-calc-desc">Calculate monthly payments, interest rates, and total cost of any loan.</p>
+        </a>
+
+        {# Calculator 2: Mortgage Calculator #}
+        <a href="/finance/mortgage-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-indigo-500">{% render_icon "home" %}</div>
+          <div><span class="v1-calc-badge">Finance</span></div>
+          <h3 class="v1-calc-title">Mortgage Calculator</h3>
+          <p class="v1-calc-desc">Estimate your monthly mortgage payments including taxes and insurance.</p>
+        </a>
+
+        {# Calculator 3: Salary Calculator #}
+        <a href="/finance/salary-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-emerald-500">{% render_icon "dollar-sign" %}</div>
+          <div><span class="v1-calc-badge">Finance</span></div>
+          <h3 class="v1-calc-title">Salary Calculator</h3>
+          <p class="v1-calc-desc">Convert your hourly, daily, or monthly wage into an annual salary and vice versa.</p>
+        </a>
+
+        {# Calculator 4: Interest Calculator #}
+        <a href="/finance/interest-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-amber-500">{% render_icon "percent" %}</div>
+          <div><span class="v1-calc-badge">Finance</span></div>
+          <h3 class="v1-calc-title">Interest Calculator</h3>
+          <p class="v1-calc-desc">Calculate simple or compound interest on your savings or investments.</p>
+        </a>
+
+        {# Calculator 5: Investment Calculator #}
+        <a href="/finance/investment-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-cyan-500">{% render_icon "trending-up" %}</div>
+          <div><span class="v1-calc-badge">Finance</span></div>
+          <h3 class="v1-calc-title">Investment Calculator</h3>
+          <p class="v1-calc-desc">Project the future value of your investments based on contributions and returns.</p>
+        </a>
+
+        {# Calculator 6: Credit Card Interest #}
+        <a href="/finance/credit-card-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-rose-500">{% render_icon "credit-card" %}</div>
+          <div><span class="v1-calc-badge">Finance</span></div>
+          <h3 class="v1-calc-title">Credit Card Interest</h3>
+          <p class="v1-calc-desc">See how long it will take to pay off your credit card balance.</p>
+        </a>
+
+        {# Calculator 7: BMI Calculator #}
+        <a href="/health/bmi-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-orange-500">{% render_icon "scale" %}</div>
+          <div><span class="v1-calc-badge">Health</span></div>
+          <h3 class="v1-calc-title">BMI Calculator</h3>
+          <p class="v1-calc-desc">Calculate your Body Mass Index and find your healthy weight range.</p>
+        </a>
+
+        {# Calculator 8: Calorie Calculator #}
+        <a href="/health/calorie-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-red-500">{% render_icon "utensils" %}</div>
+          <div><span class="v1-calc-badge">Health</span></div>
+          <h3 class="v1-calc-title">Calorie Calculator</h3>
+          <p class="v1-calc-desc">Estimate how many calories you need daily to maintain or lose weight.</p>
+        </a>
+
+        {# Calculator 9: Body Fat Calculator #}
+        <a href="/health/body-fat-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-pink-500">{% render_icon "activity" %}</div>
+          <div><span class="v1-calc-badge">Health</span></div>
+          <h3 class="v1-calc-title">Body Fat Calculator</h3>
+          <p class="v1-calc-desc">Estimate your body fat percentage using standard US Navy anthropometrics.</p>
+        </a>
+
+        {# Calculator 10: Pregnancy Calculator #}
+        <a href="/health/pregnancy-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-purple-500">{% render_icon "baby" %}</div>
+          <div><span class="v1-calc-badge">Health</span></div>
+          <h3 class="v1-calc-title">Pregnancy Calculator</h3>
+          <p class="v1-calc-desc">Calculate your due date and track your pregnancy trimester progress.</p>
+        </a>
+
+        {# Calculator 11: Currency Converter #}
+        <a href="/finance/currency-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-teal-500">{% render_icon "globe" %}</div>
+          <div><span class="v1-calc-badge">Utility</span></div>
+          <h3 class="v1-calc-title">Currency Converter</h3>
+          <p class="v1-calc-desc">Convert between global currencies with real-time exchange rates.</p>
+        </a>
+
+        {# Calculator 12: Inflation Calculator #}
+        <a href="/finance/inflation-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-slate-500">{% render_icon "trending-up" %}</div>
+          <div><span class="v1-calc-badge">Finance</span></div>
+          <h3 class="v1-calc-title">Inflation Calculator</h3>
+          <p class="v1-calc-desc">See how the value of money changes over time due to inflation.</p>
+        </a>
+
+        {# Calculator 13: Margin Calculator #}
+        <a href="/business/margin-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-indigo-400">{% render_icon "percent" %}</div>
+          <div><span class="v1-calc-badge">Business</span></div>
+          <h3 class="v1-calc-title">Margin Calculator</h3>
+          <p class="v1-calc-desc">Calculate profit margins, stock trading margins, and currency exchange margins.</p>
+        </a>
+
+        {# Calculator 14: Break-even Point #}
+        <a href="/business/break-even-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-slate-700">{% render_icon "calculator" %}</div>
+          <div><span class="v1-calc-badge">Business</span></div>
+          <h3 class="v1-calc-title">Break-even Point</h3>
+          <p class="v1-calc-desc">Find the sales volume needed to cover all your business fixed and variable costs.</p>
+        </a>
+
+        {# Calculator 15: Cash Flow #}
+        <a href="/business/cash-flow-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-emerald-400">{% render_icon "banknote" %}</div>
+          <div><span class="v1-calc-badge">Finance</span></div>
+          <h3 class="v1-calc-title">Cash Flow</h3>
+          <p class="v1-calc-desc">Track your monthly income and expenses to monitor operational liquidity.</p>
+        </a>
+
+        {# Calculator 16: FD Calculator #}
+        <a href="/finance/fd-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-blue-600">{% render_icon "calculator" %}</div>
+          <div><span class="v1-calc-badge">Finance</span></div>
+          <h3 class="v1-calc-title">FD Calculator</h3>
+          <p class="v1-calc-desc">Calculate maturity value and interest for fixed term deposits.</p>
+        </a>
+
+        {# Calculator 17: Loan Eligibility #}
+        <a href="/finance/loan-eligibility-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-violet-500">{% render_icon "shield-check" %}</div>
+          <div><span class="v1-calc-badge">Finance</span></div>
+          <h3 class="v1-calc-title">Loan Eligibility</h3>
+          <p class="v1-calc-desc">Check how much loan you can afford based on your income and debt obligations.</p>
+        </a>
+
+        {# Calculator 18: SIP Calculator #}
+        <a href="/finance/sip-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-emerald-600">{% render_icon "trending-up" %}</div>
+          <div><span class="v1-calc-badge">Finance</span></div>
+          <h3 class="v1-calc-title">SIP Calculator</h3>
+          <p class="v1-calc-desc">Calculate the future value of your systematic monthly investments.</p>
+        </a>
+
+        {# Calculator 19: CAGR Calculator #}
+        <a href="/finance/cagr-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-indigo-600">{% render_icon "trending-up" %}</div>
+          <div><span class="v1-calc-badge">Finance</span></div>
+          <h3 class="v1-calc-title">CAGR Calculator</h3>
+          <p class="v1-calc-desc">Calculate the compound annual growth rate of your investment portfolio.</p>
+        </a>
+
+        {# Calculator 20: GST Calculator #}
+        <a href="/business/gst-calculator/" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-amber-500">{% render_icon "receipt" %}</div>
+          <div><span class="v1-calc-badge">Business</span></div>
+          <h3 class="v1-calc-title">GST Calculator</h3>
+          <p class="v1-calc-desc">Quickly calculate GST amounts with inclusive and exclusive tax breakdowns.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {# 3. Why Choose Us Section #}
+  <section class="why-choose-section">
+    <div class="max-w-7xl">
+      <div class="section-header-center">
+        <h2 class="section-title">Why Millions Trust FinanceToolsLab.com</h2>
+        <p class="section-subtitle">
+          Our tools are built by industry experts and verified by professionals to ensure you get the most accurate results possible.
+        </p>
+      </div>
+
+      <div class="features-3col-grid">
+        <div>
+          <div class="feature-circle-icon" style="background-color:var(--indigo-100); color:var(--indigo-600);">
+            {% render_icon "shield-check" %}
+          </div>
+          <h3 class="feature-title">Expert-Verified</h3>
+          <p class="feature-desc">Every formula is vetted by financial analysts, health professionals, and business consultants to meet industry standards.</p>
+        </div>
+
+        <div>
+          <div class="feature-circle-icon" style="background-color:var(--emerald-100); color:var(--emerald-600);">
+            {% render_icon "activity" %}
+          </div>
+          <h3 class="feature-title">Rigorous Accuracy</h3>
+          <p class="feature-desc">We use real-time data and advanced algorithms that are stress-tested against complex real-world scenarios.</p>
+        </div>
+
+        <div>
+          <div class="feature-circle-icon" style="background-color:var(--amber-100); color:var(--amber-600);">
+            {% render_icon "globe" %}
+          </div>
+          <h3 class="feature-title">Global Standards</h3>
+          <p class="feature-desc">Our tools comply with international financial regulations and health guidelines (WHO, CDC, etc.).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# 4. Built by Experts Section (Indigo 900 Background) #}
+  <section class="experts-banner-section">
+    <div class="max-w-7xl">
+      <div class="experts-grid-2col">
+        <div>
+          <h2 class="experts-h2">Built by Experts, For Everyone</h2>
+          <p class="experts-body-text">
+            FinanceToolsLab.com isn't just a collection of scripts. It's a platform born from decades of collective experience in finance, healthcare, and engineering.
+            We've seen how small errors in calculation can lead to big mistakes in life. That's why we've made it our mission to provide the most reliable tools on the web.
+          </p>
+
+          <div class="expert-check-list">
+            <div class="expert-check-item">
+              <div class="expert-check-bullet">{% render_icon "check" %}</div>
+              <span>Verified by Certified Financial Planners (CFP)</span>
+            </div>
+            <div class="expert-check-item">
+              <div class="expert-check-bullet">{% render_icon "check" %}</div>
+              <span>Medical content reviewed by healthcare practitioners</span>
+            </div>
+            <div class="expert-check-item">
+              <div class="expert-check-bullet">{% render_icon "check" %}</div>
+              <span>Adheres to IASB and FASB accounting principles</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="testimonial-glass-card">
+            <blockquote class="testimonial-quote">
+              "Accuracy in calculation is the foundation of trust. We built FinanceToolsLab.com to ensure that every individual has access to professional-grade tools without the professional-grade price tag."
+            </blockquote>
+            <div class="testimonial-author-row">
+              <div class="avatar-ftl">FTL</div>
+              <div>
+                <p style="font-weight:700; color:#ffffff;">The FinanceToolsLab Engineering Team</p>
+                <p style="font-size:0.875rem; color:var(--indigo-300);">Industry Veterans & Data Scientists</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# 5. The FinanceToolsLab Advantage (SEO Content Section) #}
+  <section class="advantage-section">
+    <div class="max-w-7xl">
+      <div class="section-header-center">
+        <h2 class="section-title">The FinanceToolsLab.com Advantage</h2>
+      </div>
+
+      <div class="advantage-grid">
+        <div class="advantage-card">
+          <h3>Financial Planning Made Easy</h3>
+          <p>
+            Navigating the world of finance can be complex. Our suite of financial tools, including the <strong>Loan Calculator</strong>,
+            <strong>Mortgage Calculator</strong>, and <strong>SIP Calculator</strong>, are designed to simplify your planning.
+            Whether you're looking to buy a new home, plan for retirement, or manage your monthly budget, FinanceToolsLab.com provides
+            accurate projections to help you stay on track.
+          </p>
+        </div>
+
+        <div class="advantage-card">
+          <h3>Health and Wellness Tracking</h3>
+          <p>
+            Your health is your greatest asset. Tools like our <strong>BMI Calculator</strong>, <strong>Calorie Calculator</strong>,
+            and <strong>Body Fat Calculator</strong> help you monitor your physical well-being. We provide more than just numbers;
+            our calculators include detailed notes and tips to help you understand what your results mean for your long-term health.
+          </p>
+        </div>
+
+        <div class="advantage-card">
+          <h3>Business and Utility Tools</h3>
+          <p>
+            For entrepreneurs and professionals, our <strong>Margin Calculator</strong>, <strong>GST Calculator</strong>, and
+            <strong>Break-even Point Calculator</strong> are essential for daily operations. We've enriched these tools with
+            formulas and FAQs to ensure you not only get the results you need but also understand the underlying logic.
+          </p>
+        </div>
+
+        <div class="advantage-card">
+          <h3>Why Use FinanceToolsLab.com?</h3>
+          <p>
+            FinanceToolsLab.com is built with the user in mind. We prioritize accuracy, ease of use, and privacy. Every page is optimized
+            for search engines to ensure you can find the tools you need quickly. With our categorized footer and intuitive
+            navigation, finding the right calculator has never been easier.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock %}

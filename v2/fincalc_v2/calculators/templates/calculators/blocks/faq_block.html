@@ -1,0 +1,18 @@
+{% load seo_tags %}
+<div class="editorial-block">
+  <h2>{{ value.heading|default:"Frequently Asked Questions (FAQ)" }}</h2>
+  
+  <div class="faq-accordion">
+    {% for item in value.faqs %}
+    <div class="faq-item">
+      <button class="faq-question" type="button">
+        <span>{{ item.question }}</span>
+        <span class="faq-icon-chevron">{% render_icon "chevron-right" %}</span>
+      </button>
+      <div class="faq-answer">
+        {{ item.answer }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

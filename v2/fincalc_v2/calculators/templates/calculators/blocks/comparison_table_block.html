@@ -1,0 +1,33 @@
+<div class="editorial-block">
+  <h2>{{ value.title|default:"Scenario Comparison Table" }}</h2>
+  {% if value.intro %}
+  <p>{{ value.intro }}</p>
+  {% endif %}
+
+  <div class="schedule-table-wrap" style="max-height: none;">
+    <table class="data-table">
+      <thead>
+        <tr>
+          {% for header in value.headers %}
+          <th>{{ header }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in value.rows %}
+        <tr>
+          {% for cell in row.column_values %}
+          <td>{{ cell }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  {% if value.takeaway %}
+  <p style="margin-top: 0.85rem; font-size: 0.9rem; color: var(--text-muted); font-style: italic;">
+    💡 Tip: {{ value.takeaway }}
+  </p>
+  {% endif %}
+</div>

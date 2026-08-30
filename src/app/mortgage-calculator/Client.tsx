@@ -101,11 +101,7 @@ export default function MortgageCalculator({ cmsData }: { cmsData: any }) {
     <div className="max-w-7xl mx-auto px-4 py-12">
       {/* SEO handled by parent server component */}
 
-      {firebaseConfig.projectId === 'YOUR_PROJECT_ID' && (
-        <div className="bg-yellow-50 text-yellow-800 p-2 text-center text-sm font-medium mb-8">
-          Firebase is not connected. Showing fallback content.
-        </div>
-      )}
+      
 
       <div className="mb-10">
         <h1 className="text-3xl font-bold text-slate-900 mb-2">{cmsData?.title || "Mortgage Calculator"}</h1>
@@ -172,7 +168,7 @@ export default function MortgageCalculator({ cmsData }: { cmsData: any }) {
                   </CardHeader>
                   <CardContent>
                     <div className="h-[200px]">
-                      <ResponsiveContainer width="100%" height="100%">
+                      <ResponsiveContainer initialDimension={{ width: 400, height: 300 }} width="100%" height="100%" minWidth={0} minHeight={0}>
                         <PieChart>
                           <Pie data={chartData} cx="50%" cy="50%" innerRadius={40} outerRadius={60} paddingAngle={5} dataKey="value">
                             {chartData.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.color} />)}
@@ -224,7 +220,7 @@ export default function MortgageCalculator({ cmsData }: { cmsData: any }) {
                 </CardHeader>
                 <CardContent>
                   <div className="h-[300px]">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <ResponsiveContainer initialDimension={{ width: 400, height: 300 }} width="100%" height="100%" minWidth={0} minHeight={0}>
                       <BarChart data={schedule.slice(0, 10)}>
                         <XAxis dataKey="year" />
                         <YAxis />
@@ -246,7 +242,7 @@ export default function MortgageCalculator({ cmsData }: { cmsData: any }) {
                 </CardHeader>
                 <CardContent>
                   <div className="h-[400px]">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <ResponsiveContainer initialDimension={{ width: 400, height: 300 }} width="100%" height="100%" minWidth={0} minHeight={0}>
                       <LineChart data={schedule}>
                         <XAxis dataKey="year" />
                         <YAxis />

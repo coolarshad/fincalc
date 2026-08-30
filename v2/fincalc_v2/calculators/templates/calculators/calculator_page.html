@@ -1,0 +1,1365 @@
+{% extends "core/base.html" %}
+{% load static wagtailcore_tags seo_tags %}
+
+{% block content %}
+<div class="calc-detail-container">
+  
+  {# Page Header #}
+  <div class="calc-header-block">
+    <h1 class="calc-header-title">{{ page.title }}</h1>
+    <p class="calc-header-desc">{{ page.short_summary }}</p>
+
+    {# ExpertBadge Component #}
+    <div class="expert-badges-bar">
+      <div class="expert-pill-badge indigo">
+        {% render_icon "shield-check" %}
+        <span>
+          {% if page.calculator_type in 'bmi calorie body_fat pregnancy' %}
+            Reviewed by Healthcare Professionals
+          {% elif page.calculator_type in 'margin break_even gst cash_flow' %}
+            Validated by Business Consultants
+          {% else %}
+            Verified by Certified Financial Analysts
+          {% endif %}
+        </span>
+      </div>
+
+      <div class="expert-pill-badge emerald">
+        {% render_icon "check" %}
+        <span>Industry Standard Formula</span>
+      </div>
+
+      <div class="expert-pill-badge amber">
+        {% render_icon "shield-check" %}
+        <span>99.9% Accuracy Rate</span>
+      </div>
+    </div>
+  </div>
+
+  {# Interactive Calculator Workspace #}
+  <div class="calc-3col-grid" data-calculator-type="{{ page.calculator_type }}">
+    
+    {# 1/3 Left Column: Input Form & Result Card #}
+    <div class="calc-left-col">
+      
+      {# Input Details Card #}
+      <div class="card-white">
+        <h2 class="card-title-lg">
+          {% if page.calculator_type == 'loan' %}Loan Details
+          {% elif page.calculator_type == 'mortgage' %}Mortgage Details
+          {% elif page.calculator_type == 'interest' %}Interest & Deposit Details
+          {% elif page.calculator_type == 'investment' %}Investment Strategy & Inflation
+          {% elif page.calculator_type == 'sip' %}SIP Investment Details
+          {% elif page.calculator_type == 'fd' %}Fixed Deposit Parameters
+          {% elif page.calculator_type == 'credit_card' %}Credit Card Debt Details
+          {% elif page.calculator_type == 'salary' %}Wage & Pay Frequency
+          {% elif page.calculator_type == 'inflation' %}Purchasing Power & Timeline
+          {% elif page.calculator_type == 'cagr' %}Growth Period & Capital
+          {% elif page.calculator_type == 'loan_eligibility' %}Income & Debt Profile
+          {% elif page.calculator_type == 'currency' %}Currency Exchange Parameters
+          {% elif page.calculator_type == 'bmi' %}Body Measurements
+          {% elif page.calculator_type == 'calorie' %}TDEE & Activity Profile
+          {% elif page.calculator_type == 'body_fat' %}Anthropometric Circumferences
+          {% elif page.calculator_type == 'pregnancy' %}Pregnancy Timeline
+          {% elif page.calculator_type == 'margin' %}Cost & Selling Price
+          {% elif page.calculator_type == 'break_even' %}Fixed & Variable Costs
+          {% elif page.calculator_type == 'cash_flow' %}Operating Inflows & Outflows
+          {% elif page.calculator_type == 'gst' %}Tax Rate & Base Amount
+          {% else %}Calculator Parameters
+          {% endif %}
+        </h2>
+
+        {# 1. LOAN #}
+        {% if page.calculator_type == 'loan' %}
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-amount" class="input-label-text">Loan Amount ($)</label>
+              <span id="live-amount" class="input-live-val">$30,000</span>
+            </div>
+            <input type="number" id="input-amount" class="input-text-box" value="30000" min="1000" max="500000" step="1000">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1000" max="500000" step="1000" value="30000">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-rate" class="input-label-text">Interest Rate (%)</label>
+              <span id="live-rate" class="input-live-val">6.5%</span>
+            </div>
+            <input type="number" id="input-rate" class="input-text-box" value="6.5" min="0.1" max="25" step="0.1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="0.1" max="25" step="0.1" value="6.5">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-term" class="input-label-text">Loan Term (Years)</label>
+              <span id="live-term" class="input-live-val">5 Years</span>
+            </div>
+            <input type="number" id="input-term" class="input-text-box" value="5" min="1" max="30" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="30" step="1" value="5">
+          </div>
+
+        {# 2. MORTGAGE #}
+        {% elif page.calculator_type == 'mortgage' %}
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-home-price" class="input-label-text">Home Price ($)</label>
+              <span id="live-price" class="input-live-val">$400,000</span>
+            </div>
+            <input type="number" id="input-home-price" class="input-text-box" value="400000" min="50000" max="2000000" step="5000">
+            <input type="range" class="custom-range-slider calc-range-slider" min="50000" max="2000000" step="5000" value="400000">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-down-pct" class="input-label-text">Down Payment (%)</label>
+              <span id="live-down" class="input-live-val">20%</span>
+            </div>
+            <input type="number" id="input-down-pct" class="input-text-box" value="20" min="0" max="80" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="0" max="80" step="1" value="20">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-rate" class="input-label-text">Interest Rate (%)</label>
+              <span id="live-rate" class="input-live-val">6.75%</span>
+            </div>
+            <input type="number" id="input-rate" class="input-text-box" value="6.75" min="1" max="15" step="0.05">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="15" step="0.05" value="6.75">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <label for="input-term" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Loan Term</label>
+            <select id="input-term" class="input-text-box">
+              <option value="30" selected>30 Years Fixed</option>
+              <option value="20">20 Years Fixed</option>
+              <option value="15">15 Years Fixed</option>
+              <option value="10">10 Years Fixed</option>
+            </select>
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <label for="input-tax" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Annual Property Tax ($)</label>
+            <input type="number" id="input-tax" class="input-text-box" value="4800" min="0" max="50000" step="100">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <label for="input-insurance" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Annual Home Insurance ($)</label>
+            <input type="number" id="input-insurance" class="input-text-box" value="1200" min="0" max="10000" step="50">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <label for="input-hoa" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Monthly HOA Dues ($)</label>
+            <input type="number" id="input-hoa" class="input-text-box" value="0" min="0" max="2000" step="25">
+          </div>
+
+        {# 3. INTEREST (Amber) #}
+        {% elif page.calculator_type == 'interest' %}
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-principal" class="input-label-text">Initial Deposit / Principal ($)</label>
+              <span id="live-principal" class="input-live-val" style="color:var(--amber-600);">$10,000</span>
+            </div>
+            <input type="number" id="input-principal" class="input-text-box" value="10000" min="0" max="100000" step="1000">
+            <input type="range" class="custom-range-slider calc-range-slider" min="0" max="100000" step="1000" value="10000">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-contrib" class="input-label-text">Monthly Contribution ($)</label>
+              <span id="live-contrib" class="input-live-val" style="color:var(--amber-600);">$100</span>
+            </div>
+            <input type="number" id="input-contrib" class="input-text-box" value="100" min="0" max="5000" step="50">
+            <input type="range" class="custom-range-slider calc-range-slider" min="0" max="5000" step="50" value="100">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-rate" class="input-label-text">Annual Interest Rate (%)</label>
+              <span id="live-rate" class="input-live-val" style="color:var(--amber-600);">5.0%</span>
+            </div>
+            <input type="number" id="input-rate" class="input-text-box" value="5.0" min="0.1" max="20" step="0.1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="0.1" max="20" step="0.1" value="5.0">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-years" class="input-label-text">Years to Grow</label>
+              <span id="live-years" class="input-live-val" style="color:var(--amber-600);">10 Years</span>
+            </div>
+            <input type="number" id="input-years" class="input-text-box" value="10" min="1" max="50" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="50" step="1" value="10">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <label for="select-freq" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Compounding Frequency</label>
+            <select id="select-freq" class="input-text-box">
+              <option value="12" selected>Monthly (12x/yr)</option>
+              <option value="4">Quarterly (4x/yr)</option>
+              <option value="2">Semi-Annually (2x/yr)</option>
+              <option value="1">Annually (1x/yr)</option>
+              <option value="365">Daily (365x/yr)</option>
+            </select>
+          </div>
+
+        {# 4. INVESTMENT (Cyan) #}
+        {% elif page.calculator_type == 'investment' %}
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-initial" class="input-label-text">Initial Investment Capital ($)</label>
+              <span id="live-initial" class="input-live-val" style="color:#0891b2;">$25,000</span>
+            </div>
+            <input type="number" id="input-initial" class="input-text-box" value="25000" min="0" max="1000000" step="5000">
+            <input type="range" class="custom-range-slider calc-range-slider" min="0" max="1000000" step="5000" value="25000">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-monthly-inv" class="input-label-text">Monthly Portfolio Contribution ($)</label>
+              <span id="live-monthly-inv" class="input-live-val" style="color:#0891b2;">$500</span>
+            </div>
+            <input type="number" id="input-monthly-inv" class="input-text-box" value="500" min="0" max="20000" step="100">
+            <input type="range" class="custom-range-slider calc-range-slider" min="0" max="20000" step="100" value="500">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-inv-years" class="input-label-text">Investment Horizon (Years)</label>
+              <span id="live-inv-years" class="input-live-val" style="color:#0891b2;">20 Years</span>
+            </div>
+            <input type="number" id="input-inv-years" class="input-text-box" value="20" min="1" max="50" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="50" step="1" value="20">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-return-rate" class="input-label-text">Expected Annual Return (%)</label>
+              <span id="live-return-rate" class="input-live-val" style="color:#0891b2;">7.0%</span>
+            </div>
+            <input type="number" id="input-return-rate" class="input-text-box" value="7.0" min="1" max="20" step="0.1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="20" step="0.1" value="7.0">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-inflation" class="input-label-text">Expected Inflation Rate (%)</label>
+              <span id="live-inflation" class="input-live-val" style="color:#0891b2;">2.5%</span>
+            </div>
+            <input type="number" id="input-inflation" class="input-text-box" value="2.5" min="0" max="10" step="0.1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="0" max="10" step="0.1" value="2.5">
+          </div>
+
+        {# 5. SIP (Emerald) #}
+        {% elif page.calculator_type == 'sip' %}
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-monthly" class="input-label-text">Monthly SIP Investment ($/mo)</label>
+              <span id="live-monthly" class="input-live-val">$500</span>
+            </div>
+            <input type="number" id="input-monthly" class="input-text-box" value="500" min="25" max="10000" step="25">
+            <input type="range" class="custom-range-slider calc-range-slider" min="25" max="10000" step="25" value="500">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-rate" class="input-label-text">Expected Annual Return Rate (% p.a.)</label>
+              <span id="live-rate" class="input-live-val" style="color:var(--emerald-600);">12.0%</span>
+            </div>
+            <input type="number" id="input-rate" class="input-text-box" value="12" min="1" max="30" step="0.5">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="25" step="0.5" value="12">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-years" class="input-label-text">Investment Horizon (Years)</label>
+              <span id="live-years" class="input-live-val">10 Years</span>
+            </div>
+            <input type="number" id="input-years" class="input-text-box" value="10" min="1" max="35" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="35" step="1" value="10">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-step-up" class="input-label-text">Annual Step-Up Top-up (%)</label>
+              <span id="live-step-up" class="input-live-val">0%</span>
+            </div>
+            <input type="number" id="input-step-up" class="input-text-box" value="0" min="0" max="25" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="0" max="25" step="1" value="0">
+          </div>
+
+        {# 6. FIXED DEPOSIT (FD) #}
+        {% elif page.calculator_type == 'fd' %}
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-fd-amount" class="input-label-text">Total Deposit Amount ($)</label>
+              <span id="live-fd-amount" class="input-live-val">$25,000</span>
+            </div>
+            <input type="number" id="input-fd-amount" class="input-text-box" value="25000" min="500" max="500000" step="500">
+            <input type="range" class="custom-range-slider calc-range-slider" min="500" max="500000" step="500" value="25000">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-fd-rate" class="input-label-text">Interest Rate (% p.a.)</label>
+              <span id="live-fd-rate" class="input-live-val">7.25%</span>
+            </div>
+            <input type="number" id="input-fd-rate" class="input-text-box" value="7.25" min="1" max="15" step="0.05">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="15" step="0.05" value="7.25">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-fd-years" class="input-label-text">Tenure (Years)</label>
+              <span id="live-fd-years" class="input-live-val">5 Years</span>
+            </div>
+            <input type="number" id="input-fd-years" class="input-text-box" value="5" min="1" max="20" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="20" step="1" value="5">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <label for="select-fd-freq" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Compounding Frequency</label>
+            <select id="select-fd-freq" class="input-text-box">
+              <option value="4" selected>Quarterly (Standard)</option>
+              <option value="12">Monthly</option>
+              <option value="2">Half-Yearly</option>
+              <option value="1">Annually</option>
+            </select>
+          </div>
+
+        {# 7. CREDIT CARD (Rose) #}
+        {% elif page.calculator_type == 'credit_card' %}
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-balance" class="input-label-text">Credit Card Balance ($)</label>
+              <span id="live-balance" class="input-live-val">$5,000</span>
+            </div>
+            <input type="number" id="input-balance" class="input-text-box" value="5000" min="100" max="100000" step="100">
+            <input type="range" class="custom-range-slider calc-range-slider" min="100" max="100000" step="100" value="5000">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-apr" class="input-label-text">Annual Percentage Rate (APR %)</label>
+              <span id="live-apr" class="input-live-val" style="color:var(--rose-500);">19.99%</span>
+            </div>
+            <input type="number" id="input-apr" class="input-text-box" value="19.99" min="1" max="36" step="0.1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="36" step="0.1" value="19.99">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-payment" class="input-label-text">Monthly Payment ($)</label>
+              <span id="live-payment" class="input-live-val">$200</span>
+            </div>
+            <input type="number" id="input-payment" class="input-text-box" value="200" min="25" max="5000" step="25">
+            <input type="range" class="custom-range-slider calc-range-slider" min="25" max="5000" step="25" value="200">
+          </div>
+
+        {# 8. SALARY #}
+        {% elif page.calculator_type == 'salary' %}
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-wage" class="input-label-text">Wage / Salary Amount ($)</label>
+              <span id="live-wage" class="input-live-val">$45.00/hr</span>
+            </div>
+            <input type="number" id="input-wage" class="input-text-box" value="45" min="1" max="1000000" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="250" step="1" value="45">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <label for="select-wage-mode" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Pay Frequency</label>
+            <select id="select-wage-mode" class="input-text-box">
+              <option value="hourly" selected>Per Hour</option>
+              <option value="daily">Per Day (8 hrs)</option>
+              <option value="weekly">Per Week</option>
+              <option value="monthly">Per Month</option>
+              <option value="annual">Per Year</option>
+            </select>
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-hours" class="input-label-text">Hours Worked per Week</label>
+              <span id="live-hours" class="input-live-val">40 Hours</span>
+            </div>
+            <input type="number" id="input-hours" class="input-text-box" value="40" min="1" max="80" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="80" step="1" value="40">
+          </div>
+
+        {# 9. INFLATION #}
+        {% elif page.calculator_type == 'inflation' %}
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-amount" class="input-label-text">Current Dollar Amount ($)</label>
+              <span id="live-amount" class="input-live-val">$10,000</span>
+            </div>
+            <input type="number" id="input-amount" class="input-text-box" value="10000" min="100" max="1000000" step="500">
+            <input type="range" class="custom-range-slider calc-range-slider" min="100" max="1000000" step="500" value="10000">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-rate" class="input-label-text">Average Annual Inflation Rate (%)</label>
+              <span id="live-rate" class="input-live-val" style="color:var(--rose-500);">3.2%</span>
+            </div>
+            <input type="number" id="input-rate" class="input-text-box" value="3.2" min="0.1" max="25" step="0.1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="0.1" max="20" step="0.1" value="3.2">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-years" class="input-label-text">Time Horizon (Years)</label>
+              <span id="live-years" class="input-live-val">20 Years</span>
+            </div>
+            <input type="number" id="input-years" class="input-text-box" value="20" min="1" max="50" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="50" step="1" value="20">
+          </div>
+
+        {# 10. CAGR (Violet) #}
+        {% elif page.calculator_type == 'cagr' %}
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-start-val" class="input-label-text">Initial / Beginning Value ($)</label>
+              <span id="live-start-val" class="input-live-val">$10,000</span>
+            </div>
+            <input type="number" id="input-start-val" class="input-text-box" value="10000" min="100" max="10000000" step="500">
+            <input type="range" class="custom-range-slider calc-range-slider" min="100" max="1000000" step="500" value="10000">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-end-val" class="input-label-text">Final / Ending Value ($)</label>
+              <span id="live-end-val" class="input-live-val" style="color:var(--indigo-600);">$45,000</span>
+            </div>
+            <input type="number" id="input-end-val" class="input-text-box" value="45000" min="100" max="20000000" step="500">
+            <input type="range" class="custom-range-slider calc-range-slider" min="100" max="2000000" step="500" value="45000">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-years" class="input-label-text">Holding Period (Years)</label>
+              <span id="live-years" class="input-live-val">6 Years</span>
+            </div>
+            <input type="number" id="input-years" class="input-text-box" value="6" min="1" max="50" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="40" step="1" value="6">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <label for="select-benchmark" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Comparison Benchmark</label>
+            <select id="select-benchmark" class="input-text-box">
+              <option value="sp500" selected>S&P 500 Historical (~10.0% CAGR)</option>
+              <option value="real_estate">Real Estate Index (~8.0% CAGR)</option>
+              <option value="gold">Gold Commodity (~7.5% CAGR)</option>
+              <option value="fd">Fixed Deposit / Treasuries (~5.0% CAGR)</option>
+              <option value="inflation">US CPI Inflation (~3.2% CAGR)</option>
+            </select>
+          </div>
+
+        {# 11. LOAN ELIGIBILITY #}
+        {% elif page.calculator_type == 'loan_eligibility' %}
+          <div class="input-field-block calc-form-group">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div>
+                <label for="select-loan-preset" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Loan Type</label>
+                <select id="select-loan-preset" class="input-text-box">
+                  <option value="home" selected>Home Loan (50% DTI, 8.5%)</option>
+                  <option value="car">Car Loan (40% DTI, 10.5%)</option>
+                  <option value="personal">Personal Loan (35% DTI, 14.0%)</option>
+                  <option value="custom">Custom Parameters</option>
+                </select>
+              </div>
+              <div>
+                <label for="select-income-mode" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Income Frequency</label>
+                <select id="select-income-mode" class="input-text-box">
+                  <option value="monthly" selected>Monthly Gross</option>
+                  <option value="annual">Annual Gross</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-income" class="input-label-text">Gross Income ($)</label>
+              <span id="live-income" class="input-live-val">$8,000</span>
+            </div>
+            <input type="number" id="input-income" class="input-text-box" value="8000" min="500" max="1000000" step="250">
+            <input type="range" class="custom-range-slider calc-range-slider" min="500" max="100000" step="250" value="8000">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-existing-debts" class="input-label-text">Existing Monthly Debt EMIs ($)</label>
+              <span id="live-debts" class="input-live-val" style="color:var(--rose-500);">$800</span>
+            </div>
+            <input type="number" id="input-existing-debts" class="input-text-box" value="800" min="0" max="20000" step="50">
+            <input type="range" class="custom-range-slider calc-range-slider" min="0" max="20000" step="50" value="800">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-foir" class="input-label-text">Max Debt-to-Income / FOIR Limit (%)</label>
+              <span id="live-foir" class="input-live-val">50%</span>
+            </div>
+            <input type="number" id="input-foir" class="input-text-box" value="50" min="20" max="75" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="20" max="75" step="1" value="50">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-elig-rate" class="input-label-text">Interest Rate (% p.a.)</label>
+              <span id="live-elig-rate" class="input-live-val">8.5%</span>
+            </div>
+            <input type="number" id="input-elig-rate" class="input-text-box" value="8.5" min="1" max="25" step="0.1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="25" step="0.1" value="8.5">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-elig-tenure" class="input-label-text">Loan Tenure (Years)</label>
+              <span id="live-elig-tenure" class="input-live-val">20 Years</span>
+            </div>
+            <input type="number" id="input-elig-tenure" class="input-text-box" value="20" min="1" max="30" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="30" step="1" value="20">
+          </div>
+
+        {# 12. CURRENCY CONVERTER #}
+        {% elif page.calculator_type == 'currency' %}
+          <div class="input-field-block calc-form-group">
+            <label for="input-amount" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Amount to Convert</label>
+            <input type="number" id="input-amount" class="input-text-box" value="1000" min="1" max="10000000" step="10">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <label for="input-rate" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Exchange Rate (Base to Target)</label>
+            <input type="number" id="input-rate" class="input-text-box" value="0.92" min="0.0001" max="10000" step="0.01">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <label for="input-fee" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Bank / Transfer Fee (%)</label>
+            <input type="number" id="input-fee" class="input-text-box" value="0.5" min="0" max="10" step="0.1">
+          </div>
+
+        {# 13. BMI #}
+        {% elif page.calculator_type == 'bmi' %}
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-height" class="input-label-text">Height (cm)</label>
+              <span id="live-height" class="input-live-val">175 cm</span>
+            </div>
+            <input type="number" id="input-height" class="input-text-box" value="175" min="100" max="230" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="120" max="220" step="1" value="175">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-weight" class="input-label-text">Weight (kg)</label>
+              <span id="live-weight" class="input-live-val">72 kg</span>
+            </div>
+            <input type="number" id="input-weight" class="input-text-box" value="72" min="30" max="200" step="0.5">
+            <input type="range" class="custom-range-slider calc-range-slider" min="40" max="160" step="0.5" value="72">
+          </div>
+
+        {# 14. CALORIE (Mifflin-St Jeor) #}
+        {% elif page.calculator_type == 'calorie' %}
+          <div class="input-field-block calc-form-group">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div>
+                <label for="select-gender" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Gender</label>
+                <select id="select-gender" class="input-text-box">
+                  <option value="male" selected>Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+              <div>
+                <label for="input-age" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Age (Years)</label>
+                <input type="number" id="input-age" class="input-text-box" value="30" min="15" max="100" step="1">
+              </div>
+            </div>
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-height" class="input-label-text">Height (cm)</label>
+              <span id="live-height" class="input-live-val" style="color:var(--rose-600);">175 cm</span>
+            </div>
+            <input type="number" id="input-height" class="input-text-box" value="175" min="100" max="240" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="100" max="240" step="1" value="175">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-weight" class="input-label-text">Body Weight (kg)</label>
+              <span id="live-weight" class="input-live-val" style="color:var(--rose-600);">75 kg</span>
+            </div>
+            <input type="number" id="input-weight" class="input-text-box" value="75" min="30" max="200" step="0.5">
+            <input type="range" class="custom-range-slider calc-range-slider" min="30" max="200" step="0.5" value="75">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <label for="select-activity" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Activity Level</label>
+            <select id="select-activity" class="input-text-box">
+              <option value="1.2">Sedentary (Little or no exercise, desk job)</option>
+              <option value="1.375">Lightly Active (Light exercise 1-3 days/week)</option>
+              <option value="1.55" selected>Moderately Active (Moderate exercise 3-5 days/week)</option>
+              <option value="1.725">Very Active (Hard training 6-7 days/week)</option>
+              <option value="1.9">Extra Active (Very heavy physical training/labor)</option>
+            </select>
+          </div>
+
+        {# 15. BODY FAT (US Navy) #}
+        {% elif page.calculator_type == 'body_fat' %}
+          <div class="input-field-block calc-form-group">
+            <label for="select-gender" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Gender</label>
+            <select id="select-gender" class="input-text-box">
+              <option value="male" selected>Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-height" class="input-label-text">Height (cm)</label>
+              <span id="live-height" class="input-live-val" style="color:var(--rose-600);">180 cm</span>
+            </div>
+            <input type="number" id="input-height" class="input-text-box" value="180" min="120" max="230" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="120" max="230" step="1" value="180">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-weight" class="input-label-text">Body Weight (kg)</label>
+              <span id="live-weight" class="input-live-val" style="color:var(--rose-600);">80 kg</span>
+            </div>
+            <input type="number" id="input-weight" class="input-text-box" value="80" min="30" max="200" step="0.5">
+            <input type="range" class="custom-range-slider calc-range-slider" min="30" max="200" step="0.5" value="80">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-neck" class="input-label-text">Neck Circumference (cm)</label>
+              <span id="live-neck" class="input-live-val" style="color:var(--rose-600);">40 cm</span>
+            </div>
+            <input type="number" id="input-neck" class="input-text-box" value="40" min="20" max="60" step="0.5">
+            <input type="range" class="custom-range-slider calc-range-slider" min="20" max="60" step="0.5" value="40">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-waist" class="input-label-text">Waist Circumference (cm)</label>
+              <span id="live-waist" class="input-live-val" style="color:var(--rose-600);">90 cm</span>
+            </div>
+            <input type="number" id="input-waist" class="input-text-box" value="90" min="40" max="160" step="0.5">
+            <input type="range" class="custom-range-slider calc-range-slider" min="40" max="160" step="0.5" value="90">
+          </div>
+
+          <div id="field-hip-wrap" class="input-field-block calc-form-group" style="display:none;">
+            <div class="input-label-between">
+              <label for="input-hip" class="input-label-text">Hip Circumference (cm - for Women)</label>
+              <span id="live-hip" class="input-live-val" style="color:var(--rose-600);">100 cm</span>
+            </div>
+            <input type="number" id="input-hip" class="input-text-box" value="100" min="50" max="160" step="0.5">
+            <input type="range" class="custom-range-slider calc-range-slider" min="50" max="160" step="0.5" value="100">
+          </div>
+
+        {# 16. PREGNANCY (Naegele's Rule) #}
+        {% elif page.calculator_type == 'pregnancy' %}
+          <div class="input-field-block calc-form-group">
+            <label for="select-method" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Calculation Method</label>
+            <select id="select-method" class="input-text-box">
+              <option value="lmp" selected>First Day of Last Period (LMP)</option>
+              <option value="conception">Exact Conception Date</option>
+            </select>
+          </div>
+
+          <div id="field-lmp-wrap" class="input-field-block calc-form-group">
+            <label for="input-lmp" class="input-label-text" style="display:block; margin-bottom:0.5rem;">First Day of Last Period (LMP)</label>
+            <input type="date" id="input-lmp" class="input-text-box">
+          </div>
+
+          <div id="field-conception-wrap" class="input-field-block calc-form-group" style="display:none;">
+            <label for="input-conception-date" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Conception / Ovulation Date</label>
+            <input type="date" id="input-conception-date" class="input-text-box">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-cycle-len" class="input-label-text">Average Menstrual Cycle Length</label>
+              <span id="live-cycle-len" class="input-live-val" style="color:var(--rose-600);">28 Days</span>
+            </div>
+            <input type="number" id="input-cycle-len" class="input-text-box" value="28" min="20" max="45" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="20" max="45" step="1" value="28">
+          </div>
+
+        {# 17. MARGIN #}
+        {% elif page.calculator_type == 'margin' %}
+          <div class="input-field-block calc-form-group">
+            <label for="select-margin-mode" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Calculation Strategy</label>
+            <select id="select-margin-mode" class="input-text-box">
+              <option value="cost_revenue" selected>Cost & Selling Price (Find Margin & Markup)</option>
+              <option value="cost_margin">Cost & Target Margin % (Find Selling Price)</option>
+              <option value="cost_markup">Cost & Target Markup % (Find Selling Price)</option>
+            </select>
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-cost" class="input-label-text">Cost of Goods Sold (COGS) ($)</label>
+              <span id="live-cost" class="input-live-val">$60.00</span>
+            </div>
+            <input type="number" id="input-cost" class="input-text-box" value="60" min="1" max="100000" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="1000" step="1" value="60">
+          </div>
+
+          <div id="field-revenue-wrap" class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-revenue" class="input-label-text">Selling Price (Revenue) ($)</label>
+              <span id="live-revenue" class="input-live-val">$100.00</span>
+            </div>
+            <input type="number" id="input-revenue" class="input-text-box" value="100" min="1" max="100000" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="1000" step="1" value="100">
+          </div>
+
+          <div id="field-target-margin-wrap" class="input-field-block calc-form-group" style="display:none;">
+            <div class="input-label-between">
+              <label for="input-target-margin" class="input-label-text">Target Gross Margin (%)</label>
+              <span id="live-target-margin" class="input-live-val">40.0%</span>
+            </div>
+            <input type="number" id="input-target-margin" class="input-text-box" value="40" min="1" max="95" step="0.5">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="95" step="0.5" value="40">
+          </div>
+
+          <div id="field-target-markup-wrap" class="input-field-block calc-form-group" style="display:none;">
+            <div class="input-label-between">
+              <label for="input-target-markup" class="input-label-text">Target Markup (%)</label>
+              <span id="live-target-markup" class="input-live-val">66.7%</span>
+            </div>
+            <input type="number" id="input-target-markup" class="input-text-box" value="66.7" min="1" max="500" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="500" step="1" value="66.7">
+          </div>
+
+        {# 18. BREAK-EVEN #}
+        {% elif page.calculator_type == 'break_even' %}
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-fixed-costs" class="input-label-text">Total Fixed Overhead Costs ($/mo)</label>
+              <span id="live-fixed-costs" class="input-live-val">$15,000</span>
+            </div>
+            <input type="number" id="input-fixed-costs" class="input-text-box" value="15000" min="100" max="500000" step="500">
+            <input type="range" class="custom-range-slider calc-range-slider" min="100" max="500000" step="500" value="15000">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-unit-price" class="input-label-text">Unit Selling Price ($)</label>
+              <span id="live-unit-price" class="input-live-val">$50.00</span>
+            </div>
+            <input type="number" id="input-unit-price" class="input-text-box" value="50" min="1" max="10000" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1" max="1000" step="1" value="50">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-var-cost" class="input-label-text">Variable Cost per Unit ($)</label>
+              <span id="live-var-cost" class="input-live-val">$20.00</span>
+            </div>
+            <input type="number" id="input-var-cost" class="input-text-box" value="20" min="0" max="10000" step="1">
+            <input type="range" class="custom-range-slider calc-range-slider" min="0" max="1000" step="1" value="20">
+          </div>
+
+        {# 19. CASH FLOW #}
+        {% elif page.calculator_type == 'cash_flow' %}
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-inflows" class="input-label-text">Total Cash Inflows ($/mo)</label>
+              <span id="live-inflows" class="input-live-val">$45,000</span>
+            </div>
+            <input type="number" id="input-inflows" class="input-text-box" value="45000" min="1000" max="1000000" step="1000">
+            <input type="range" class="custom-range-slider calc-range-slider" min="1000" max="1000000" step="1000" value="45000">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-operating-exp" class="input-label-text">Operating Expenses ($/mo)</label>
+              <span id="live-operating-exp" class="input-live-val">$28,000</span>
+            </div>
+            <input type="number" id="input-operating-exp" class="input-text-box" value="28000" min="0" max="500000" step="500">
+            <input type="range" class="custom-range-slider calc-range-slider" min="0" max="500000" step="500" value="28000">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-debt-exp" class="input-label-text">Debt Service & Financing ($/mo)</label>
+              <span id="live-debt-exp" class="input-live-val">$5,000</span>
+            </div>
+            <input type="number" id="input-debt-exp" class="input-text-box" value="5000" min="0" max="200000" step="250">
+            <input type="range" class="custom-range-slider calc-range-slider" min="0" max="200000" step="250" value="5000">
+          </div>
+
+        {# 20. GST #}
+        {% elif page.calculator_type == 'gst' %}
+          <div class="input-field-block calc-form-group">
+            <div class="input-label-between">
+              <label for="input-amount" class="input-label-text">Base Amount ($)</label>
+              <span id="live-amount" class="input-live-val">$10,000</span>
+            </div>
+            <input type="number" id="input-amount" class="input-text-box" value="10000" min="10" max="1000000" step="100">
+            <input type="range" class="custom-range-slider calc-range-slider" min="10" max="100000" step="100" value="10000">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <label for="input-rate" class="input-label-text" style="display:block; margin-bottom:0.5rem;">GST Rate Slab (%)</label>
+            <select id="input-rate" class="input-text-box">
+              <option value="5">5% (Essential Goods)</option>
+              <option value="12">12% (Standard Low)</option>
+              <option value="18" selected>18% (Standard High / Services)</option>
+              <option value="28">28% (Luxury Goods)</option>
+            </select>
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <label for="select-type" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Tax Mode</label>
+            <select id="select-type" class="input-text-box">
+              <option value="exclusive" selected>GST Exclusive (Add Tax to Base Amount)</option>
+              <option value="inclusive">GST Inclusive (Remove / Extract Tax from Gross)</option>
+            </select>
+          </div>
+
+        {# GENERIC FALLBACK #}
+        {% else %}
+          <div class="input-field-block calc-form-group">
+            <label for="input-amount" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Primary Amount ($)</label>
+            <input type="number" id="input-amount" class="input-text-box" value="10000" min="100" max="1000000" step="100">
+            <input type="range" class="custom-range-slider calc-range-slider" min="100" max="100000" step="100" value="10000">
+          </div>
+
+          <div class="input-field-block calc-form-group">
+            <label for="input-rate" class="input-label-text" style="display:block; margin-bottom:0.5rem;">Rate / Parameter (%)</label>
+            <input type="number" id="input-rate" class="input-text-box" value="7.5" min="0.1" max="30" step="0.1">
+          </div>
+        {% endif %}
+
+      </div>
+
+      {# Result Card with Dynamic Color Themes #}
+      <div class="{% if page.calculator_type == 'interest' %}card-result-amber{% elif page.calculator_type == 'investment' %}card-result-cyan{% elif page.calculator_type == 'cagr' %}card-result-violet{% elif page.calculator_type in 'credit_card calorie body_fat' %}card-result-rose{% elif page.calculator_type in 'sip fd' %}card-result-emerald{% else %}card-result-indigo{% endif %}">
+        <div class="result-card-label">
+          {% if page.calculator_type == 'loan' %}Monthly Payment
+          {% elif page.calculator_type == 'mortgage' %}Monthly Payment
+          {% elif page.calculator_type == 'interest' %}Future Accumulated Value
+          {% elif page.calculator_type == 'investment' %}Future Portfolio Value (Nominal)
+          {% elif page.calculator_type == 'sip' %}Total Expected Future Wealth
+          {% elif page.calculator_type == 'fd' %}Maturity Value
+          {% elif page.calculator_type == 'credit_card' %}Time to Pay Off
+          {% elif page.calculator_type == 'bmi' %}BMI Score
+          {% elif page.calculator_type == 'calorie' %}Daily Calorie Needs (TDEE)
+          {% elif page.calculator_type == 'body_fat' %}Estimated Body Fat %
+          {% elif page.calculator_type == 'pregnancy' %}Estimated Due Date
+          {% elif page.calculator_type == 'salary' %}Annual Salary
+          {% elif page.calculator_type == 'margin' %}Gross Profit Margin
+          {% elif page.calculator_type == 'break_even' %}Break-even Units
+          {% elif page.calculator_type == 'cash_flow' %}Net Cash Flow
+          {% elif page.calculator_type == 'gst' %}Gross Total Amount
+          {% elif page.calculator_type == 'cagr' %}Compound Annual Growth Rate (CAGR)
+          {% elif page.calculator_type == 'loan_eligibility' %}Max Eligible Loan Amount
+          {% else %}Calculated Result
+          {% endif %}
+        </div>
+        <div id="res-primary" class="result-card-huge-val">$0.00</div>
+
+        {% if page.calculator_type == 'investment' %}
+        <div style="padding: 0.75rem 0; border-top: 1px solid rgba(255,255,255,0.25); border-bottom: 1px solid rgba(255,255,255,0.25); margin-bottom: 0.75rem;">
+          <div class="result-sub-label" style="letter-spacing: 0.08em;">Inflation Adjusted (Today's Purchasing Power)</div>
+          <div id="res-real-val" style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">$0.00</div>
+        </div>
+        {% endif %}
+
+        <div class="result-card-subgrid">
+          <div>
+            <div class="result-sub-label">
+              {% if page.calculator_type == 'bmi' %}Weight Category
+              {% elif page.calculator_type == 'calorie' %}Basal Metabolic Rate
+              {% elif page.calculator_type == 'body_fat' %}Body Fat Category
+              {% elif page.calculator_type == 'pregnancy' %}Gestational Age
+              {% elif page.calculator_type == 'interest' %}Total Interest Earned
+              {% elif page.calculator_type == 'investment' %}Total Capital Contributed
+              {% elif page.calculator_type == 'sip' %}Total Invested Capital
+              {% elif page.calculator_type == 'cagr' %}Total Profit Gain
+              {% elif page.calculator_type == 'fd' %}Total Interest Earned
+              {% elif page.calculator_type == 'credit_card' %}Total Interest Paid
+              {% elif page.calculator_type == 'salary' %}Monthly Pay
+              {% elif page.calculator_type == 'margin' %}Gross Unit Profit
+              {% elif page.calculator_type == 'break_even' %}Break-even Revenue
+              {% elif page.calculator_type == 'cash_flow' %}Total Cash Inflows
+              {% elif page.calculator_type == 'gst' %}Tax Payable (GST)
+              {% elif page.calculator_type == 'loan_eligibility' %}Max Monthly EMI
+              {% else %}Total Interest
+              {% endif %}
+            </div>
+            <div id="res-stat-2" class="result-sub-val">$0.00</div>
+          </div>
+          <div>
+            <div class="result-sub-label">
+              {% if page.calculator_type == 'bmi' %}Healthy Range
+              {% elif page.calculator_type == 'calorie' %}Weight Loss Target
+              {% elif page.calculator_type == 'body_fat' %}Fat Mass
+              {% elif page.calculator_type == 'pregnancy' %}Current Trimester
+              {% elif page.calculator_type == 'interest' %}Total Deposits
+              {% elif page.calculator_type == 'investment' %}Total Capital Gains
+              {% elif page.calculator_type == 'sip' %}Estimated Wealth Returns
+              {% elif page.calculator_type == 'cagr' %}Total % Growth
+              {% elif page.calculator_type == 'fd' %}Principal Amount
+              {% elif page.calculator_type == 'credit_card' %}Total Repayment Cost
+              {% elif page.calculator_type == 'salary' %}Hourly Pay
+              {% elif page.calculator_type == 'margin' %}Markup Percentage
+              {% elif page.calculator_type == 'break_even' %}Contribution Margin
+              {% elif page.calculator_type == 'cash_flow' %}Total Cash Outflows
+              {% elif page.calculator_type == 'gst' %}Net Pre-Tax Base
+              {% elif page.calculator_type == 'loan_eligibility' %}Benchmark DTI
+              {% else %}Total Payment
+              {% endif %}
+            </div>
+            <div id="res-stat-3" class="result-sub-val">$0.00</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    {# 2/3 Right Column: Tabs (Overview, Allocation/Metrics, Schedule/Benchmarks) #}
+    <div class="calc-right-col">
+      
+      <div class="tabs-nav-bar">
+        <button type="button" class="tab-btn active" data-tab="tab-overview">Overview</button>
+        <button type="button" class="tab-btn" data-tab="tab-breakdown">
+          {% if page.calculator_type == 'investment' %}Real vs Nominal
+          {% elif page.calculator_type == 'interest' %}Yield Breakdown
+          {% elif page.calculator_type == 'salary' %}Take-Home vs Taxes
+          {% elif page.calculator_type == 'inflation' %}Purchasing Power
+          {% elif page.calculator_type in 'calorie body_fat bmi' %}Body Metrics
+          {% elif page.calculator_type == 'pregnancy' %}Trimester Progress
+          {% elif page.calculator_type == 'margin' %}Margin vs Markup
+          {% elif page.calculator_type == 'break_even' %}Contribution Margin
+          {% elif page.calculator_type == 'cash_flow' %}Liquidity Ratio
+          {% elif page.calculator_type == 'gst' %}Tax Distribution
+          {% elif page.calculator_type == 'loan_eligibility' %}DTI Ratio
+          {% elif page.calculator_type == 'currency' %}Fee vs Exchange
+          {% else %}Allocation Breakdown
+          {% endif %}
+        </button>
+        <button type="button" class="tab-btn" data-tab="tab-schedule">
+          {% if page.calculator_type in 'interest investment sip fd cagr' %}Growth Schedule
+          {% elif page.calculator_type in 'calorie body_fat bmi' %}Reference Benchmarks
+          {% elif page.calculator_type == 'pregnancy' %}Fetal Milestones
+          {% elif page.calculator_type == 'salary' %}Pay Frequency Table
+          {% elif page.calculator_type == 'margin' %}Pricing Matrix
+          {% elif page.calculator_type == 'break_even' %}Volume Sensitivity
+          {% elif page.calculator_type == 'cash_flow' %}Projections
+          {% elif page.calculator_type == 'gst' %}Slab Comparison
+          {% else %}Amortization Schedule
+          {% endif %}
+        </button>
+      </div>
+
+      {# Tab 1: Overview (Bespoke to Nature) #}
+      <div id="tab-overview" class="tab-pane active">
+        <div class="card-white">
+          <h3 class="card-title-lg" style="margin-bottom: 1rem;">
+            {% if page.calculator_type in 'loan mortgage' %}Loan Repayment & Interest Breakdown
+            {% elif page.calculator_type == 'cagr' %}Annualized Return & Holding Gain Breakdown
+            {% elif page.calculator_type == 'sip' %}Systematic Wealth Accumulation Breakdown
+            {% elif page.calculator_type == 'fd' %}Fixed Deposit & Maturity Yield Breakdown
+            {% elif page.calculator_type == 'interest' %}Savings Growth & Compound Yield Breakdown
+            {% elif page.calculator_type == 'investment' %}Portfolio Wealth & Capital Growth Strategy
+            {% elif page.calculator_type == 'credit_card' %}Debt Payoff & Finance Charge Breakdown
+            {% elif page.calculator_type == 'salary' %}Annual Earnings & Tax Allocation
+            {% elif page.calculator_type == 'inflation' %}Purchasing Power & Inflation Loss Breakdown
+            {% elif page.calculator_type == 'loan_eligibility' %}Monthly Debt Capacity & Income Allocation
+            {% elif page.calculator_type == 'currency' %}Currency Conversion & Transfer Fee Breakdown
+            {% elif page.calculator_type in 'bmi body_fat' %}Body Mass & Composition Breakdown
+            {% elif page.calculator_type == 'calorie' %}Daily Energy Expenditure Allocation
+            {% elif page.calculator_type == 'pregnancy' %}Gestational Timeline & Progress Breakdown
+            {% elif page.calculator_type == 'margin' %}Product Unit Economics Breakdown
+            {% elif page.calculator_type == 'break_even' %}Cost Structure & Contribution Breakdown
+            {% elif page.calculator_type == 'cash_flow' %}Monthly Inflows & Operating Outflows Breakdown
+            {% elif page.calculator_type == 'gst' %}Tax Allocation & Gross Invoice Breakdown
+            {% else %}Payment & Allocation Breakdown
+            {% endif %}
+          </h3>
+          <div class="breakdown-2col">
+            <div id="chart-container" class="chart-container"></div>
+            <div>
+              <div class="stat-row-slate">
+                <span class="stat-row-label">
+                  {% if page.calculator_type in 'loan mortgage' %}Principal Financed
+                  {% elif page.calculator_type == 'cagr' %}Initial Investment Capital
+                  {% elif page.calculator_type == 'sip' %}Monthly Investment Amount
+                  {% elif page.calculator_type == 'fd' %}Principal Deposit Amount
+                  {% elif page.calculator_type == 'interest' %}Initial Starting Deposit
+                  {% elif page.calculator_type == 'investment' %}Initial Seed Capital
+                  {% elif page.calculator_type == 'credit_card' %}Starting Card Balance
+                  {% elif page.calculator_type == 'salary' %}Monthly Pay
+                  {% elif page.calculator_type == 'inflation' %}Present Dollar Value
+                  {% elif page.calculator_type == 'loan_eligibility' %}Max Allowed Monthly EMI
+                  {% elif page.calculator_type == 'currency' %}Base Amount Sent
+                  {% elif page.calculator_type == 'bmi' %}Current Body Weight
+                  {% elif page.calculator_type == 'calorie' %}Basal Metabolic Rate (BMR)
+                  {% elif page.calculator_type == 'body_fat' %}Lean Muscle Mass
+                  {% elif page.calculator_type == 'pregnancy' %}Gestational Progress
+                  {% elif page.calculator_type == 'margin' %}Cost of Goods Sold (COGS)
+                  {% elif page.calculator_type == 'break_even' %}Monthly Fixed Overhead
+                  {% elif page.calculator_type == 'cash_flow' %}Total Cash Receipts
+                  {% elif page.calculator_type == 'gst' %}Pre-Tax Base Amount
+                  {% else %}Primary Base Amount
+                  {% endif %}
+                </span>
+                <span id="res-stat-1" class="stat-row-val">$0.00</span>
+              </div>
+              <div class="stat-row-slate">
+                <span class="stat-row-label">
+                  {% if page.calculator_type in 'loan mortgage' %}Total Interest Paid
+                  {% elif page.calculator_type == 'cagr' %}Total Absolute Profit Gain
+                  {% elif page.calculator_type == 'sip' %}Total Invested Capital
+                  {% elif page.calculator_type == 'fd' %}Total Accrued Interest
+                  {% elif page.calculator_type == 'interest' %}Total Compound Interest
+                  {% elif page.calculator_type == 'investment' %}Total Market Return Gains
+                  {% elif page.calculator_type == 'credit_card' %}Total Finance Charges
+                  {% elif page.calculator_type == 'salary' %}Bi-Weekly Pay
+                  {% elif page.calculator_type == 'inflation' %}Value Lost to Inflation
+                  {% elif page.calculator_type == 'loan_eligibility' %}Existing Debt EMIs
+                  {% elif page.calculator_type == 'currency' %}Transfer / Spread Fee
+                  {% elif page.calculator_type == 'bmi' %}Weight Category
+                  {% elif page.calculator_type == 'calorie' %}Daily Activity Energy Burn
+                  {% elif page.calculator_type == 'body_fat' %}Total Body Fat Mass
+                  {% elif page.calculator_type == 'pregnancy' %}Current Trimester
+                  {% elif page.calculator_type == 'margin' %}Gross Profit per Unit
+                  {% elif page.calculator_type == 'break_even' %}Unit Variable Cost
+                  {% elif page.calculator_type == 'cash_flow' %}Total Operating Outflows
+                  {% elif page.calculator_type == 'gst' %}GST / Sales Tax Amount
+                  {% else %}Additional Component
+                  {% endif %}
+                </span>
+                <span id="res-breakdown-interest" class="stat-row-val" style="color:var(--rose-500);">$0.00</span>
+              </div>
+              <div class="stat-row-slate">
+                <span class="stat-row-label">
+                  {% if page.calculator_type in 'loan mortgage' %}Total Lifetime Payment
+                  {% elif page.calculator_type == 'cagr' %}Final Ending Portfolio Value
+                  {% elif page.calculator_type == 'sip' %}Total Expected Maturity Value
+                  {% elif page.calculator_type == 'fd' %}Guaranteed Maturity Value
+                  {% elif page.calculator_type == 'interest' %}Ending Account Balance
+                  {% elif page.calculator_type == 'investment' %}Nominal Future Portfolio Value
+                  {% elif page.calculator_type == 'credit_card' %}Total Debt Payoff Cost
+                  {% elif page.calculator_type == 'salary' %}Gross Annual Income
+                  {% elif page.calculator_type == 'inflation' %}Future Dollar Equivalent
+                  {% elif page.calculator_type == 'loan_eligibility' %}Total Repayment Commitment
+                  {% elif page.calculator_type == 'currency' %}Net Converted Amount
+                  {% elif page.calculator_type == 'bmi' %}Ideal Weight Benchmark
+                  {% elif page.calculator_type == 'calorie' %}Total Daily TDEE
+                  {% elif page.calculator_type == 'body_fat' %}Total Body Weight
+                  {% elif page.calculator_type == 'pregnancy' %}Estimated Due Date
+                  {% elif page.calculator_type == 'margin' %}Retail Selling Price
+                  {% elif page.calculator_type == 'break_even' %}Break-even Revenue Target
+                  {% elif page.calculator_type == 'cash_flow' %}Net Operating Cash Flow
+                  {% elif page.calculator_type == 'gst' %}Total Gross Invoice Payable
+                  {% else %}Total Combined Value
+                  {% endif %}
+                </span>
+                <span id="res-breakdown-total" class="stat-row-val" style="color:var(--indigo-600);">$0.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Tab 2: Breakdown & Proportions #}
+      <div id="tab-breakdown" class="tab-pane">
+        <div class="card-white">
+          <h3 class="card-title-lg">
+            {% if page.calculator_type in 'loan mortgage' %}Principal vs Interest Proportion
+            {% elif page.calculator_type == 'cagr' %}Benchmark Index Comparison & Alpha
+            {% elif page.calculator_type == 'sip' %}Invested Capital vs Compound Returns
+            {% elif page.calculator_type == 'fd' %}Deposit Principal vs Accrued Interest
+            {% elif page.calculator_type == 'interest' %}Deposits vs Compound Yield
+            {% elif page.calculator_type == 'investment' %}Real vs Nominal Purchasing Power
+            {% elif page.calculator_type == 'credit_card' %}Principal vs Finance Charge Ratio
+            {% elif page.calculator_type == 'salary' %}Estimated Take-Home vs Deductions
+            {% elif page.calculator_type == 'inflation' %}Inflation Impact & Real Purchasing Power
+            {% elif page.calculator_type == 'loan_eligibility' %}Debt-to-Income (DTI) Allocation
+            {% elif page.calculator_type == 'currency' %}Conversion Efficiency & Fee Ratio
+            {% elif page.calculator_type in 'bmi body_fat' %}Lean Muscle vs Fat Ratio
+            {% elif page.calculator_type == 'calorie' %}Resting BMR vs Active Expenditure
+            {% elif page.calculator_type == 'pregnancy' %}Trimester Timeline Progression
+            {% elif page.calculator_type == 'margin' %}Gross Margin & Markup Ratios
+            {% elif page.calculator_type == 'break_even' %}Contribution Margin Ratio
+            {% elif page.calculator_type == 'cash_flow' %}Operating Cash Flow Efficiency
+            {% elif page.calculator_type == 'gst' %}Base Cost vs Tax Distribution
+            {% else %}Component Proportions
+            {% endif %}
+          </h3>
+          <p style="color:var(--text-secondary); font-size:0.95rem; margin-bottom:1.5rem;">
+            {% if page.calculator_type in 'loan mortgage credit_card' %}
+              Review how each payment is allocated between principal reduction and lender interest charges.
+            {% elif page.calculator_type == 'cagr' %}
+              Evaluate your investment's annualized compound performance against standard market benchmarks like S&P 500 (~10%) and Inflation (~3.2%).
+            {% elif page.calculator_type == 'sip' %}
+              Analyze how monthly dollar-cost averaging expands your wealth beyond direct capital contributions.
+            {% elif page.calculator_type == 'fd' %}
+              Review guaranteed capital safety and compounding interest earnings over the term deposit period.
+            {% elif page.calculator_type == 'interest' %}
+              Discover how compounding frequency boosts your overall savings account yield over time.
+            {% elif page.calculator_type == 'investment' %}
+              Compare nominal account growth with real inflation-adjusted purchasing power in today's dollars.
+            {% elif page.calculator_type == 'salary' %}
+              Estimated breakdown of gross wages into net take-home pay and tax withholdings.
+            {% elif page.calculator_type == 'calorie' %}
+              Basal Metabolic Rate accounts for the largest portion of daily energy, complemented by active movement.
+            {% elif page.calculator_type == 'body_fat' %}
+              Optimal body composition maintains lean muscle mass while keeping body fat in healthy metabolic ranges.
+            {% elif page.calculator_type == 'pregnancy' %}
+              Track completed gestational milestones against the standard 40-week human pregnancy timeline.
+            {% elif page.calculator_type == 'margin' %}
+              Compare your gross profit margin against your markup percentage to price products accurately.
+            {% elif page.calculator_type == 'break_even' %}
+              Examine how unit revenue covers variable expenses and contributes to fixed overhead.
+            {% elif page.calculator_type == 'cash_flow' %}
+              Ensure operating cash inflows comfortably exceed monthly expense obligations.
+            {% elif page.calculator_type == 'gst' %}
+              Itemized tax breakdown showing the exact tax liability added to or extracted from the transaction.
+            {% else %}
+              Review the detailed allocation and percentage breakdown for this calculation.
+            {% endif %}
+          </p>
+          <div class="stat-row-slate">
+            <span class="stat-row-label">
+              {% if page.calculator_type in 'loan mortgage credit_card' %}Principal Proportion
+              {% elif page.calculator_type == 'cagr' %}Initial Capital Ratio
+              {% elif page.calculator_type == 'sip' %}Direct Capital Invested
+              {% elif page.calculator_type == 'fd' %}Principal Deposit Ratio
+              {% elif page.calculator_type == 'interest' %}Total Deposits Ratio
+              {% elif page.calculator_type == 'investment' %}Nominal Future Value
+              {% elif page.calculator_type == 'salary' %}Estimated Take-Home (75%)
+              {% elif page.calculator_type == 'inflation' %}Retained Purchasing Power
+              {% elif page.calculator_type == 'loan_eligibility' %}Max Eligible Loan Principal
+              {% elif page.calculator_type == 'currency' %}Net Converted Output
+              {% elif page.calculator_type in 'bmi body_fat' %}Lean Muscle Mass Ratio
+              {% elif page.calculator_type == 'calorie' %}Resting BMR Proportion
+              {% elif page.calculator_type == 'pregnancy' %}Completed Timeline
+              {% elif page.calculator_type == 'margin' %}Cost Proportion
+              {% elif page.calculator_type == 'break_even' %}Contribution Margin Ratio
+              {% elif page.calculator_type == 'cash_flow' %}Operating Inflow Ratio
+              {% elif page.calculator_type == 'gst' %}Pre-Tax Base Ratio
+              {% else %}Primary Component Ratio
+              {% endif %}
+            </span>
+            <span id="res-pct-principal" class="stat-row-val">0%</span>
+          </div>
+          <div class="stat-row-slate">
+            <span class="stat-row-label">
+              {% if page.calculator_type in 'loan mortgage credit_card' %}Interest / Finance Cost Ratio
+              {% elif page.calculator_type == 'cagr' %}Capital Profit Multiple
+              {% elif page.calculator_type == 'sip' %}Compound Wealth Growth
+              {% elif page.calculator_type == 'fd' %}Accrued Interest Ratio
+              {% elif page.calculator_type == 'interest' %}Interest Earnings Ratio
+              {% elif page.calculator_type == 'investment' %}Real Value (Inflation Adjusted)
+              {% elif page.calculator_type == 'salary' %}Estimated Tax Withholdings (25%)
+              {% elif page.calculator_type == 'inflation' %}Inflation Purchasing Power Loss
+              {% elif page.calculator_type == 'loan_eligibility' %}Total Financing Interest
+              {% elif page.calculator_type == 'currency' %}Bank Transfer Fee
+              {% elif page.calculator_type in 'bmi body_fat' %}Body Fat Ratio
+              {% elif page.calculator_type == 'calorie' %}Active Energy Proportion
+              {% elif page.calculator_type == 'pregnancy' %}Remaining Timeline
+              {% elif page.calculator_type == 'margin' %}Gross Profit Margin
+              {% elif page.calculator_type == 'break_even' %}Variable Cost Ratio
+              {% elif page.calculator_type == 'cash_flow' %}Disbursement Outflow Ratio
+              {% elif page.calculator_type == 'gst' %}Tax Liability Ratio
+              {% else %}Secondary Component Ratio
+              {% endif %}
+            </span>
+            <span id="res-pct-interest" class="stat-row-val" style="color:var(--emerald-600);">0%</span>
+          </div>
+        </div>
+      </div>
+
+      {# Tab 3: Schedule / Benchmarks #}
+      <div id="tab-schedule" class="tab-pane">
+        <div class="card-white">
+          <h3 class="card-title-lg">
+            {% if page.calculator_type in 'interest investment sip fd cagr' %}Annual Wealth Accumulation Schedule
+            {% elif page.calculator_type in 'calorie body_fat bmi' %}Clinical Reference Benchmarks
+            {% elif page.calculator_type == 'pregnancy' %}Fetal Milestone Timeline
+            {% elif page.calculator_type == 'salary' %}Pay Frequency Conversion Table
+            {% elif page.calculator_type == 'margin' %}Pricing & Margin Sensitivity Matrix
+            {% elif page.calculator_type == 'break_even' %}Sales Volume Sensitivity Table
+            {% elif page.calculator_type == 'cash_flow' %}Quarterly Liquidity Projections
+            {% elif page.calculator_type == 'gst' %}GST Tax Slab Comparison Table
+            {% else %}Amortization Schedule
+            {% endif %}
+          </h3>
+          <div class="schedule-table-card">
+            <table class="table-v1">
+              <thead>
+                <tr>
+                  <th>
+                    {% if page.calculator_type in 'calorie body_fat bmi' %}Category / Range
+                    {% elif page.calculator_type == 'pregnancy' %}Milestone Stage
+                    {% elif page.calculator_type == 'salary' %}Pay Frequency
+                    {% elif page.calculator_type == 'margin' %}Margin Target
+                    {% elif page.calculator_type == 'break_even' %}Production Volume
+                    {% elif page.calculator_type == 'cash_flow' %}Quarter / Timeline
+                    {% elif page.calculator_type == 'gst' %}GST Slab Rate
+                    {% else %}Period
+                    {% endif %}
+                  </th>
+                  <th>
+                    {% if page.calculator_type == 'calorie' %}Daily Calorie Target
+                    {% elif page.calculator_type == 'body_fat' %}Men (% Fat)
+                    {% elif page.calculator_type == 'bmi' %}BMI Range
+                    {% elif page.calculator_type == 'pregnancy' %}Developmental Milestone
+                    {% elif page.calculator_type == 'salary' %}Gross Pay
+                    {% elif page.calculator_type == 'margin' %}Required Selling Price
+                    {% elif page.calculator_type == 'break_even' %}Total Revenue
+                    {% elif page.calculator_type == 'cash_flow' %}Projected Receipts
+                    {% elif page.calculator_type == 'gst' %}Base Amount
+                    {% elif page.calculator_type in 'interest investment sip fd cagr' %}Deposits / Contributions
+                    {% else %}Principal Paid
+                    {% endif %}
+                  </th>
+                  <th>
+                    {% if page.calculator_type == 'calorie' %}Daily Deficit / Surplus
+                    {% elif page.calculator_type == 'body_fat' %}Women (% Fat)
+                    {% elif page.calculator_type == 'bmi' %}Weight Status
+                    {% elif page.calculator_type == 'pregnancy' %}Approximate Size
+                    {% elif page.calculator_type == 'salary' %}Estimated Net Take-Home
+                    {% elif page.calculator_type == 'margin' %}Markup Equivalent
+                    {% elif page.calculator_type == 'break_even' %}Total Operating Costs
+                    {% elif page.calculator_type == 'cash_flow' %}Projected Disbursements
+                    {% elif page.calculator_type == 'gst' %}Tax Payable
+                    {% elif page.calculator_type in 'interest investment sip fd cagr' %}Compound Growth / Interest
+                    {% else %}Interest Paid
+                    {% endif %}
+                  </th>
+                  <th>
+                    {% if page.calculator_type == 'calorie' %}Physiological Effect
+                    {% elif page.calculator_type == 'body_fat' %}Fitness Classification
+                    {% elif page.calculator_type == 'bmi' %}Health Risk Assessment
+                    {% elif page.calculator_type == 'pregnancy' %}Clinical Note
+                    {% elif page.calculator_type == 'salary' %}Hourly Equivalent
+                    {% elif page.calculator_type == 'margin' %}Gross Profit / Unit
+                    {% elif page.calculator_type == 'break_even' %}Net Operating Profit
+                    {% elif page.calculator_type == 'cash_flow' %}Ending Liquidity Reserve
+                    {% elif page.calculator_type == 'gst' %}Gross Invoice Total
+                    {% else %}Ending Balance
+                    {% endif %}
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="schedule-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  {# 100% Server-Rendered Editorial Authority Content for Google Crawlers #}
+  <article class="editorial-wrapper" aria-label="Methodology and In-Depth Guide">
+    {% for block in page.body %}
+      {% include_block block %}
+    {% endfor %}
+  </article>
+
+  {# Related Calculators Component #}
+  <section class="related-section">
+    <h2 style="font-size:1.5rem; font-weight:800; color:var(--text-primary); margin-bottom:2rem;">Related Calculators</h2>
+    <div class="related-grid">
+      {% if page.calculator_type in 'bmi calorie body_fat pregnancy' %}
+        <a href="/health/bmi-calculator/" class="related-card">
+          <div class="related-icon-box bg-emerald-600">{% render_icon "heart-pulse" %}</div>
+          <div>
+            <h3 class="related-title">BMI Calculator</h3>
+            <p class="related-subtitle">Body Mass Index Screener</p>
+          </div>
+        </a>
+        <a href="/health/calorie-calculator/" class="related-card">
+          <div class="related-icon-box bg-rose-500">{% render_icon "utensils" %}</div>
+          <div>
+            <h3 class="related-title">Calorie & TDEE Calculator</h3>
+            <p class="related-subtitle">Daily Energy Expenditure</p>
+          </div>
+        </a>
+        <a href="/health/body-fat-calculator/" class="related-card">
+          <div class="related-icon-box bg-pink-600">{% render_icon "activity" %}</div>
+          <div>
+            <h3 class="related-title">Body Fat Calculator</h3>
+            <p class="related-subtitle">US Navy Method</p>
+          </div>
+        </a>
+      {% elif page.calculator_type in 'margin break_even cash_flow gst' %}
+        <a href="/business/margin-calculator/" class="related-card">
+          <div class="related-icon-box bg-violet-600">{% render_icon "briefcase" %}</div>
+          <div>
+            <h3 class="related-title">Margin Calculator</h3>
+            <p class="related-subtitle">Profit & Markup Engine</p>
+          </div>
+        </a>
+        <a href="/business/break-even-calculator/" class="related-card">
+          <div class="related-icon-box bg-indigo-600">{% render_icon "trending-up" %}</div>
+          <div>
+            <h3 class="related-title">Break-even Calculator</h3>
+            <p class="related-subtitle">Unit Volume & Revenue Target</p>
+          </div>
+        </a>
+        <a href="/business/gst-calculator/" class="related-card">
+          <div class="related-icon-box bg-emerald-600">{% render_icon "calculator" %}</div>
+          <div>
+            <h3 class="related-title">GST & Sales Tax</h3>
+            <p class="related-subtitle">Tax Calculations</p>
+          </div>
+        </a>
+      {% else %}
+        <a href="/finance/loan-calculator/" class="related-card">
+          <div class="related-icon-box bg-blue-600">{% render_icon "banknote" %}</div>
+          <div>
+            <h3 class="related-title">Loan Calculator</h3>
+            <p class="related-subtitle">EMI & Amortization</p>
+          </div>
+        </a>
+        <a href="/finance/investment-calculator/" class="related-card">
+          <div class="related-icon-box bg-cyan-600">{% render_icon "trending-up" %}</div>
+          <div>
+            <h3 class="related-title">Investment Calculator</h3>
+            <p class="related-subtitle">Inflation-Adjusted Growth</p>
+          </div>
+        </a>
+        <a href="/finance/sip-calculator/" class="related-card">
+          <div class="related-icon-box bg-emerald-600">{% render_icon "trending-up" %}</div>
+          <div>
+            <h3 class="related-title">SIP Calculator</h3>
+            <p class="related-subtitle">Systematic Monthly Wealth</p>
+          </div>
+        </a>
+      {% endif %}
+    </div>
+  </section>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/calculator-engine.js' %}"></script>
+<script>
+  // Tab Switching Logic
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const targetId = btn.getAttribute('data-tab');
+      const targetPane = document.getElementById(targetId);
+      if (targetPane) targetPane.classList.add('active');
+    });
+  });
+</script>
+{% endblock %}

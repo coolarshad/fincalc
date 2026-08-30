@@ -86,11 +86,7 @@ export default function InvestmentCalculator({ cmsData }: { cmsData: any }) {
     <div className="max-w-7xl mx-auto px-4 py-12">
       {/* SEO handled by parent server component */}
 
-      {firebaseConfig.projectId === 'YOUR_PROJECT_ID' && (
-        <div className="bg-yellow-50 text-yellow-800 p-2 text-center text-sm font-medium mb-8">
-          Firebase is not connected. Showing fallback content.
-        </div>
-      )}
+      
 
       <div className="mb-10">
         <h1 className="text-3xl font-bold text-slate-900 mb-2">{cmsData?.title || "Investment Calculator"}</h1>
@@ -163,7 +159,7 @@ export default function InvestmentCalculator({ cmsData }: { cmsData: any }) {
                   </CardHeader>
                   <CardContent>
                     <div className="h-[250px]">
-                      <ResponsiveContainer width="100%" height="100%">
+                      <ResponsiveContainer initialDimension={{ width: 400, height: 300 }} width="100%" height="100%" minWidth={0} minHeight={0}>
                         <PieChart>
                           <Pie
                             data={[
@@ -194,7 +190,7 @@ export default function InvestmentCalculator({ cmsData }: { cmsData: any }) {
                   </CardHeader>
                   <CardContent>
                     <div className="h-[250px]">
-                      <ResponsiveContainer width="100%" height="100%">
+                      <ResponsiveContainer initialDimension={{ width: 400, height: 300 }} width="100%" height="100%" minWidth={0} minHeight={0}>
                         <AreaChart data={chartData}>
                           <XAxis dataKey="year" />
                           <YAxis />
@@ -216,7 +212,7 @@ export default function InvestmentCalculator({ cmsData }: { cmsData: any }) {
                 </CardHeader>
                 <CardContent>
                   <div className="h-[400px]">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <ResponsiveContainer initialDimension={{ width: 400, height: 300 }} width="100%" height="100%" minWidth={0} minHeight={0}>
                       <LineChart data={chartData}>
                         <XAxis dataKey="year" />
                         <YAxis />

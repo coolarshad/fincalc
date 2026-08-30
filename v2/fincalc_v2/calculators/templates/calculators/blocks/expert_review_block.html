@@ -1,0 +1,19 @@
+{% load seo_tags %}
+<div class="editorial-block">
+  <div class="expert-review-card">
+    <div class="expert-icon-wrap">
+      {% render_icon "shield-check" %}
+    </div>
+    <div>
+      <h3 style="font-size: 1.1rem; margin-top: 0; margin-bottom: 0.25rem;">
+        Reviewed & Verified by {{ value.reviewer_name }}
+      </h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+        {{ value.reviewer_title }} • Last Reviewed: {{ value.reviewed_date|date:"F j, Y" }}
+      </p>
+      <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0;">
+        {{ value.methodology_note }}
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 export const firebaseConfig = {
@@ -10,15 +10,15 @@ export const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 
-const app = initializeApp(firebaseConfig);
+const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 export async function getPageContent(pageId: string) {
-  if (firebaseConfig.projectId === "YOUR_PROJECT_ID") return null;
+  if (!firebaseConfig.projectId || firebaseConfig.projectId === "YOUR_PROJECT_ID") {
+    return null;
+  }
 
   try {
-    // Firestore requires an even number of segments (Collection/Document).
-    // If pageId is 'calculators/loan-calculator', it replaces it with 'calculators-loan-calculator'
     const sanitizedId = pageId.replace(/\//g, '-');
     const docRef = doc(db, "pages", sanitizedId);
     const docSnap = await getDoc(docRef);
@@ -26,8 +26,11 @@ export async function getPageContent(pageId: string) {
       return docSnap.data();
     }
     return null;
-  } catch (err) {
-    console.error(`Failed to fetch Firebase content for page ${pageId}:`, err);
+  } catch (err: any) {
+    // Graceful fallback to static SEO metadata when Firestore is unconfigured or restricted
+    if (process.env.NODE_ENV === 'development' && err?.code !== 'permission-denied') {
+      console.warn(`[Firebase] Page ${pageId} fallback active:`, err?.message || err);
+    }
     return null;
   }
 }

@@ -1,0 +1,37 @@
+{% load seo_tags %}
+<div class="editorial-block">
+  <div class="worked-example-card">
+    <h2>{{ value.title|default:"Real-World Calculation Example" }}</h2>
+    
+    <p>{{ value.scenario_description }}</p>
+
+    {% if value.steps %}
+    <div class="step-timeline">
+      {% for step in value.steps %}
+      <div class="step-row">
+        <div class="step-badge">{{ step.step_number }}</div>
+        <div class="step-content">
+          <h4>{{ step.step_title }}</h4>
+          {% if step.step_math %}
+          <div class="step-calc">{{ step.step_math }}</div>
+          {% endif %}
+          <p>{{ step.description }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if value.result_highlight %}
+    <div class="result-highlight-box">
+      {{ value.result_highlight }}
+    </div>
+    {% endif %}
+
+    {% if value.key_observation %}
+    <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-secondary);">
+      <strong>Strategic Insight:</strong> {{ value.key_observation }}
+    </p>
+    {% endif %}
+  </div>
+</div>

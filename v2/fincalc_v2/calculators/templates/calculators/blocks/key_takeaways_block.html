@@ -1,0 +1,17 @@
+{% load seo_tags %}
+<div class="editorial-block">
+  <div style="background: var(--bg-surface-elevated); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem;">
+    <h3 style="margin-top: 0; font-size: 1.15rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+      <span style="color: var(--primary);">{% render_icon "check" %}</span>
+      <span>{{ value.heading|default:"Key Considerations & Pro Tips" }}</span>
+    </h3>
+    <ul style="list-style: none; margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.6rem;">
+      {% for pt in value.points %}
+      <li style="display: flex; align-items: baseline; gap: 0.6rem; font-size: 0.95rem; color: var(--text-secondary);">
+        <span style="color: var(--accent-emerald); font-weight: bold;">✓</span>
+        <span>{{ pt }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

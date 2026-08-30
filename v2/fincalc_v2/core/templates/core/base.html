@@ -1,0 +1,235 @@
+{% load static wagtailcore_tags wagtailsettings_tags seo_tags %}
+{% get_settings use_default_site=True as site_settings %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  {# Dynamic SEO Metadata #}
+  <title>{% if page.seo_title %}{{ page.seo_title }}{% elif page.title %}{{ page.title }} - FinanceToolsLab.com{% else %}FinanceToolsLab.com - Free Online Financial & Health Calculators{% endif %}</title>
+  <meta name="description" content="{% if page.search_description %}{{ page.search_description }}{% elif page.short_summary %}{{ page.short_summary }}{% else %}Access a comprehensive suite of free, accurate online calculators for finance, health, and business. Mobile-first and lightweight for maximum performance.{% endif %}">
+  <link rel="canonical" href="{{ page.get_full_url }}">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  {# Google Search Console Verification #}
+  {% if site_settings.core.SiteSettings.google_search_console_id %}
+  <meta name="google-site-verification" content="{{ site_settings.core.SiteSettings.google_search_console_id }}">
+  {% endif %}
+
+  {# OpenGraph / Facebook #}
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}">
+  <meta property="og:description" content="{% if page.search_description %}{{ page.search_description }}{% elif page.short_summary %}{{ page.short_summary }}{% else %}{{ site_settings.core.SiteSettings.site_description }}{% endif %}">
+  <meta property="og:url" content="{{ page.get_full_url }}">
+  <meta property="og:site_name" content="FinanceToolsLab.com">
+
+  {# Twitter Card #}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}">
+  <meta name="twitter:description" content="{% if page.search_description %}{{ page.search_description }}{% elif page.short_summary %}{{ page.short_summary }}{% else %}{{ site_settings.core.SiteSettings.site_description }}{% endif %}">
+
+  {# Google Fonts #}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  {# Core CSS #}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+  {# Automated JSON-LD Structured Data Schema for Googlebot #}
+  {% render_json_ld_schema page %}
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  {# Site Header (v1 layout) #}
+  <header class="site-header">
+    <div class="max-w-7xl">
+      <div class="header-row">
+        <a href="/" class="brand-link" aria-label="FinanceToolsLab.com Homepage">
+          <div class="brand-icon-box">
+            {% render_icon "calculator" %}
+          </div>
+          <span>
+            FinanceTools<span class="brand-text-accent">Lab</span>.com
+          </span>
+        </a>
+
+        {# Desktop Navigation #}
+        <nav class="desktop-nav" aria-label="Main Navigation">
+          <a href="/" class="nav-item">Home</a>
+          <a href="/#calculators" class="nav-item">Calculators</a>
+          <a href="/about/" class="nav-item">About</a>
+          <a href="/contact/" class="nav-item">Contact</a>
+          <a href="/#calculators" class="btn-get-started">Get Started</a>
+        </nav>
+
+        {# Header Tools: Search & Theme Toggle #}
+        <div class="header-right-tools">
+          <button id="search-trigger-btn" class="btn-icon-square" aria-label="Search Calculators" title="Search (⌘K)">
+            {% render_icon "search" %}
+          </button>
+          <button id="theme-toggle-btn" class="btn-icon-square" aria-label="Toggle Theme" title="Toggle Theme">
+            {% render_icon "sun" %}
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {# Main Content #}
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  {# Search Modal #}
+  <div id="search-modal" class="search-modal-backdrop" aria-hidden="true" role="dialog">
+    <div class="search-modal-box">
+      <div class="search-modal-input-wrap">
+        {% render_icon "search" %}
+        <input type="text" id="modal-search-input" class="search-modal-input" placeholder="Type to search all 20 calculators..." autocomplete="off">
+      </div>
+      <div id="modal-search-results" class="search-results-list">
+        <a href="/finance/loan-calculator/" class="search-result-item">
+          <div class="v1-calc-icon-box bg-blue-500" style="width:2rem; height:2rem; margin-bottom:0; border-radius:0.375rem;">{% render_icon "banknote" %}</div>
+          <div>
+            <strong>Loan Calculator</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Finance • Calculate monthly payment, rate, and tenure</div>
+          </div>
+        </a>
+        <a href="/finance/mortgage-calculator/" class="search-result-item">
+          <div class="v1-calc-icon-box bg-indigo-500" style="width:2rem; height:2rem; margin-bottom:0; border-radius:0.375rem;">{% render_icon "home" %}</div>
+          <div>
+            <strong>Mortgage Calculator</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Finance • Home loan with taxes and insurance</div>
+          </div>
+        </a>
+        <a href="/finance/sip-calculator/" class="search-result-item">
+          <div class="v1-calc-icon-box bg-emerald-600" style="width:2rem; height:2rem; margin-bottom:0; border-radius:0.375rem;">{% render_icon "trending-up" %}</div>
+          <div>
+            <strong>SIP Calculator</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Finance • Future value of monthly systematic investments</div>
+          </div>
+        </a>
+        <a href="/finance/salary-calculator/" class="search-result-item">
+          <div class="v1-calc-icon-box bg-emerald-500" style="width:2rem; height:2rem; margin-bottom:0; border-radius:0.375rem;">{% render_icon "dollar-sign" %}</div>
+          <div>
+            <strong>Salary Calculator</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Finance • Hourly, daily, monthly, and annual wage converter</div>
+          </div>
+        </a>
+        <a href="/health/bmi-calculator/" class="search-result-item">
+          <div class="v1-calc-icon-box bg-orange-500" style="width:2rem; height:2rem; margin-bottom:0; border-radius:0.375rem;">{% render_icon "scale" %}</div>
+          <div>
+            <strong>BMI Calculator</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Health • Body Mass Index and healthy weight range</div>
+          </div>
+        </a>
+        <a href="/health/calorie-calculator/" class="search-result-item">
+          <div class="v1-calc-icon-box bg-red-500" style="width:2rem; height:2rem; margin-bottom:0; border-radius:0.375rem;">{% render_icon "utensils" %}</div>
+          <div>
+            <strong>Calorie Calculator</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Health • Daily energy expenditure and deficit goals</div>
+          </div>
+        </a>
+        <a href="/business/margin-calculator/" class="search-result-item">
+          <div class="v1-calc-icon-box bg-indigo-400" style="width:2rem; height:2rem; margin-bottom:0; border-radius:0.375rem;">{% render_icon "percent" %}</div>
+          <div>
+            <strong>Margin Calculator</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Business • Profit margin and markup percentage</div>
+          </div>
+        </a>
+        <a href="/business/gst-calculator/" class="search-result-item">
+          <div class="v1-calc-icon-box bg-amber-500" style="width:2rem; height:2rem; margin-bottom:0; border-radius:0.375rem;">{% render_icon "receipt" %}</div>
+          <div>
+            <strong>GST Calculator</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Business • Tax inclusive and exclusive calculations</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {# Site Footer (v1 exact layout) #}
+  <footer class="site-footer-v1">
+    <div class="max-w-7xl">
+      <div class="footer-v1-grid">
+        <div>
+          <a href="/" class="brand-link" style="color:#ffffff; margin-bottom:1.5rem;">
+            <div class="brand-icon-box" style="background-color:var(--indigo-600);">
+              {% render_icon "calculator" %}
+            </div>
+            <span style="font-size:1.5rem;">
+              FinanceTools<span style="color:var(--indigo-400);">Lab</span>.com
+            </span>
+          </a>
+          <p style="font-size:0.875rem; line-height:1.7; max-width:28rem; margin-bottom:1.5rem; color:#cbd5e1;">
+            FinanceToolsLab.com is your premier destination for accurate, free, and easy-to-use financial tools.
+            We empower individuals and businesses with data-driven insights to make smarter financial decisions.
+          </p>
+          <div style="display:flex; align-items:center; gap:0.5rem; color:var(--indigo-400); margin-bottom:1.5rem;">
+            {% render_icon "shield-check" %}
+            <span style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em;">
+              Trusted by 1M+ Users Monthly
+            </span>
+          </div>
+          <div style="display:flex; gap:1rem;">
+            <a href="/about/" style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#94a3b8;">About</a>
+            <a href="/contact/" style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#94a3b8;">Contact</a>
+            <a href="/privacy/" style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#94a3b8;">Privacy</a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="footer-v1-title">Financial Tools</h3>
+          <ul class="footer-v1-list">
+            <li><a href="/finance/loan-calculator/">Loan Calculator</a></li>
+            <li><a href="/finance/mortgage-calculator/">Mortgage Calculator</a></li>
+            <li><a href="/finance/investment-calculator/">Investment Calculator</a></li>
+            <li><a href="/finance/sip-calculator/">SIP Calculator</a></li>
+            <li><a href="/finance/fd-calculator/">FD Calculator</a></li>
+            <li><a href="/finance/interest-calculator/">Interest Calculator</a></li>
+            <li><a href="/finance/cagr-calculator/">CAGR Calculator</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-v1-title">Health & Life</h3>
+          <ul class="footer-v1-list">
+            <li><a href="/health/bmi-calculator/">BMI Calculator</a></li>
+            <li><a href="/health/calorie-calculator/">Calorie Calculator</a></li>
+            <li><a href="/health/body-fat-calculator/">Body Fat Calculator</a></li>
+            <li><a href="/health/pregnancy-calculator/">Pregnancy Calculator</a></li>
+            <li><a href="/finance/salary-calculator/">Salary Calculator</a></li>
+            <li><a href="/finance/inflation-calculator/">Inflation Calculator</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-v1-title">Business & Utility</h3>
+          <ul class="footer-v1-list">
+            <li><a href="/business/margin-calculator/">Margin Calculator</a></li>
+            <li><a href="/business/gst-calculator/">GST Calculator</a></li>
+            <li><a href="/business/break-even-calculator/">Break-even Calculator</a></li>
+            <li><a href="/business/cash-flow-calculator/">Cash Flow Calculator</a></li>
+            <li><a href="/finance/credit-card-calculator/">Credit Card Interest</a></li>
+            <li><a href="/finance/currency-calculator/">Currency Converter</a></li>
+            <li><a href="/finance/loan-eligibility-calculator/">Loan Eligibility</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-v1-bottom">
+        <p>&copy; 2026 FinanceToolsLab.com. All rights reserved. Precision tools for financial success.</p>
+        <p>Designed for speed, accuracy, and mobile performance.</p>
+      </div>
+    </div>
+  </footer>
+
+  {# Core Scripts #}
+  <script src="{% static 'js/main.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
