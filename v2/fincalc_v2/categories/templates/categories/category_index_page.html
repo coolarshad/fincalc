@@ -2,65 +2,62 @@
 {% load static wagtailcore_tags seo_tags %}
 
 {% block content %}
-<div class="site-container">
-  {# Breadcrumbs #}
-  {% render_breadcrumbs page %}
+<div class="page-wrapper bg-slate-50">
+  <div class="max-w-7xl" style="padding-top: 2.5rem; padding-bottom: 4.5rem;">
+    
+    {# Breadcrumb Navigation #}
+    {% render_breadcrumbs page %}
 
-  {# Category Hero #}
-  <header class="hero-section" style="text-align: left; padding: 2rem 0;">
-    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem;">
-      <div style="width: 52px; height: 52px; border-radius: var(--radius-md); background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center;">
-        {% render_icon page.icon_name %}
+    {# Category Hero #}
+    <div class="category-hero-header">
+      <div class="flex-center" style="gap: 1.25rem; justify-content: flex-start;">
+        <div class="category-icon-box bg-{{ page.badge_color }}-500 text-white">
+          {% render_icon page.icon_name %}
+        </div>
+        <div>
+          <span class="v1-calc-badge" style="margin-bottom: 0.35rem; display: inline-block;">Category Hub</span>
+          <h1 class="about-hero-title" style="text-align: left; margin-bottom: 0; font-size: 2.25rem;">{{ page.title }}</h1>
+        </div>
       </div>
-      <div>
-        <span class="brand-badge" style="margin-bottom: 0.25rem;">Category Hub</span>
-        <h1 class="hero-title" style="margin-bottom: 0; font-size: 2.25rem;">{{ page.title }}</h1>
-      </div>
-    </div>
-    <p class="hero-subtitle" style="margin: 0; max-width: 800px;">{{ page.description }}</p>
-  </header>
-
-  {# Calculators Grid in this Category #}
-  <section style="margin-top: 2rem; margin-bottom: 3.5rem;">
-    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
-      <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--text-primary);">
-        Available {{ page.title }} Tools ({{ calculators|length }})
-      </h2>
+      <p class="section-desc" style="text-align: left; margin-top: 1rem; max-width: 52rem;">{{ page.description }}</p>
     </div>
 
-    <div class="calculators-grid">
-      {% for calc in calculators %}
-      <a href="{{ calc.url }}" class="calc-card">
-        <div class="calc-card-header">
-          <div class="calc-card-icon">
+    {# Calculators Grid in this Category #}
+    <section style="margin-top: 2.5rem; margin-bottom: 3.5rem;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">
+          Available {{ page.title }} Tools ({{ calculators|length }})
+        </h2>
+      </div>
+
+      <div class="v1-calc-grid">
+        {% for calc in calculators %}
+        <a href="{{ calc.url }}" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-{{ page.badge_color }}-500">
             {% render_icon "calculator" %}
           </div>
-          <span class="calc-card-badge">{{ calc.badge_tag }}</span>
-        </div>
-        <h3>{{ calc.title }}</h3>
-        <p>{{ calc.short_summary }}</p>
-        <div class="calc-card-footer">
-          <span>Calculate Now</span>
-          {% render_icon "arrow-right" %}
-        </div>
-      </a>
-      {% empty %}
-      <p style="color: var(--text-muted);">No calculators published in this category yet.</p>
-      {% endfor %}
-    </div>
-  </section>
+          <div><span class="v1-calc-badge">{{ calc.badge_tag|default:page.title }}</span></div>
+          <h3 class="v1-calc-title">{{ calc.title }}</h3>
+          <p class="v1-calc-desc">{{ calc.short_summary }}</p>
+        </a>
+        {% empty %}
+        <p style="color: var(--text-muted);">No calculators published in this category yet.</p>
+        {% endfor %}
+      </div>
+    </section>
 
-  {# Topic Silo Editorial Authority #}
-  {% if page.detailed_intro %}
-  <article class="editorial-content-area" style="border-top: 1px solid var(--border-color); padding-top: 2.5rem;">
-    <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1.25rem;">
-      About {{ page.title }} Calculations
-    </h2>
-    <div style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.75;">
-      {{ page.detailed_intro|richtext }}
-    </div>
-  </article>
-  {% endif %}
+    {# Topic Silo Editorial Authority #}
+    {% if page.detailed_intro %}
+    <article class="card-white p-lg" style="margin-top: 2rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1rem;">
+        About {{ page.title }} Calculations
+      </h2>
+      <div style="font-size: 1.05rem;">
+        {{ page.detailed_intro|richtext }}
+      </div>
+    </article>
+    {% endif %}
 
+  </div>
 </div>
 {% endblock %}

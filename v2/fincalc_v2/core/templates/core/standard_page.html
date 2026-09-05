@@ -2,31 +2,35 @@
 {% load static wagtailcore_tags seo_tags %}
 
 {% block content %}
-<div class="site-container">
-  {% render_breadcrumbs page %}
+<div class="page-wrapper bg-slate-50">
+  <div class="max-w-7xl" style="padding-top: 2.5rem; padding-bottom: 4.5rem;">
+    
+    {# Breadcrumb Navigation #}
+    {% render_breadcrumbs page %}
 
-  <article class="editorial-content-area" style="padding-top: 1.5rem;">
-    <header style="margin-bottom: 2rem;">
-      <h1 class="calc-page-title" style="margin-bottom: 0.5rem;">{{ page.title }}</h1>
+    {# Header #}
+    <div class="about-hero-center" style="margin-bottom: 2.5rem;">
+      <h1 class="about-hero-title" style="margin-bottom: 0.5rem;">{{ page.title }}</h1>
       {% if page.subtitle %}
-      <p style="font-size: 1.15rem; color: var(--primary); font-weight: 500;">{{ page.subtitle }}</p>
+      <p style="font-size: 1.15rem; color: var(--indigo-600); font-weight: 600;">{{ page.subtitle }}</p>
       {% endif %}
-    </header>
+    </div>
 
     {% if page.intro %}
-    <div style="font-size: 1.1rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 2rem; padding: 1.25rem; background: var(--bg-surface); border-left: 4px solid var(--primary); border-radius: var(--radius-md);">
+    <div class="intro-callout-box mb-8">
       {{ page.intro }}
     </div>
     {% endif %}
 
-    <div class="standard-body-content" style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8;">
+    {# Content Card #}
+    <div class="card-white p-lg" style="line-height: 1.8; color: var(--text-secondary); font-size: 1.05rem;">
       {% for block in page.body %}
         {% if block.block_type == 'heading' %}
-          <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin-top: 2rem; margin-bottom: 1rem;">
+          <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin-top: 2rem; margin-bottom: 0.75rem;">
             {{ block.value }}
           </h2>
         {% elif block.block_type == 'paragraph' %}
-          <div style="margin-bottom: 1.5rem;">
+          <div style="margin-bottom: 1.25rem;">
             {{ block.value|richtext }}
           </div>
         {% elif block.block_type == 'faq' %}
@@ -42,6 +46,7 @@
         {% endif %}
       {% endfor %}
     </div>
-  </article>
+
+  </div>
 </div>
 {% endblock %}

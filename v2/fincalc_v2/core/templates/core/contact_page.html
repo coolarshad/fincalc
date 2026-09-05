@@ -1,0 +1,227 @@
+{% extends "core/base.html" %}
+{% load static wagtailcore_tags seo_tags %}
+
+{% block content %}
+<div class="page-wrapper bg-slate-50">
+  <div class="max-w-7xl" style="padding-top: 2.5rem; padding-bottom: 4.5rem;">
+    
+    {# Breadcrumb Navigation #}
+    {% render_breadcrumbs page %}
+
+    {# Hero Section #}
+    <div class="about-hero-center" style="margin-bottom: 3.5rem;">
+      <div class="hero-pill-badge">
+        {% render_icon "sparkles" %}
+        <span>Direct Support & Editorial Inquiries</span>
+      </div>
+      <h1 class="about-hero-title">
+        Get in Touch with Our Team
+      </h1>
+      <p class="about-hero-desc">
+        {% if page.intro %}
+          {{ page.intro }}
+        {% else %}
+          Have feedback on a formula? Found a bug? Or want to suggest a new calculator? We review every message with care and respond within 24 hours.
+        {% endif %}
+      </p>
+    </div>
+
+    {# Main Grid: Info Cards + Form #}
+    <div class="contact-2col-grid mb-12">
+      
+      {# Left Column: Direct Channels & SLA #}
+      <div class="contact-left-col">
+        
+        {# Direct Contact Channels #}
+        <div class="card-white p-md">
+          <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1.5rem;">
+            Direct Channels
+          </h2>
+
+          <div class="contact-channel-row">
+            <div class="team-avatar-icon bg-indigo-light text-indigo">
+              {% render_icon "mail" %}
+            </div>
+            <div>
+              <h3 style="font-size: 0.9rem; font-weight: 700; color: var(--text-primary);">Support & Editorial Email</h3>
+              <a href="mailto:support@financetoolslab.com" style="color: var(--indigo-600); font-weight: 600; font-size: 0.9rem; text-decoration: none;">
+                support@financetoolslab.com
+              </a>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Direct inbox monitored 24/7</p>
+            </div>
+          </div>
+
+          <div class="contact-channel-row" style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem;">
+            <div class="team-avatar-icon bg-amber-light text-amber">
+              {% render_icon "map-pin" %}
+            </div>
+            <div>
+              <h3 style="font-size: 0.9rem; font-weight: 700; color: var(--text-primary);">Headquarters & Lab</h3>
+              <p style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 500;">
+                FinanceToolsLab Engineering & Research
+              </p>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Kathmandu, Nepal / Global Remote Team</p>
+            </div>
+          </div>
+        </div>
+
+        {# SLA Commitment Box #}
+        <div class="sla-banner-box">
+          <div class="section-tag-row" style="color: var(--indigo-200); margin-bottom: 0.5rem;">
+            {% render_icon "clock" %}
+            <span>Our SLA Guarantee</span>
+          </div>
+          <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.5rem;">
+            24-Hour Guaranteed Turnaround
+          </h3>
+          <p style="font-size: 0.875rem; line-height: 1.6; color: var(--indigo-100);">
+            Whether you’re reporting an edge-case calculation or submitting feedback for our CFP review board, you will receive a human response from our core team.
+          </p>
+          <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 700; color: #a5b4fc; padding-top: 0.5rem;">
+            {% render_icon "shield-check" %}
+            <span>Encrypted Submissions • Zero Spam Promise</span>
+          </div>
+        </div>
+
+      </div>
+
+      {# Right Column: Interactive Form #}
+      <div class="contact-right-col">
+        <div class="card-white p-lg" id="contact-form-container">
+          <form id="contact-form" class="space-y-4">
+            <div>
+              <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.25rem;">
+                Send Us a Message
+              </h2>
+              <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+                Please select a topic so we can route your inquiry directly to the right specialist.
+              </p>
+            </div>
+
+            {# Inquiry Topic Selector #}
+            <div>
+              <label class="input-label-text" style="display: block; margin-bottom: 0.5rem;">Inquiry Category</label>
+              <div class="topic-pills-row" id="topic-pills-wrap">
+                <button type="button" class="topic-pill active" data-topic="General Question">General Question</button>
+                <button type="button" class="topic-pill" data-topic="Report a Bug">Report a Calculation Bug</button>
+                <button type="button" class="topic-pill" data-topic="Request Calculator">Request New Calculator</button>
+                <button type="button" class="topic-pill" data-topic="Editorial Inquiry">CFP / Editorial Inquiry</button>
+                <button type="button" class="topic-pill" data-topic="Partnership">Partnership / Press</button>
+              </div>
+              <input type="hidden" id="selected-topic-input" value="General Question">
+            </div>
+
+            {# Name Fields #}
+            <div class="grid-2col-gap">
+              <div>
+                <label for="contact-first-name" class="input-label-text" style="display: block; margin-bottom: 0.35rem;">First Name *</label>
+                <input type="text" id="contact-first-name" class="input-text-box" placeholder="Alex" required>
+              </div>
+              <div>
+                <label for="contact-last-name" class="input-label-text" style="display: block; margin-bottom: 0.35rem;">Last Name</label>
+                <input type="text" id="contact-last-name" class="input-text-box" placeholder="Smith">
+              </div>
+            </div>
+
+            {# Email #}
+            <div>
+              <label for="contact-email" class="input-label-text" style="display: block; margin-bottom: 0.35rem;">Email Address *</label>
+              <input type="email" id="contact-email" class="input-text-box" placeholder="alex@example.com" required>
+            </div>
+
+            {# Message #}
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                <label for="contact-message" class="input-label-text">Message *</label>
+                <span id="char-counter" style="font-size: 0.75rem; color: var(--text-muted);">0 characters</span>
+              </div>
+              <textarea id="contact-message" rows="5" class="input-text-box" style="resize: vertical;" placeholder="How can we assist you with our calculation tools or editorial guidelines?" required></textarea>
+            </div>
+
+            {# Submit Button #}
+            <button type="submit" id="btn-submit-contact" class="btn-primary" style="width: 100%; justify-content: center; height: 3rem; font-size: 1rem; border-radius: var(--radius-lg); font-weight: 700; margin-top: 1rem; cursor: pointer;">
+              {% render_icon "send" %}
+              <span>Send Message</span>
+            </button>
+
+            <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 0.75rem;">
+              We respect your privacy. Inquiries are never shared with third parties.
+            </p>
+          </form>
+
+          {# Success State Container #}
+          <div id="contact-success-state" style="display: none; padding: 3rem 1.5rem; text-align: center;">
+            <div class="success-icon-circle">
+              {% render_icon "check" %}
+            </div>
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">
+              Message Successfully Sent!
+            </h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; max-width: 28rem; margin: 0 auto 2rem auto;">
+              Thank you for reaching out. Your inquiry has been routed to our editorial support team. We will review and follow up with you within 24 hours.
+            </p>
+            <button type="button" id="btn-send-another" class="btn-secondary" style="margin: 0 auto; border-radius: var(--radius-lg); padding: 0.75rem 1.5rem; font-weight: 600;">
+              Send Another Inquiry
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    {# Support FAQs #}
+    <div class="card-white p-lg">
+      <div class="text-center" style="max-width: 40rem; margin: 0 auto 2.5rem auto;">
+        <div class="section-tag-row" style="justify-content: center; margin-bottom: 0.5rem;">
+          {% render_icon "help-circle" %}
+          <span>Common Support Inquiries</span>
+        </div>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-grid-2col">
+        <div class="faq-card-box">
+          <h3 class="faq-card-q">
+            <span class="text-indigo font-extrabold">Q.</span>
+            <span>Are all calculators 100% free to use?</span>
+          </h3>
+          <p class="faq-card-a">
+            Yes. All 20+ calculators and educational guides on FinanceToolsLab are completely free with no registration or subscriptions required.
+          </p>
+        </div>
+
+        <div class="faq-card-box">
+          <h3 class="faq-card-q">
+            <span class="text-indigo font-extrabold">Q.</span>
+            <span>How do I report a formula discrepancy or bug?</span>
+          </h3>
+          <p class="faq-card-a">
+            Select "Report a Calculation Bug" in the form above, specify which calculator you were using, the exact inputs, and our editorial engineering team will audit it.
+          </p>
+        </div>
+
+        <div class="faq-card-box">
+          <h3 class="faq-card-q">
+            <span class="text-indigo font-extrabold">Q.</span>
+            <span>Can I request a custom calculation tool?</span>
+          </h3>
+          <p class="faq-card-a">
+            Absolutely. We regularly build new calculation modules based on user demand. Select "Request New Calculator" to send us your specification.
+          </p>
+        </div>
+
+        <div class="faq-card-box">
+          <h3 class="faq-card-q">
+            <span class="text-indigo font-extrabold">Q.</span>
+            <span>How fast will I receive a reply?</span>
+          </h3>
+          <p class="faq-card-a">
+            Our support and editorial team reviews incoming inquiries daily and typically responds within 24 business hours.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

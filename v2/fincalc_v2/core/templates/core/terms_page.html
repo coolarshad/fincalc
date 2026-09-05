@@ -1,0 +1,71 @@
+{% extends "core/base.html" %}
+{% load static wagtailcore_tags seo_tags %}
+
+{% block content %}
+<div class="page-wrapper bg-slate-50">
+  <div class="max-w-7xl" style="padding-top: 2.5rem; padding-bottom: 4.5rem;">
+    
+    {# Breadcrumb Navigation #}
+    {% render_breadcrumbs page %}
+
+    {# Hero Section #}
+    <div class="about-hero-center" style="margin-bottom: 3rem;">
+      <div class="hero-pill-badge amber">
+        {% render_icon "shield-check" %}
+        <span>Terms & Legal Disclaimer</span>
+      </div>
+      <h1 class="about-hero-title">
+        Terms of Service & Disclaimer
+      </h1>
+      <p class="about-hero-desc">
+        {% if page.intro %}
+          {{ page.intro }}
+        {% else %}
+          Please read these terms carefully before utilizing our online calculation tools. All computations are designed for estimation and educational modeling.
+        {% endif %}
+      </p>
+    </div>
+
+    {# Standard Body Content #}
+    <div class="card-white p-lg" style="max-w-4xl; margin: 0 auto; line-height: 1.8; color: var(--text-secondary); font-size: 1rem;">
+      {% if page.body %}
+        {% for block in page.body %}
+          {% if block.block_type == 'heading' %}
+            <h2 style="font-size: 1.4rem; font-weight: 800; color: var(--text-primary); margin-top: 2rem; margin-bottom: 0.75rem;">
+              {{ block.value }}
+            </h2>
+          {% elif block.block_type == 'paragraph' %}
+            <div style="margin-bottom: 1.25rem;">
+              {{ block.value|richtext }}
+            </div>
+          {% elif block.block_type == 'faq' %}
+            <div class="faq-item" style="margin-bottom: 1rem;">
+              <button class="faq-question" type="button">
+                <span>{{ block.value.question }}</span>
+                <span class="faq-icon-chevron">{% render_icon "chevron-right" %}</span>
+              </button>
+              <div class="faq-answer">
+                {{ block.value.answer|richtext }}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <h2 style="font-size: 1.4rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.75rem;">
+          1. Educational & Estimative Use Only
+        </h2>
+        <p style="margin-bottom: 1.25rem;">
+          Calculations provided by FinanceToolsLab.com are intended strictly for educational, analytical, and illustrative purposes. They do not constitute financial, investment, legal, tax, or medical advice.
+        </p>
+        <h2 style="font-size: 1.4rem; font-weight: 800; color: var(--text-primary); margin-top: 2rem; margin-bottom: 0.75rem;">
+          2. No Professional Fiduciary Relationship
+        </h2>
+        <p style="margin-bottom: 1.25rem;">
+          Using FinanceToolsLab.com does not establish an advisory, fiduciary, or client relationship. Always consult a Certified Financial Planner (CFP®), Certified Public Accountant (CPA), or licensed medical doctor before making major decisions.
+        </p>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

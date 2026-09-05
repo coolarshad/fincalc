@@ -1,0 +1,276 @@
+{% extends "core/base.html" %}
+{% load static wagtailcore_tags seo_tags %}
+
+{% block content %}
+<div class="page-wrapper bg-slate-50">
+  <div class="max-w-7xl" style="padding-top: 2.5rem; padding-bottom: 4.5rem;">
+    
+    {# Breadcrumb Navigation #}
+    {% render_breadcrumbs page %}
+
+    {# Hero Section #}
+    <div class="about-hero-center">
+      <div class="hero-pill-badge">
+        {% render_icon "sparkles" %}
+        <span>The Precision Standard for Financial & Health Calculations</span>
+      </div>
+      <h1 class="about-hero-title">
+        Empowering Decisions with <span class="brand-text-accent">Mathematical Precision</span>
+      </h1>
+      <p class="about-hero-desc">
+        {% if page.intro %}
+          {{ page.intro }}
+        {% else %}
+          FinanceToolsLab.com was established with a singular mission: to democratize institutional-grade financial analysis. We provide free, accurate, transparent calculation tools that give you complete clarity over loans, investments, taxes, and health metrics.
+        {% endif %}
+      </p>
+    </div>
+
+    {# Key Metrics Bar #}
+    <div class="metrics-bar-grid">
+      <div class="metric-card">
+        <div class="metric-val text-indigo">20+</div>
+        <div class="metric-label">Interactive Tools</div>
+        <p class="metric-sub">Finance, Business & Health</p>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val text-emerald">100%</div>
+        <div class="metric-label">Client-Side Privacy</div>
+        <p class="metric-sub">Zero Server Data Storage</p>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val text-amber">0ms</div>
+        <div class="metric-label">Server Latency</div>
+        <p class="metric-sub">Instant In-Browser Math</p>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val text-indigo">CFP®</div>
+        <div class="metric-label">Expert Reviewed</div>
+        <p class="metric-sub">E-E-A-T Verified Standards</p>
+      </div>
+    </div>
+
+    {# The Lab Standard (4-Pillar Methodology) #}
+    <div class="card-white p-lg mb-12">
+      <div style="max-width: 48rem; margin-bottom: 2.5rem;">
+        <div class="section-tag-row">
+          {% render_icon "shield-check" %}
+          <span>Our Quality Commitment</span>
+        </div>
+        <h2 class="section-title" style="text-align: left; margin-bottom: 0.75rem;">
+          The FinanceToolsLab "Lab Standard"
+        </h2>
+        <p class="section-desc" style="text-align: left;">
+          Unlike simple approximation tools, every calculator deployed on FinanceToolsLab passes through a rigorous four-phase verification pipeline before public release.
+        </p>
+      </div>
+
+      <div class="pillars-4col-grid">
+        <div class="pillar-card">
+          <div class="pillar-step-badge">01</div>
+          <h3 class="pillar-title">Mathematical Rigor</h3>
+          <p class="pillar-desc">We use exact actuarial and mathematical equations with high-precision arithmetic to eliminate floating-point rounding errors.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-step-badge">02</div>
+          <h3 class="pillar-title">Empirical Backtesting</h3>
+          <p class="pillar-desc">Calculators are tested against real-world bank statements, amortization schedules, and medical benchmark datasets.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-step-badge">03</div>
+          <h3 class="pillar-title">CFP & Expert Review</h3>
+          <p class="pillar-desc">Every formula and editorial explanation is validated by Certified Financial Planners, CPAs, or certified healthcare professionals.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-step-badge">04</div>
+          <h3 class="pillar-title">Regulatory Alignment</h3>
+          <p class="pillar-desc">We continuously monitor benchmark tax brackets, GST/VAT guidelines, and interest rate methodologies to maintain current accuracy.</p>
+        </div>
+      </div>
+    </div>
+
+    {# Editorial & Review Board #}
+    <div class="mb-12">
+      <div class="text-center" style="max-width: 48rem; margin: 0 auto 3rem auto;">
+        <div class="hero-pill-badge emerald" style="margin-bottom: 0.75rem;">
+          {% render_icon "users" %}
+          <span>Editorial & Advisory Board</span>
+        </div>
+        <h2 class="section-title">Meet the Experts Behind the Math</h2>
+        <p class="section-desc">
+          Our tools are crafted and verified by industry veterans committed to transparency and E-E-A-T content standards.
+        </p>
+      </div>
+
+      <div class="team-grid-2col">
+        {# Member 1 #}
+        <div class="team-card">
+          <div>
+            <div class="team-header-row">
+              <div class="team-avatar-icon bg-indigo-light text-indigo">
+                {% render_icon "award" %}
+              </div>
+              <div>
+                <h3 class="team-name">Michael Vance, CFP®</h3>
+                <p class="team-role">Lead Financial Reviewer & Editor</p>
+              </div>
+            </div>
+            <div class="team-credentials-pill">
+              Certified Financial Planner, 14+ Years Experience
+            </div>
+            <p class="team-bio">
+              Specializes in mortgage amortization, loan restructuring, and retirement wealth preservation modeling.
+            </p>
+          </div>
+          <div class="team-card-footer">
+            <span class="flex-center text-emerald font-semibold">
+              {% render_icon "check" %} Verified Contributor
+            </span>
+            <span>FinanceToolsLab Review Board</span>
+          </div>
+        </div>
+
+        {# Member 2 #}
+        <div class="team-card">
+          <div>
+            <div class="team-header-row">
+              <div class="team-avatar-icon bg-indigo-light text-indigo">
+                {% render_icon "scale" %}
+              </div>
+              <div>
+                <h3 class="team-name">Elena Rostova, CFA</h3>
+                <p class="team-role">Quantitative Finance & Portfolio Lead</p>
+              </div>
+            </div>
+            <div class="team-credentials-pill">
+              Chartered Financial Analyst, Ex-Equities Strategist
+            </div>
+            <p class="team-bio">
+              Designs our compounding algorithms, CAGR formulas, and multi-asset investment growth models.
+            </p>
+          </div>
+          <div class="team-card-footer">
+            <span class="flex-center text-emerald font-semibold">
+              {% render_icon "check" %} Verified Contributor
+            </span>
+            <span>FinanceToolsLab Review Board</span>
+          </div>
+        </div>
+
+        {# Member 3 #}
+        <div class="team-card">
+          <div>
+            <div class="team-header-row">
+              <div class="team-avatar-icon bg-indigo-light text-indigo">
+                {% render_icon "file-check" %}
+              </div>
+              <div>
+                <h3 class="team-name">Sarah Jenkins, CPA</h3>
+                <p class="team-role">Commerce, Tax & Business Accounting Specialist</p>
+              </div>
+            </div>
+            <div class="team-credentials-pill">
+              Certified Public Accountant, Corporate Controller
+            </div>
+            <p class="team-bio">
+              Audits gross margin, markup formulas, GST tax slabs, and small business break-even methodologies.
+            </p>
+          </div>
+          <div class="team-card-footer">
+            <span class="flex-center text-emerald font-semibold">
+              {% render_icon "check" %} Verified Contributor
+            </span>
+            <span>FinanceToolsLab Review Board</span>
+          </div>
+        </div>
+
+        {# Member 4 #}
+        <div class="team-card">
+          <div>
+            <div class="team-header-row">
+              <div class="team-avatar-icon bg-indigo-light text-indigo">
+                {% render_icon "heart-pulse" %}
+              </div>
+              <div>
+                <h3 class="team-name">Dr. Rebecca Vance, MS, RD</h3>
+                <p class="team-role">Health & Biometrics Advisor</p>
+              </div>
+            </div>
+            <div class="team-credentials-pill">
+              PhD in Nutritional Science, Registered Dietitian
+            </div>
+            <p class="team-bio">
+              Verifies the Mifflin-St Jeor TDEE equations, WHO BMI categories, and US Navy anthropometric algorithms.
+            </p>
+          </div>
+          <div class="team-card-footer">
+            <span class="flex-center text-emerald font-semibold">
+              {% render_icon "check" %} Verified Contributor
+            </span>
+            <span>FinanceToolsLab Review Board</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# Core Guiding Principles (3-Col Grid) #}
+    <div class="principles-3col-grid mb-12">
+      <div class="card-white p-md">
+        <div class="feature-circle-icon bg-indigo-light text-indigo mb-4">
+          {% render_icon "lock" %}
+        </div>
+        <h3 class="feature-title mb-2">Privacy-First Execution</h3>
+        <p class="feature-desc">
+          We believe your private finances are nobody’s business. All computations run 100% locally in your device's web browser using JavaScript. No salaries, debts, or weights are ever sent to our servers.
+        </p>
+      </div>
+
+      <div class="card-white p-md">
+        <div class="feature-circle-icon bg-emerald-light text-emerald mb-4">
+          {% render_icon "cpu" %}
+        </div>
+        <h3 class="feature-title mb-2">Formula Transparency</h3>
+        <p class="feature-desc">
+          No hidden logic or black-box math. We publish our formulas openly on every calculator page along with step-by-step worked examples so you can verify the output independently.
+        </p>
+      </div>
+
+      <div class="card-white p-md">
+        <div class="feature-circle-icon bg-amber-light text-amber mb-4">
+          {% render_icon "trending-up" %}
+        </div>
+        <h3 class="feature-title mb-2">Zero Friction & 100% Free</h3>
+        <p class="feature-desc">
+          No paywalls, no forced account registrations, and no endless email capture popups. Instant access to full calculations on both desktop and mobile devices.
+        </p>
+      </div>
+    </div>
+
+    {# Educational Callout Banner #}
+    <div class="edu-banner-card">
+      <div style="max-width: 36rem;">
+        <div class="section-tag-row" style="color: var(--indigo-300);">
+          {% render_icon "book-open" %}
+          <span>Knowledge & Tutorials</span>
+        </div>
+        <h2 class="text-white" style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.75rem;">
+          Deepen Your Understanding with Our Suite
+        </h2>
+        <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
+          Explore the mathematical logic behind compound interest, loan prepayment strategies, and pricing frameworks across all 20 professional tools.
+        </p>
+      </div>
+      <div style="flex-shrink: 0;">
+        <a href="/#calculators" class="btn-primary" style="padding: 0.875rem 2rem; border-radius: var(--radius-full); font-weight: 700; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+          Explore All Tools
+          {% render_icon "arrow-right" %}
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

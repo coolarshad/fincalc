@@ -27,6 +27,17 @@ class StandardPage(Page):
         FieldPanel('body'),
     ]
 
+    def get_template(self, request, *args, **kwargs):
+        if self.slug == 'about':
+            return "core/about_page.html"
+        elif self.slug == 'contact':
+            return "core/contact_page.html"
+        elif self.slug == 'privacy':
+            return "core/privacy_page.html"
+        elif self.slug == 'terms':
+            return "core/terms_page.html"
+        return "core/standard_page.html"
+
     class Meta:
         verbose_name = "Standard Page"
         verbose_name_plural = "Standard Pages"

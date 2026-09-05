@@ -1,0 +1,291 @@
+{% extends "core/base.html" %}
+{% load static wagtailcore_tags seo_tags %}
+
+{% block content %}
+<div class="page-wrapper bg-slate-50">
+  <div class="max-w-7xl" style="padding-top: 2.5rem; padding-bottom: 4.5rem;">
+    
+    {# Breadcrumb Navigation #}
+    {% render_breadcrumbs page %}
+
+    {# Hero Section #}
+    <div class="about-hero-center" style="margin-bottom: 3rem;">
+      <div class="hero-pill-badge emerald">
+        {% render_icon "shield-check" %}
+        <span>Privacy-First Architecture • Version 2.4</span>
+      </div>
+      <h1 class="about-hero-title">
+        Privacy Policy & Data Protection
+      </h1>
+      <p class="about-hero-desc">
+        We engineer our tools so you never have to trust us with your data. Calculations execute 100% client-side in your web browser.
+      </p>
+      <p style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-top: 0.75rem;">
+        Last Reviewed & Certified: August 2026
+      </p>
+    </div>
+
+    {# Highlights Box #}
+    <div class="privacy-highlight-box mb-12">
+      <div class="flex-center" style="gap: 0.75rem; justify-content: flex-start; margin-bottom: 1.5rem;">
+        <div class="feature-circle-icon" style="width: 2.5rem; height: 2.5rem; background: rgba(99, 102, 241, 0.2); color: #c7d2fe;">
+          {% render_icon "sparkles" %}
+        </div>
+        <h2 style="font-size: 1.35rem; font-weight: 800; color: #ffffff;">Privacy Policy at a Glance</h2>
+      </div>
+
+      <div class="grid-2col-gap">
+        <div class="flex-start-gap">
+          <div style="color: #34d399; flex-shrink: 0; margin-top: 0.2rem;">{% render_icon "check" %}</div>
+          <div>
+            <strong style="color: #ffffff; font-size: 0.9rem;">100% In-Browser Computing:</strong>
+            <p style="color: #cbd5e1; font-size: 0.8rem; margin-top: 0.2rem;">Calculations execute locally via JavaScript. Inputs are never transmitted across the network.</p>
+          </div>
+        </div>
+
+        <div class="flex-start-gap">
+          <div style="color: #34d399; flex-shrink: 0; margin-top: 0.2rem;">{% render_icon "check" %}</div>
+          <div>
+            <strong style="color: #ffffff; font-size: 0.9rem;">Zero Financial Data Retention:</strong>
+            <p style="color: #cbd5e1; font-size: 0.8rem; margin-top: 0.2rem;">We do not store your loan amounts, salaries, credit scores, debt obligations, or health data.</p>
+          </div>
+        </div>
+
+        <div class="flex-start-gap">
+          <div style="color: #34d399; flex-shrink: 0; margin-top: 0.2rem;">{% render_icon "check" %}</div>
+          <div>
+            <strong style="color: #ffffff; font-size: 0.9rem;">No Account or Registration Required:</strong>
+            <p style="color: #cbd5e1; font-size: 0.8rem; margin-top: 0.2rem;">All 20+ tools are fully open. We never force email capture or account creation.</p>
+          </div>
+        </div>
+
+        <div class="flex-start-gap">
+          <div style="color: #34d399; flex-shrink: 0; margin-top: 0.2rem;">{% render_icon "check" %}</div>
+          <div>
+            <strong style="color: #ffffff; font-size: 0.9rem;">No Invasive Ad Tracking:</strong>
+            <p style="color: #cbd5e1; font-size: 0.8rem; margin-top: 0.2rem;">We do not sell, rent, or monetize your usage data with third-party data brokers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# Main Content Grid: TOC + Sections #}
+    <div class="privacy-layout-grid">
+      
+      {# Sticky Sidebar TOC #}
+      <aside class="privacy-toc-sidebar">
+        <div class="card-white p-md sticky-top">
+          <h3 style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            {% render_icon "file-text" %}
+            <span>Table of Contents</span>
+          </h3>
+          <ul class="toc-list">
+            <li><a href="#zero-knowledge" class="toc-link">1. Zero-Knowledge Client Architecture</a></li>
+            <li><a href="#data-never-collected" class="toc-link">2. Information We Never Collect</a></li>
+            <li><a href="#technical-telemetry" class="toc-link">3. Anonymized Technical Telemetry</a></li>
+            <li><a href="#cookies-localstorage" class="toc-link">4. Cookies & Local Storage Usage</a></li>
+            <li><a href="#third-party-links" class="toc-link">5. External Links & Third Parties</a></li>
+            <li><a href="#global-compliance" class="toc-link">6. GDPR & CCPA Compliance</a></li>
+            <li><a href="#coppa-children" class="toc-link">7. Children's Online Privacy (COPPA)</a></li>
+            <li><a href="#security-measures" class="toc-link">8. Security Infrastructure</a></li>
+            <li><a href="#contact-dpo" class="toc-link">9. Contact Data Protection Officer</a></li>
+          </ul>
+
+          <div style="border-top: 1px solid var(--border-color); margin-top: 1.25rem; padding-top: 1.25rem; text-align: center;">
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; font-weight: 500;">
+              Questions about our privacy standard?
+            </p>
+            <a href="/contact/" class="btn-secondary" style="width: 100%; justify-content: center; font-size: 0.75rem; border-radius: var(--radius-md); padding: 0.5rem 1rem; text-decoration: none;">
+              Contact Privacy Officer
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      {# Policy Sections #}
+      <div class="privacy-content-main space-y-6">
+        
+        {# Section 1 #}
+        <section id="zero-knowledge" class="card-white p-lg">
+          <div class="section-heading-row">
+            <div class="team-avatar-icon bg-indigo-light text-indigo">
+              {% render_icon "cpu" %}
+            </div>
+            <h2 class="policy-h2">1. Zero-Knowledge Client-Side Architecture</h2>
+          </div>
+          <p class="policy-p">
+            At FinanceToolsLab.com, we adhere to a foundational engineering philosophy: <em>privacy by architecture, not just by promise</em>.
+          </p>
+          <p class="policy-p">
+            When you use our Loan Calculator, Mortgage Payment Tool, Calorie Deficit Estimator, or Margin Formula, the underlying mathematical formulas are executed locally by your browser’s JavaScript engine. Your inputs—such as loan principal, interest rates, annual salaries, body weights, or profit margins—never leave your device's memory. Once you close or reload the browser tab, the memory is purged instantly.
+          </p>
+        </section>
+
+        {# Section 2 #}
+        <section id="data-never-collected" class="card-white p-lg">
+          <div class="section-heading-row">
+            <div class="team-avatar-icon bg-indigo-light text-indigo">
+              {% render_icon "server-off" %}
+            </div>
+            <h2 class="policy-h2">2. Information We Never Collect or Store</h2>
+          </div>
+          <p class="policy-p">
+            We explicitly do not collect, capture, log, or store:
+          </p>
+          <div class="grid-2col-gap" style="margin-top: 1rem;">
+            <div class="never-collect-item">
+              <span class="red-dot"></span>
+              <span>Financial numbers (Salaries, Debt, Loans)</span>
+            </div>
+            <div class="never-collect-item">
+              <span class="red-dot"></span>
+              <span>Personal identifiers (SSN, Tax IDs, Banking info)</span>
+            </div>
+            <div class="never-collect-item">
+              <span class="red-dot"></span>
+              <span>Health metrics (Body weight, Gestational dates)</span>
+            </div>
+            <div class="never-collect-item">
+              <span class="red-dot"></span>
+              <span>Credit card or banking account credentials</span>
+            </div>
+          </div>
+        </section>
+
+        {# Section 3 #}
+        <section id="technical-telemetry" class="card-white p-lg">
+          <div class="section-heading-row">
+            <div class="team-avatar-icon bg-indigo-light text-indigo">
+              {% render_icon "eye" %}
+            </div>
+            <h2 class="policy-h2">3. Anonymized Technical Telemetry</h2>
+          </div>
+          <p class="policy-p">
+            To ensure website availability, monitor Core Web Vitals, and prevent malicious DDoS attacks, our content delivery network (CDN) logs non-identifiable technical metadata:
+          </p>
+          <ul class="policy-bullet-list">
+            <li>Browser type, operating system family, and approximate geographical region (country-level).</li>
+            <li>Page loading times, error rates (e.g. 404s), and resource bandwidth consumption.</li>
+            <li>Referral URLs to assess organic search performance.</li>
+          </ul>
+          <p class="policy-p" style="margin-top: 1rem;">
+            This data is aggregated and cannot be used to trace or identify individual visitors.
+          </p>
+        </section>
+
+        {# Section 4 #}
+        <section id="cookies-localstorage" class="card-white p-lg">
+          <div class="section-heading-row">
+            <div class="team-avatar-icon bg-indigo-light text-indigo">
+              {% render_icon "cookie" %}
+            </div>
+            <h2 class="policy-h2">4. Cookies & Local Storage Usage</h2>
+          </div>
+          <p class="policy-p">
+            We use minimal, strictly functional browser storage mechanisms:
+          </p>
+          <div class="space-y-3" style="margin-top: 1rem;">
+            <div class="sub-policy-card">
+              <h4 style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-primary); margin-bottom: 0.25rem;">Local Storage (User Preferences)</h4>
+              <p style="font-size: 0.8rem; color: var(--text-secondary);">
+                Used solely to store your preferred currency symbol (e.g., $, €, £, ₹) or display settings across tool visits. This remains purely inside your local browser.
+              </p>
+            </div>
+            <div class="sub-policy-card">
+              <h4 style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-primary); margin-bottom: 0.25rem;">Session Storage</h4>
+              <p style="font-size: 0.8rem; color: var(--text-secondary);">
+                Temporary caching of active input parameters within a single browser tab session. Completely erased upon closing the tab.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {# Section 5 #}
+        <section id="third-party-links" class="card-white p-lg">
+          <div class="section-heading-row">
+            <div class="team-avatar-icon bg-indigo-light text-indigo">
+              {% render_icon "globe" %}
+            </div>
+            <h2 class="policy-h2">5. External Links & Third-Party Platforms</h2>
+          </div>
+          <p class="policy-p">
+            Our articles and editorial references may contain links to reputable external resources (e.g. IRS tax guidelines, Federal Reserve benchmarks, World Health Organization standards). We do not control or endorse the privacy practices of external websites. We encourage you to review the individual privacy policies of any site you visit.
+          </p>
+        </section>
+
+        {# Section 6 #}
+        <section id="global-compliance" class="card-white p-lg">
+          <div class="section-heading-row">
+            <div class="team-avatar-icon bg-indigo-light text-indigo">
+              {% render_icon "shield-check" %}
+            </div>
+            <h2 class="policy-h2">6. GDPR & CCPA/CPRA Compliance</h2>
+          </div>
+          <p class="policy-p">
+            We comply with all statutory requirements under the European Union General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA/CPRA):
+          </p>
+          <div class="grid-2col-gap" style="margin-top: 1rem;">
+            <div class="sub-policy-card">
+              <h4 style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem;">Right to Erasure & Access</h4>
+              <p style="font-size: 0.8rem; color: var(--text-secondary);">Because we do not store PII on our servers, no user data profiles exist to delete or export.</p>
+            </div>
+            <div class="sub-policy-card">
+              <h4 style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem;">Do Not Sell My Information</h4>
+              <p style="font-size: 0.8rem; color: var(--text-secondary);">We do not sell, rent, or barter personal information under any circumstance.</p>
+            </div>
+          </div>
+        </section>
+
+        {# Section 7 #}
+        <section id="coppa-children" class="card-white p-lg">
+          <div class="section-heading-row">
+            <div class="team-avatar-icon bg-indigo-light text-indigo">
+              {% render_icon "lock" %}
+            </div>
+            <h2 class="policy-h2">7. Children's Online Privacy (COPPA)</h2>
+          </div>
+          <p class="policy-p">
+            FinanceToolsLab.com is designed for general audiences and business practitioners. We do not knowingly solicit or collect any personal information from children under the age of 13 in compliance with COPPA.
+          </p>
+        </section>
+
+        {# Section 8 #}
+        <section id="security-measures" class="card-white p-lg">
+          <div class="section-heading-row">
+            <div class="team-avatar-icon bg-indigo-light text-indigo">
+              {% render_icon "shield-check" %}
+            </div>
+            <h2 class="policy-h2">8. Security Infrastructure</h2>
+          </div>
+          <p class="policy-p">
+            All traffic on FinanceToolsLab.com is enforced through 256-bit TLS/SSL encryption with strict HTTP Strict Transport Security (HSTS) headers, Content Security Policies (CSP), and automated bot detection to safeguard our infrastructure.
+          </p>
+        </section>
+
+        {# Section 9 #}
+        <section id="contact-dpo" class="dpo-banner-card">
+          <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.75rem; color: #ffffff;">
+            9. Contact Our Data Protection Team
+          </h2>
+          <p style="color: #cbd5e1; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1.5rem;">
+            If you have inquiries, legal requests, or audit questions regarding our client-side privacy architecture, reach out directly to our Data Protection Officer:
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #334155; padding-top: 1rem; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <p style="font-size: 0.75rem; color: #94a3b8;">Data Protection Office</p>
+              <p style="font-size: 0.95rem; font-weight: 700; color: #ffffff;">privacy@financetoolslab.com</p>
+            </div>
+            <a href="/contact/" class="btn-primary" style="font-size: 0.8rem; padding: 0.6rem 1.25rem; border-radius: var(--radius-md); font-weight: 700; text-decoration: none;">
+              Submit Privacy Inquiry
+              {% render_icon "arrow-right" %}
+            </a>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}

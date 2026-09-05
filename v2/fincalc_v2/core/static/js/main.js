@@ -112,10 +112,99 @@
     }
   };
 
+  // 5. Contact Form Interactivity
+  const initContactForm = () => {
+    const form = document.getElementById('contact-form');
+    const successState = document.getElementById('contact-success-state');
+    const sendAnotherBtn = document.getElementById('btn-send-another');
+    const charCounter = document.getElementById('char-counter');
+    const messageInput = document.getElementById('contact-message');
+    const topicPillsWrap = document.getElementById('topic-pills-wrap');
+    const selectedTopicInput = document.getElementById('selected-topic-input');
+
+    if (topicPillsWrap && selectedTopicInput) {
+      const pills = topicPillsWrap.querySelectorAll('.topic-pill');
+      pills.forEach((pill) => {
+        pill.addEventListener('click', () => {
+          pills.forEach((p) => p.classList.remove('active'));
+          pill.classList.add('active');
+          selectedTopicInput.value = pill.getAttribute('data-topic') || 'General Question';
+        });
+      });
+    }
+
+    if (messageInput && charCounter) {
+      messageInput.addEventListener('input', () => {
+        charCounter.textContent = `${messageInput.value.length} characters`;
+      });
+    }
+
+    if (form && successState) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const submitBtn = document.getElementById('btn-submit-contact');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span class="animate-spin" style="display:inline-block; width:1rem; height:1rem; border:2px solid #ffffff; border-top-color:transparent; border-radius:50%; margin-right:0.5rem;"></span> Sending...';
+        }
+
+        setTimeout(() => {
+          form.style.display = 'none';
+          successState.style.display = 'block';
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Send Message</span>';
+          }
+        }, 800);
+      });
+    }
+
+    if (sendAnotherBtn && form && successState) {
+      sendAnotherBtn.addEventListener('click', () => {
+        form.reset();
+        if (charCounter) charCounter.textContent = '0 characters';
+        successState.style.display = 'none';
+        form.style.display = 'block';
+      });
+    }
+  };
+
+  // 6. Privacy Page Sticky TOC Smooth Highlighting
+  const initPrivacyToc = () => {
+    const tocLinks = document.querySelectorAll('.privacy-toc-sidebar .toc-link');
+    if (!tocLinks.length) return;
+
+    window.addEventListener('scroll', () => {
+      let currentSectionId = '';
+      document.querySelectorAll('.privacy-content-main section').forEach((section) => {
+        const top = section.getBoundingClientRect().top;
+        if (top <= 140) {
+          currentSectionId = section.getAttribute('id');
+        }
+      });
+
+      if (currentSectionId) {
+        tocLinks.forEach((link) => {
+          if (link.getAttribute('href') === `#${currentSectionId}`) {
+            link.style.color = 'var(--indigo-600)';
+            link.style.fontWeight = '800';
+            link.style.backgroundColor = 'var(--indigo-50)';
+          } else {
+            link.style.color = '';
+            link.style.fontWeight = '';
+            link.style.backgroundColor = '';
+          }
+        });
+      }
+    }, { passive: true });
+  };
+
   document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initSearchModal();
     initFaqAccordion();
     initScheduleToggle();
+    initContactForm();
+    initPrivacyToc();
   });
 })();

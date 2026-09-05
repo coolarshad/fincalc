@@ -1,38 +1,45 @@
-{% extends "base.html" %}
-{% load static wagtailcore_tags %}
-
-{% block body_class %}template-searchresults{% endblock %}
-
-{% block title %}Search{% endblock %}
+{% extends "core/base.html" %}
+{% load static wagtailcore_tags seo_tags %}
 
 {% block content %}
-<h1>Search</h1>
+<div class="page-wrapper bg-slate-50">
+  <div class="max-w-7xl" style="padding-top: 2.5rem; padding-bottom: 4.5rem;">
+    
+    <div class="about-hero-center" style="margin-bottom: 2.5rem;">
+      <h1 class="about-hero-title">Search Calculators</h1>
+      <p class="about-hero-desc">Find financial, health, and business calculation tools instantly.</p>
+    </div>
 
-<form action="{% url 'search' %}" method="get">
-    <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-    <input type="submit" value="Search" class="button">
-</form>
+    <div class="card-white p-lg" style="max-width: 48rem; margin: 0 auto;">
+      <form action="{% url 'search' %}" method="get" style="display: flex; gap: 0.75rem; margin-bottom: 2rem;">
+        <input type="text" name="query" class="input-text-box" placeholder="Search by name, category, or formula..." value="{% if search_query %}{{ search_query }}{% endif %}" style="flex: 1;">
+        <button type="submit" class="btn-primary" style="padding: 0.75rem 1.5rem; border-radius: var(--radius-md); font-weight: 700;">Search</button>
+      </form>
 
-{% if search_results %}
-<ul>
-    {% for result in search_results %}
-    <li>
-        <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
-        {% if result.search_description %}
-        {{ result.search_description }}
-        {% endif %}
-    </li>
-    {% endfor %}
-</ul>
+      {% if search_results %}
+        <h2 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">
+          Results for "{{ search_query }}"
+        </h2>
+        <div class="space-y-4">
+          {% for result in search_results %}
+          <div style="padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-surface-elevated);">
+            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem;">
+              <a href="{% pageurl result %}" style="color: var(--indigo-600); text-decoration: none;">{{ result.title }}</a>
+            </h3>
+            {% if result.search_description %}
+            <p style="font-size: 0.875rem; color: var(--text-secondary);">{{ result.search_description }}</p>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      {% elif search_query %}
+        <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+          <p style="font-size: 1.1rem; font-weight: 600;">No calculators found matching "{{ search_query }}"</p>
+          <p style="font-size: 0.875rem; margin-top: 0.5rem;">Try searching for loan, mortgage, bmi, salary, or cagr.</p>
+        </div>
+      {% endif %}
+    </div>
 
-{% if search_results.has_previous %}
-<a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
-{% endif %}
-
-{% if search_results.has_next %}
-<a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
-{% endif %}
-{% elif search_query %}
-No results found
-{% endif %}
+  </div>
+</div>
 {% endblock %}

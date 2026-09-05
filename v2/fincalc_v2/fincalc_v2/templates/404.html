@@ -1,11 +1,17 @@
-{% extends "base.html" %}
-
-{% block title %}Page not found{% endblock %}
-
-{% block body_class %}template-404{% endblock %}
+{% extends "core/base.html" %}
+{% load static wagtailcore_tags seo_tags %}
 
 {% block content %}
-<h1>Page not found</h1>
-
-<h2>Sorry, this page could not be found.</h2>
+<div class="page-wrapper bg-slate-50">
+  <div class="max-w-7xl" style="padding: 5rem 1rem; text-align: center;">
+    <div style="font-size: 5rem; font-weight: 900; color: var(--indigo-600); line-height: 1;">404</div>
+    <h1 class="about-hero-title" style="margin-top: 1rem; margin-bottom: 0.75rem;">Page Not Found</h1>
+    <p class="about-hero-desc" style="margin-bottom: 2rem;">
+      The page or calculator you were looking for doesn't exist or has moved.
+    </p>
+    <a href="/" class="btn-primary" style="display: inline-flex; padding: 0.875rem 2rem; border-radius: var(--radius-full); font-weight: 700; text-decoration: none;">
+      Return to Homepage
+    </a>
+  </div>
+</div>
 {% endblock %}
