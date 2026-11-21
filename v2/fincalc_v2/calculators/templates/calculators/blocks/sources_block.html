@@ -1,0 +1,10 @@
+<div class="editorial-block">
+  <h2>{{ value.heading|default:"Sources & References" }}</h2>
+  <ul style="margin-top:0.75rem; padding-left:1.25rem; display:flex; flex-direction:column; gap:0.5rem;">
+    {% for src in value.sources %}
+    <li style="font-size:0.95rem; color:var(--text-secondary);">
+      <a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% if src.publisher %} &ndash; {{ src.publisher }}{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>

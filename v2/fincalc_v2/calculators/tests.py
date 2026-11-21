@@ -69,7 +69,7 @@ class CalculatorEngineTests(TestCase):
         response = self.client.get(self.calc.url)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Loan Calculator")
-        self.assertContains(response, "SoftwareApplication")
+        self.assertContains(response, "WebApplication")
         self.assertContains(response, "FAQPage")
         self.assertContains(response, "BreadcrumbList")
 

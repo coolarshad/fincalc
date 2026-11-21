@@ -20,14 +20,19 @@
 
   {# OpenGraph / Facebook #}
   <meta property="og:type" content="website">
-  <meta property="og:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}">
+  <meta property="og:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }} - FinanceToolsLab.com{% endif %}">
   <meta property="og:description" content="{% if page.search_description %}{{ page.search_description }}{% elif page.short_summary %}{{ page.short_summary }}{% else %}{{ site_settings.core.SiteSettings.site_description }}{% endif %}">
   <meta property="og:url" content="{{ page.get_full_url }}">
   <meta property="og:site_name" content="FinanceToolsLab.com">
+  <meta property="og:image" content="{{ page.get_site.root_url }}{% static 'images/og-default.png' %}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="FinanceToolsLab.com - free finance, health and business calculators">
 
   {# Twitter Card #}
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}">
+  <meta name="twitter:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }} - FinanceToolsLab.com{% endif %}">
+  <meta name="twitter:image" content="{{ page.get_site.root_url }}{% static 'images/og-default.png' %}">
   <meta name="twitter:description" content="{% if page.search_description %}{{ page.search_description }}{% elif page.short_summary %}{{ page.short_summary }}{% else %}{{ site_settings.core.SiteSettings.site_description }}{% endif %}">
 
   {# Google Fonts #}
@@ -59,11 +64,12 @@
 
         {# Desktop Navigation #}
         <nav class="desktop-nav" aria-label="Main Navigation">
-          <a href="/" class="nav-item">Home</a>
-          <a href="/#calculators" class="nav-item">Calculators</a>
+          <a href="/finance/" class="nav-item">Finance</a>
+          <a href="/health/" class="nav-item">Health</a>
+          <a href="/business/" class="nav-item">Business</a>
           <a href="/about/" class="nav-item">About</a>
           <a href="/contact/" class="nav-item">Contact</a>
-          <a href="/#calculators" class="btn-get-started">Get Started</a>
+          <a href="/#calculators" class="btn-get-started">All Calculators</a>
         </nav>
 
         {# Header Tools: Search & Theme Toggle #}
@@ -166,15 +172,11 @@
             </span>
           </a>
           <p style="font-size:0.875rem; line-height:1.7; max-width:28rem; margin-bottom:1.5rem; color:#cbd5e1;">
-            FinanceToolsLab.com is your premier destination for accurate, free, and easy-to-use financial tools.
-            We empower individuals and businesses with data-driven insights to make smarter financial decisions.
+            FinanceToolsLab.com offers free finance, health and business calculators that show the formula and a worked example behind every result.
           </p>
-          <div style="display:flex; align-items:center; gap:0.5rem; color:var(--indigo-400); margin-bottom:1.5rem;">
-            {% render_icon "shield-check" %}
-            <span style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em;">
-              Trusted by 1M+ Users Monthly
-            </span>
-          </div>
+          <p style="font-size:0.75rem; line-height:1.6; max-width:28rem; margin-bottom:1.5rem; color:#94a3b8;">
+            All calculations run in your browser. Results are estimates for educational use only and are not financial, tax, legal or medical advice.
+          </p>
           <div style="display:flex; gap:1rem;">
             <a href="/about/" style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#94a3b8;">About</a>
             <a href="/contact/" style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#94a3b8;">Contact</a>
@@ -183,7 +185,7 @@
         </div>
 
         <div>
-          <h3 class="footer-v1-title">Financial Tools</h3>
+          <p class="footer-v1-title">Finance Calculators</p>
           <ul class="footer-v1-list">
             <li><a href="/finance/loan-calculator/">Loan Calculator</a></li>
             <li><a href="/finance/mortgage-calculator/">Mortgage Calculator</a></li>
@@ -196,34 +198,37 @@
         </div>
 
         <div>
-          <h3 class="footer-v1-title">Health & Life</h3>
+          <p class="footer-v1-title">More Finance</p>
           <ul class="footer-v1-list">
-            <li><a href="/health/bmi-calculator/">BMI Calculator</a></li>
-            <li><a href="/health/calorie-calculator/">Calorie Calculator</a></li>
-            <li><a href="/health/body-fat-calculator/">Body Fat Calculator</a></li>
-            <li><a href="/health/pregnancy-calculator/">Pregnancy Calculator</a></li>
             <li><a href="/finance/salary-calculator/">Salary Calculator</a></li>
             <li><a href="/finance/inflation-calculator/">Inflation Calculator</a></li>
+            <li><a href="/finance/credit-card-calculator/">Credit Card Payoff</a></li>
+            <li><a href="/finance/currency-calculator/">Currency Converter</a></li>
+            <li><a href="/finance/loan-eligibility-calculator/">Loan Eligibility</a></li>
           </ul>
-        </div>
-
-        <div>
-          <h3 class="footer-v1-title">Business & Utility</h3>
+          <p class="footer-v1-title" style="margin-top:1.5rem;">Business</p>
           <ul class="footer-v1-list">
             <li><a href="/business/margin-calculator/">Margin Calculator</a></li>
             <li><a href="/business/gst-calculator/">GST Calculator</a></li>
             <li><a href="/business/break-even-calculator/">Break-even Calculator</a></li>
             <li><a href="/business/cash-flow-calculator/">Cash Flow Calculator</a></li>
-            <li><a href="/finance/credit-card-calculator/">Credit Card Interest</a></li>
-            <li><a href="/finance/currency-calculator/">Currency Converter</a></li>
-            <li><a href="/finance/loan-eligibility-calculator/">Loan Eligibility</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-v1-title">Health</p>
+          <ul class="footer-v1-list">
+            <li><a href="/health/bmi-calculator/">BMI Calculator</a></li>
+            <li><a href="/health/calorie-calculator/">Calorie Calculator</a></li>
+            <li><a href="/health/body-fat-calculator/">Body Fat Calculator</a></li>
+            <li><a href="/health/pregnancy-calculator/">Pregnancy Due Date Calculator</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-v1-bottom">
-        <p>&copy; 2026 FinanceToolsLab.com. All rights reserved. Precision tools for financial success.</p>
-        <p>Designed for speed, accuracy, and mobile performance.</p>
+        <p>&copy; 2026 FinanceToolsLab.com. All rights reserved.</p>
+        <p><a href="/terms/" style="color:inherit;">Terms &amp; Disclaimer</a> &middot; <a href="/privacy/" style="color:inherit;">Privacy</a></p>
       </div>
     </div>
   </footer>

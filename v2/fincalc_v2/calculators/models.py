@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import strip_tags
 from wagtail.models import Page
 from wagtail.fields import StreamField, RichTextField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
@@ -11,6 +12,7 @@ from .blocks import (
     FAQBlock,
     ExpertReviewBlock,
     KeyTakeawaysBlock,
+    SourcesBlock,
 )
 
 
@@ -43,6 +45,10 @@ CALCULATOR_CHOICES = [
 ]
 
 
+HEALTH_TYPES = ['bmi', 'calorie', 'body_fat', 'pregnancy']
+BUSINESS_TYPES = ['margin', 'break_even', 'cash_flow', 'gst']
+
+
 class CalculatorPage(Page):
     """
     High-Performance Calculator Page Model with StreamField CMS support
@@ -63,9 +69,18 @@ class CalculatorPage(Page):
         help_text="1-2 sentence description shown in category listings, search, and meta description."
     )
     
+    intro_question = models.CharField(
+        max_length=160, blank=True,
+        help_text='Question-style H2 shown above the calculator, e.g. "What is a mortgage calculator?"'
+    )
+    intro_answer = RichTextField(
+        blank=True,
+        help_text="40-60 word direct answer shown under the intro question (featured-snippet target)."
+    )
+
     # Author / E-E-A-T credentials for Google
-    author_name = models.CharField(max_length=100, default="FinCalc Financial Review Board")
-    author_role = models.CharField(max_length=150, default="Certified Financial Analysts & Health Specialists")
+    author_name = models.CharField(max_length=100, default="FinanceToolsLab Editorial Team")
+    author_role = models.CharField(max_length=150, default="Editorial Team")
     last_updated_date = models.DateField(auto_now=True)
 
     # Modular editorial content for ranking & indexing
@@ -77,6 +92,7 @@ class CalculatorPage(Page):
         ('faqs', FAQBlock()),
         ('expert_review', ExpertReviewBlock()),
         ('key_takeaways', KeyTakeawaysBlock()),
+        ('sources', SourcesBlock()),
     ], use_json_field=True, blank=True)
 
     content_panels = Page.content_panels + [
@@ -85,6 +101,10 @@ class CalculatorPage(Page):
             FieldPanel('badge_tag'),
             FieldPanel('short_summary'),
         ], heading="Calculator Configuration"),
+        MultiFieldPanel([
+            FieldPanel('intro_question'),
+            FieldPanel('intro_answer'),
+        ], heading="Direct Answer (snippet target)"),
         MultiFieldPanel([
             FieldPanel('author_name'),
             FieldPanel('author_role'),
@@ -103,8 +123,7 @@ class CalculatorPage(Page):
                     a = item.get('answer', '')
                     if hasattr(a, 'source'):
                         a = a.source
-                    elif str(a):
-                        a = str(a)
+                    a = strip_tags(str(a)).strip()
                     if q and a:
                         faq_items.append({'question': q, 'answer': a})
         return faq_items
@@ -124,12 +143,13 @@ class CalculatorPage(Page):
         # Get parent category for breadcrumbs & related tools
         parent = self.get_parent().specific
         context['category_page'] = parent
+        context['health_types'] = HEALTH_TYPES
         
         # Related tools in the same category
         context['related_calculators'] = (
             CalculatorPage.objects.child_of(parent)
             .live()
-            .exclude(id=self.id)[:4]
+            .exclude(id=self.id)[:6]
         )
         return context
 

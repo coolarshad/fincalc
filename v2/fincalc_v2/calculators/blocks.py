@@ -87,16 +87,30 @@ class FAQBlock(blocks.StructBlock):
 
 
 class ExpertReviewBlock(blocks.StructBlock):
-    reviewer_name = blocks.CharBlock(max_length=100, default="FinCalc Financial Review Board")
-    reviewer_title = blocks.CharBlock(max_length=150, default="Certified Financial Analyst (CFA®) & Editorial Team")
+    reviewer_name = blocks.CharBlock(max_length=100, default="FinanceToolsLab Editorial Team")
+    reviewer_title = blocks.CharBlock(max_length=150, default="Editorial Team")
+    reviewer_url = blocks.URLBlock(required=False, help_text="Link to the reviewer's bio or public credential lookup")
     reviewed_date = blocks.DateBlock(help_text="Date when this tool & formula was verified")
     methodology_note = blocks.TextBlock(
-        default="This calculator adheres strictly to standard actuarial and financial compound interest formulas. All calculations are validated against verified benchmark models."
+        default="The formula, variable definitions and worked example on this page were checked by hand against the calculator output."
     )
 
     class Meta:
         icon = "user"
         template = "calculators/blocks/expert_review_block.html"
+
+
+class SourcesBlock(blocks.StructBlock):
+    heading = blocks.CharBlock(default="Sources & References")
+    sources = blocks.ListBlock(blocks.StructBlock([
+        ('title', blocks.CharBlock(max_length=255)),
+        ('publisher', blocks.CharBlock(max_length=150, required=False)),
+        ('url', blocks.URLBlock()),
+    ]))
+
+    class Meta:
+        icon = "link"
+        template = "calculators/blocks/sources_block.html"
 
 
 class KeyTakeawaysBlock(blocks.StructBlock):

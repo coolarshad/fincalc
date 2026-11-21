@@ -927,7 +927,7 @@
 
       const tableBody = document.getElementById('schedule-table-body');
       if (tableBody && amount > 0) {
-        const slabs = [5, 12, 18, 28];
+        const slabs = [5, 18, 40];
         let html = '';
         slabs.forEach(s => {
           let base, tax, tot;

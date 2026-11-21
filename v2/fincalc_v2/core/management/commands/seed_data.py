@@ -664,9 +664,9 @@ class Command(BaseCommand):
                         {
                             "title": "Mathematical Formula & Methodology",
                             "formula_expression": item["formula_expr"],
-                            "explanation": f"<p>The {item['title']} uses standard actuarial and financial equations to provide transparent, verified calculations.</p>",
+                            "explanation": f"<p>The {item['title']} uses the formula below. Each variable is defined underneath.</p>",
                             "variables": item["formula_vars"],
-                            "notes": "Calculations assume standard periodic compounding."
+                            "notes": ""
                         }
                     ),
                     (
@@ -701,9 +701,9 @@ class Command(BaseCommand):
                         "expert_review",
                         {
                             "reviewer_name": "FinanceToolsLab Editorial Board",
-                            "reviewer_title": "Certified Financial Analysts (CFA®) & Actuarial Specialists",
+                            "reviewer_title": "Editorial Team",
                             "reviewed_date": datetime.date.today(),
-                            "methodology_note": "Every calculation model is validated against banking algorithms and verified numerical benchmarks."
+                            "methodology_note": "The formula and worked example on this page were checked against the calculator output."
                         }
                     )
                 ]
@@ -728,13 +728,13 @@ class Command(BaseCommand):
             {
                 "slug": "about",
                 "title": "About Us",
-                "subtitle": "Transparency, Speed, and Actuarial Accuracy",
+                "subtitle": "Transparent Formulas, Cited Sources, Free Tools",
                 "intro": "FinanceToolsLab.com was created to provide free, high-speed, ad-free financial and health calculation engines for individuals and professionals worldwide.",
                 "body": [
                     ("heading", "Our Mission"),
                     ("paragraph", "<p>We believe financial literacy starts with clear, transparent tools. Unlike commercial sites laden with intrusive ads and trackers, FinanceToolsLab.com runs with verified mathematical equations and instant server-rendered performance.</p>"),
                     ("heading", "Our Editorial Standards"),
-                    ("paragraph", "<p>Every equation, from loan amortization to body composition formulas, is reviewed by certified professionals and backed by transparent mathematical steps.</p>")
+                    ("paragraph", "<p>Every calculator uses a standard published method, links to its primary source and includes a worked example that we check by hand against the calculator.</p>")
                 ]
             },
             {
@@ -785,3 +785,4 @@ class Command(BaseCommand):
                 self.stdout.write(f"Published standard page: {p_data['title']}")
 
         self.stdout.write(self.style.SUCCESS("All 20 calculators and standard pages seeded successfully!"))
+        self.stdout.write("Next: run `python manage.py apply_seo_content` to apply audited SEO content.")
