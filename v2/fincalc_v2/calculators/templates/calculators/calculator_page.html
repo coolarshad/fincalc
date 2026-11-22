@@ -9,32 +9,31 @@
     <h1 class="calc-header-title">{{ page.title }}</h1>
     <p class="calc-header-desc">{{ page.short_summary }}</p>
 
-    {# ExpertBadge Component #}
     <div class="expert-badges-bar">
       <div class="expert-pill-badge indigo">
-        {% render_icon "shield-check" %}
-        <span>
-          {% if page.calculator_type in 'bmi calorie body_fat pregnancy' %}
-            Reviewed by Healthcare Professionals
-          {% elif page.calculator_type in 'margin break_even gst cash_flow' %}
-            Validated by Business Consultants
-          {% else %}
-            Verified by Certified Financial Analysts
-          {% endif %}
-        </span>
+        {% render_icon "file-check" %}
+        <span>Formula &amp; worked example shown below</span>
       </div>
-
       <div class="expert-pill-badge emerald">
-        {% render_icon "check" %}
-        <span>Industry Standard Formula</span>
+        {% render_icon "lock" %}
+        <span>Runs in your browser &ndash; nothing is stored</span>
       </div>
-
+      {% if page.last_published_at %}
       <div class="expert-pill-badge amber">
-        {% render_icon "shield-check" %}
-        <span>99.9% Accuracy Rate</span>
+        {% render_icon "clock" %}
+        <span>Updated {{ page.last_published_at|date:"F j, Y" }}</span>
       </div>
+      {% endif %}
     </div>
   </div>
+
+  {% if page.intro_answer %}
+  {# Direct-answer definition for featured snippets & AI engines #}
+  <section class="card-white calc-intro-answer" style="margin-bottom:2rem;">
+    <h2 class="card-title-lg" style="margin-bottom:0.75rem;">{{ page.intro_question|default:"How does this calculator work?" }}</h2>
+    <div style="color:var(--text-secondary); line-height:1.75;">{{ page.intro_answer|richtext }}</div>
+  </section>
+  {% endif %}
 
   {# Interactive Calculator Workspace #}
   <div class="calc-3col-grid" data-calculator-type="{{ page.calculator_type }}">
@@ -809,10 +808,11 @@
           <div class="input-field-block calc-form-group">
             <label for="input-rate" class="input-label-text" style="display:block; margin-bottom:0.5rem;">GST Rate Slab (%)</label>
             <select id="input-rate" class="input-text-box">
-              <option value="5">5% (Essential Goods)</option>
-              <option value="12">12% (Standard Low)</option>
-              <option value="18" selected>18% (Standard High / Services)</option>
-              <option value="28">28% (Luxury Goods)</option>
+              <option value="5">5% (India merit rate)</option>
+              <option value="18" selected>18% (India standard rate)</option>
+              <option value="40">40% (India demerit rate)</option>
+              <option value="12">12% (India slab before 22 Sep 2025)</option>
+              <option value="28">28% (India slab before 22 Sep 2025)</option>
             </select>
           </div>
 
@@ -864,12 +864,12 @@
           {% else %}Calculated Result
           {% endif %}
         </div>
-        <div id="res-primary" class="result-card-huge-val">$0.00</div>
+        <div id="res-primary" class="result-card-huge-val">&mdash;</div>
 
         {% if page.calculator_type == 'investment' %}
         <div style="padding: 0.75rem 0; border-top: 1px solid rgba(255,255,255,0.25); border-bottom: 1px solid rgba(255,255,255,0.25); margin-bottom: 0.75rem;">
           <div class="result-sub-label" style="letter-spacing: 0.08em;">Inflation Adjusted (Today's Purchasing Power)</div>
-          <div id="res-real-val" style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">$0.00</div>
+          <div id="res-real-val" style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">&mdash;</div>
         </div>
         {% endif %}
 
@@ -895,7 +895,7 @@
               {% else %}Total Interest
               {% endif %}
             </div>
-            <div id="res-stat-2" class="result-sub-val">$0.00</div>
+            <div id="res-stat-2" class="result-sub-val">&mdash;</div>
           </div>
           <div>
             <div class="result-sub-label">
@@ -918,7 +918,7 @@
               {% else %}Total Payment
               {% endif %}
             </div>
-            <div id="res-stat-3" class="result-sub-val">$0.00</div>
+            <div id="res-stat-3" class="result-sub-val">&mdash;</div>
           </div>
         </div>
       </div>
@@ -955,6 +955,8 @@
           {% elif page.calculator_type == 'break_even' %}Volume Sensitivity
           {% elif page.calculator_type == 'cash_flow' %}Projections
           {% elif page.calculator_type == 'gst' %}Slab Comparison
+          {% elif page.calculator_type == 'inflation' %}Yearly Table
+          {% elif page.calculator_type == 'currency' %}Cross Rates
           {% else %}Amortization Schedule
           {% endif %}
         </button>
@@ -1012,7 +1014,7 @@
                   {% else %}Primary Base Amount
                   {% endif %}
                 </span>
-                <span id="res-stat-1" class="stat-row-val">$0.00</span>
+                <span id="res-stat-1" class="stat-row-val">&mdash;</span>
               </div>
               <div class="stat-row-slate">
                 <span class="stat-row-label">
@@ -1038,7 +1040,7 @@
                   {% else %}Additional Component
                   {% endif %}
                 </span>
-                <span id="res-breakdown-interest" class="stat-row-val" style="color:var(--rose-500);">$0.00</span>
+                <span id="res-breakdown-interest" class="stat-row-val" style="color:var(--rose-500);">&mdash;</span>
               </div>
               <div class="stat-row-slate">
                 <span class="stat-row-label">
@@ -1064,7 +1066,7 @@
                   {% else %}Total Combined Value
                   {% endif %}
                 </span>
-                <span id="res-breakdown-total" class="stat-row-val" style="color:var(--indigo-600);">$0.00</span>
+                <span id="res-breakdown-total" class="stat-row-val" style="color:var(--indigo-600);">&mdash;</span>
               </div>
             </div>
           </div>
@@ -1076,7 +1078,7 @@
         <div class="card-white">
           <h3 class="card-title-lg">
             {% if page.calculator_type in 'loan mortgage' %}Principal vs Interest Proportion
-            {% elif page.calculator_type == 'cagr' %}Benchmark Index Comparison & Alpha
+            {% elif page.calculator_type == 'cagr' %}Benchmark Comparison
             {% elif page.calculator_type == 'sip' %}Invested Capital vs Compound Returns
             {% elif page.calculator_type == 'fd' %}Deposit Principal vs Accrued Interest
             {% elif page.calculator_type == 'interest' %}Deposits vs Compound Yield
@@ -1100,7 +1102,7 @@
             {% if page.calculator_type in 'loan mortgage credit_card' %}
               Review how each payment is allocated between principal reduction and lender interest charges.
             {% elif page.calculator_type == 'cagr' %}
-              Evaluate your investment's annualized compound performance against standard market benchmarks like S&P 500 (~10%) and Inflation (~3.2%).
+              Compare your annualized return with long-run reference points, such as the roughly 10% average nominal annual return of the S&amp;P 500 since 1957 and US CPI inflation (see sources below). Past returns do not predict future results.
             {% elif page.calculator_type == 'sip' %}
               Analyze how monthly dollar-cost averaging expands your wealth beyond direct capital contributions.
             {% elif page.calculator_type == 'fd' %}
@@ -1110,7 +1112,7 @@
             {% elif page.calculator_type == 'investment' %}
               Compare nominal account growth with real inflation-adjusted purchasing power in today's dollars.
             {% elif page.calculator_type == 'salary' %}
-              Estimated breakdown of gross wages into net take-home pay and tax withholdings.
+              Illustrative split only: a flat 25% deduction is assumed. Real take-home pay depends on your country, tax bracket, benefits and deductions.
             {% elif page.calculator_type == 'calorie' %}
               Basal Metabolic Rate accounts for the largest portion of daily energy, complemented by active movement.
             {% elif page.calculator_type == 'body_fat' %}
@@ -1137,7 +1139,7 @@
               {% elif page.calculator_type == 'fd' %}Principal Deposit Ratio
               {% elif page.calculator_type == 'interest' %}Total Deposits Ratio
               {% elif page.calculator_type == 'investment' %}Nominal Future Value
-              {% elif page.calculator_type == 'salary' %}Estimated Take-Home (75%)
+              {% elif page.calculator_type == 'salary' %}Illustrative Take-Home (assumes 25% tax)
               {% elif page.calculator_type == 'inflation' %}Retained Purchasing Power
               {% elif page.calculator_type == 'loan_eligibility' %}Max Eligible Loan Principal
               {% elif page.calculator_type == 'currency' %}Net Converted Output
@@ -1151,7 +1153,7 @@
               {% else %}Primary Component Ratio
               {% endif %}
             </span>
-            <span id="res-pct-principal" class="stat-row-val">0%</span>
+            <span id="res-pct-principal" class="stat-row-val">&mdash;</span>
           </div>
           <div class="stat-row-slate">
             <span class="stat-row-label">
@@ -1161,7 +1163,7 @@
               {% elif page.calculator_type == 'fd' %}Accrued Interest Ratio
               {% elif page.calculator_type == 'interest' %}Interest Earnings Ratio
               {% elif page.calculator_type == 'investment' %}Real Value (Inflation Adjusted)
-              {% elif page.calculator_type == 'salary' %}Estimated Tax Withholdings (25%)
+              {% elif page.calculator_type == 'salary' %}Illustrative Tax (flat 25% assumption)
               {% elif page.calculator_type == 'inflation' %}Inflation Purchasing Power Loss
               {% elif page.calculator_type == 'loan_eligibility' %}Total Financing Interest
               {% elif page.calculator_type == 'currency' %}Bank Transfer Fee
@@ -1175,7 +1177,7 @@
               {% else %}Secondary Component Ratio
               {% endif %}
             </span>
-            <span id="res-pct-interest" class="stat-row-val" style="color:var(--emerald-600);">0%</span>
+            <span id="res-pct-interest" class="stat-row-val" style="color:var(--emerald-600);">&mdash;</span>
           </div>
         </div>
       </div>
@@ -1192,6 +1194,8 @@
             {% elif page.calculator_type == 'break_even' %}Sales Volume Sensitivity Table
             {% elif page.calculator_type == 'cash_flow' %}Quarterly Liquidity Projections
             {% elif page.calculator_type == 'gst' %}GST Tax Slab Comparison Table
+            {% elif page.calculator_type == 'inflation' %}Year-by-Year Purchasing Power
+            {% elif page.calculator_type == 'currency' %}Indicative Cross Rates
             {% else %}Amortization Schedule
             {% endif %}
           </h3>
@@ -1207,6 +1211,7 @@
                     {% elif page.calculator_type == 'break_even' %}Production Volume
                     {% elif page.calculator_type == 'cash_flow' %}Quarter / Timeline
                     {% elif page.calculator_type == 'gst' %}GST Slab Rate
+                    {% elif page.calculator_type == 'currency' %}Currency Pair
                     {% else %}Period
                     {% endif %}
                   </th>
@@ -1221,6 +1226,8 @@
                     {% elif page.calculator_type == 'cash_flow' %}Projected Receipts
                     {% elif page.calculator_type == 'gst' %}Base Amount
                     {% elif page.calculator_type in 'interest investment sip fd cagr' %}Deposits / Contributions
+                    {% elif page.calculator_type == 'inflation' %}Cost of Same Basket
+                    {% elif page.calculator_type == 'currency' %}Indicative Rate
                     {% else %}Principal Paid
                     {% endif %}
                   </th>
@@ -1235,6 +1242,8 @@
                     {% elif page.calculator_type == 'cash_flow' %}Projected Disbursements
                     {% elif page.calculator_type == 'gst' %}Tax Payable
                     {% elif page.calculator_type in 'interest investment sip fd cagr' %}Compound Growth / Interest
+                    {% elif page.calculator_type == 'inflation' %}Purchasing Power Lost
+                    {% elif page.calculator_type == 'currency' %}Fee
                     {% else %}Interest Paid
                     {% endif %}
                   </th>
@@ -1248,6 +1257,8 @@
                     {% elif page.calculator_type == 'break_even' %}Net Operating Profit
                     {% elif page.calculator_type == 'cash_flow' %}Ending Liquidity Reserve
                     {% elif page.calculator_type == 'gst' %}Gross Invoice Total
+                    {% elif page.calculator_type == 'inflation' %}Remaining Purchasing Power
+                    {% elif page.calculator_type == 'currency' %}Net Received
                     {% else %}Ending Balance
                     {% endif %}
                   </th>
@@ -1270,79 +1281,31 @@
     {% endfor %}
   </article>
 
-  {# Related Calculators Component #}
+  {# YMYL disclaimer #}
+  <aside class="card-white calc-disclaimer" role="note" style="margin:2rem 0; border-left:4px solid var(--amber-500, #f59e0b);">
+    {% if page.calculator_type in health_types %}
+      <p style="font-size:0.9rem; line-height:1.7; color:var(--text-secondary);"><strong>Medical disclaimer:</strong> This calculator gives a general estimate for educational purposes only. It is not a diagnosis and is not a substitute for advice from a doctor, midwife or registered dietitian. Talk to a qualified healthcare professional before making decisions about your health, diet or pregnancy.</p>
+    {% else %}
+      <p style="font-size:0.9rem; line-height:1.7; color:var(--text-secondary);"><strong>Disclaimer:</strong> Results are estimates for educational purposes only and are not financial, tax, legal or investment advice. Actual rates, fees, taxes and lender criteria vary. Confirm figures with your lender, bank or a licensed professional before making a decision.</p>
+    {% endif %}
+  </aside>
+
+  {% if related_calculators %}
   <section class="related-section">
-    <h2 style="font-size:1.5rem; font-weight:800; color:var(--text-primary); margin-bottom:2rem;">Related Calculators</h2>
+    <h2 style="font-size:1.5rem; font-weight:800; color:var(--text-primary); margin-bottom:2rem;">Related {{ category_page.title }} Calculators</h2>
     <div class="related-grid">
-      {% if page.calculator_type in 'bmi calorie body_fat pregnancy' %}
-        <a href="/health/bmi-calculator/" class="related-card">
-          <div class="related-icon-box bg-emerald-600">{% render_icon "heart-pulse" %}</div>
+      {% for calc in related_calculators %}
+        <a href="{% pageurl calc %}" class="related-card">
+          <div class="related-icon-box bg-indigo-600">{% render_icon "calculator" %}</div>
           <div>
-            <h3 class="related-title">BMI Calculator</h3>
-            <p class="related-subtitle">Body Mass Index Screener</p>
+            <p class="related-title">{{ calc.title }}</p>
+            <p class="related-subtitle">{{ calc.badge_tag }}</p>
           </div>
         </a>
-        <a href="/health/calorie-calculator/" class="related-card">
-          <div class="related-icon-box bg-rose-500">{% render_icon "utensils" %}</div>
-          <div>
-            <h3 class="related-title">Calorie & TDEE Calculator</h3>
-            <p class="related-subtitle">Daily Energy Expenditure</p>
-          </div>
-        </a>
-        <a href="/health/body-fat-calculator/" class="related-card">
-          <div class="related-icon-box bg-pink-600">{% render_icon "activity" %}</div>
-          <div>
-            <h3 class="related-title">Body Fat Calculator</h3>
-            <p class="related-subtitle">US Navy Method</p>
-          </div>
-        </a>
-      {% elif page.calculator_type in 'margin break_even cash_flow gst' %}
-        <a href="/business/margin-calculator/" class="related-card">
-          <div class="related-icon-box bg-violet-600">{% render_icon "briefcase" %}</div>
-          <div>
-            <h3 class="related-title">Margin Calculator</h3>
-            <p class="related-subtitle">Profit & Markup Engine</p>
-          </div>
-        </a>
-        <a href="/business/break-even-calculator/" class="related-card">
-          <div class="related-icon-box bg-indigo-600">{% render_icon "trending-up" %}</div>
-          <div>
-            <h3 class="related-title">Break-even Calculator</h3>
-            <p class="related-subtitle">Unit Volume & Revenue Target</p>
-          </div>
-        </a>
-        <a href="/business/gst-calculator/" class="related-card">
-          <div class="related-icon-box bg-emerald-600">{% render_icon "calculator" %}</div>
-          <div>
-            <h3 class="related-title">GST & Sales Tax</h3>
-            <p class="related-subtitle">Tax Calculations</p>
-          </div>
-        </a>
-      {% else %}
-        <a href="/finance/loan-calculator/" class="related-card">
-          <div class="related-icon-box bg-blue-600">{% render_icon "banknote" %}</div>
-          <div>
-            <h3 class="related-title">Loan Calculator</h3>
-            <p class="related-subtitle">EMI & Amortization</p>
-          </div>
-        </a>
-        <a href="/finance/investment-calculator/" class="related-card">
-          <div class="related-icon-box bg-cyan-600">{% render_icon "trending-up" %}</div>
-          <div>
-            <h3 class="related-title">Investment Calculator</h3>
-            <p class="related-subtitle">Inflation-Adjusted Growth</p>
-          </div>
-        </a>
-        <a href="/finance/sip-calculator/" class="related-card">
-          <div class="related-icon-box bg-emerald-600">{% render_icon "trending-up" %}</div>
-          <div>
-            <h3 class="related-title">SIP Calculator</h3>
-            <p class="related-subtitle">Systematic Monthly Wealth</p>
-          </div>
-        </a>
-      {% endif %}
+      {% endfor %}
     </div>
   </section>
+  {% endif %}
 
 </div>
 {% endblock %}

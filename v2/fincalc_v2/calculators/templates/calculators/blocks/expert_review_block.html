@@ -6,7 +6,7 @@
     </div>
     <div>
       <h3 style="font-size: 1.1rem; margin-top: 0; margin-bottom: 0.25rem;">
-        Reviewed & Verified by {{ value.reviewer_name }}
+        Reviewed by {% if value.reviewer_url %}<a href="{{ value.reviewer_url }}" rel="author">{{ value.reviewer_name }}</a>{% else %}{{ value.reviewer_name }}{% endif %}
       </h3>
       <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">
         {{ value.reviewer_title }} • Last Reviewed: {{ value.reviewed_date|date:"F j, Y" }}

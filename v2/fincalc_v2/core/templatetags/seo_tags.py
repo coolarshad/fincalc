@@ -25,17 +25,24 @@ def render_json_ld_schema(context, page):
     schema_graph.append({
         "@type": "Organization",
         "@id": f"{site_url}/#organization",
-        "name": "FinCalc",
+        "name": "FinanceToolsLab.com",
         "url": site_url,
-        "logo": f"{site_url}/static/images/logo.png",
-        "sameAs": []
+        "logo": {
+            "@type": "ImageObject",
+            "url": f"{site_url}/static/images/logo.png",
+            "width": 512,
+            "height": 512
+        },
+        "email": "support@financetoolslab.com",
+        "description": "Free finance, health and business calculators with published formulas and worked examples."
     })
 
     schema_graph.append({
         "@type": "WebSite",
         "@id": f"{site_url}/#website",
         "url": site_url,
-        "name": "FinCalc - Free Financial & Health Calculators",
+        "name": "FinanceToolsLab.com",
+        "alternateName": "FinanceToolsLab",
         "description": "Free online calculators for loans, mortgages, investments, salary, and health.",
         "publisher": {"@id": f"{site_url}/#organization"},
         "potentialAction": {
@@ -66,35 +73,36 @@ def render_json_ld_schema(context, page):
     # 3. Calculator-specific schema: SoftwareApplication + FAQPage
     page_type = getattr(page, 'specific_class', type(page)).__name__
     if page_type == 'CalculatorPage':
+        page = page.specific
         # SoftwareApplication
         calc_category = "FinanceApplication"
         if getattr(page, 'calculator_type', '') in ['bmi', 'calorie', 'body_fat', 'pregnancy']:
             calc_category = "HealthApplication"
-        elif getattr(page, 'calculator_type', '') in ['margin', 'break_even', 'cash_flow']:
+        elif getattr(page, 'calculator_type', '') in ['margin', 'break_even', 'cash_flow', 'gst']:
             calc_category = "BusinessApplication"
 
         schema_graph.append({
-            "@type": "SoftwareApplication",
+            "@type": "WebApplication",
             "@id": f"{current_url}#software",
             "name": page.title,
-            "description": getattr(page, 'short_summary', page.search_description or page.title),
+            "description": page.search_description or getattr(page, 'short_summary', '') or page.title,
             "applicationCategory": calc_category,
             "operatingSystem": "All",
             "browserRequirements": "Requires JavaScript. Requires HTML5.",
+            "isAccessibleForFree": True,
             "url": current_url,
             "offers": {
                 "@type": "Offer",
                 "price": "0",
                 "priceCurrency": "USD"
             },
-            "author": {
-                "@type": "Organization",
-                "name": getattr(page, 'author_name', 'FinCalc Review Board')
-            }
+            "publisher": {"@id": f"{site_url}/#organization"}
         })
+        if page.last_published_at:
+            schema_graph[-1]["dateModified"] = page.last_published_at.date().isoformat()
 
         # FAQPage schema
-        faq_items = getattr(page.specific, 'get_faq_items', lambda: [])()
+        faq_items = getattr(page, 'get_faq_items', lambda: [])()
         if faq_items:
             faq_entities = []
             for item in faq_items:
