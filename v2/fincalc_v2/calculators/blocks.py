@@ -87,12 +87,12 @@ class FAQBlock(blocks.StructBlock):
 
 
 class ExpertReviewBlock(blocks.StructBlock):
-    reviewer_name = blocks.CharBlock(max_length=100, default="FinanceToolsLab Editorial Team")
-    reviewer_title = blocks.CharBlock(max_length=150, default="Editorial Team")
+    reviewer_name = blocks.CharBlock(max_length=100, default="FinanceToolsLab.com")
+    reviewer_title = blocks.CharBlock(max_length=150, default="Publisher")
     reviewer_url = blocks.URLBlock(required=False, help_text="Link to the reviewer's bio or public credential lookup")
     reviewed_date = blocks.DateBlock(help_text="Date when this tool & formula was verified")
     methodology_note = blocks.TextBlock(
-        default="The formula, variable definitions and worked example on this page were checked by hand against the calculator output."
+        default="The worked example on this page is covered by an automated test against the calculator."
     )
 
     class Meta:
@@ -105,7 +105,7 @@ class SourcesBlock(blocks.StructBlock):
     sources = blocks.ListBlock(blocks.StructBlock([
         ('title', blocks.CharBlock(max_length=255)),
         ('publisher', blocks.CharBlock(max_length=150, required=False)),
-        ('url', blocks.URLBlock()),
+        ('url', blocks.URLBlock(required=False)),
     ]))
 
     class Meta:

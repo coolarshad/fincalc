@@ -36,7 +36,20 @@ class StandardPage(Page):
             return "core/privacy_page.html"
         elif self.slug == 'terms':
             return "core/terms_page.html"
+        elif self.slug == 'calculators':
+            return "core/calculators_index.html"
         return "core/standard_page.html"
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        if self.slug == 'calculators':
+            from calculators.models import CalculatorPage
+            from categories.models import CategoryIndexPage
+            context['groups'] = [
+                (cat, CalculatorPage.objects.child_of(cat).live().order_by('title'))
+                for cat in CategoryIndexPage.objects.live().order_by('title')
+            ]
+        return context
 
     class Meta:
         verbose_name = "Standard Page"

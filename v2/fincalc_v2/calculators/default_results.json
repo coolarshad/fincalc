@@ -1,0 +1,212 @@
+{
+ "bmi": {
+  "res_breakdown_interest": "Normal weight",
+  "res_breakdown_total": "56.7 - 76.3 kg",
+  "res_pct_interest": "18.5 - 24.9 Target",
+  "res_pct_principal": "23.5 BMI",
+  "res_primary": "23.5",
+  "res_stat_1": "Normal weight",
+  "res_stat_2": "56.7 - 76.3 kg",
+  "res_stat_3": "0.94",
+  "schedule": "<tr><td><strong>Severe Thinness</strong></td><td>&lt; 16.0</td><td>Underweight</td><td>Elevated Health Risk</td></tr> <tr><td><strong>Moderate Thinness</strong></td><td>16.0 – 16.9</td><td>Underweight</td><td>Elevated Health Risk</td></tr> <tr><td><strong>Mild Thinness</strong></td><td>17.0 – 18.4</td><td>Underweight</td><td>Slight Risk</td></tr> <tr><td><strong>Normal Weight</strong></td><td>18.5 – 24.9</td><td>Healthy Range</td><td>Optimal Metabolic Benchmark</td></tr> <tr><td><strong>Overweight</strong></td><td>25.0 – 29.9</td><td>Overweight</td><td>Increased Risk</td></tr> <tr><td><strong>Obese (Class I)</strong></td><td>30.0 – 34.9</td><td>Obese</td><td>High Cardiovascular Risk</td></tr> <tr><td><strong>Severe Obesity</strong></td><td>&ge; 35.0</td><td>Morbid Obesity</td><td>Extremely High Risk</td></tr>"
+ },
+ "body_fat": {
+  "res_breakdown_interest": "14.7 kg",
+  "res_breakdown_total": "80.0 kg",
+  "res_pct_interest": "18.4%",
+  "res_pct_principal": "81.6%",
+  "res_primary": "18.4%",
+  "res_stat_1": "65.3 kg",
+  "res_stat_2": "Average (18-24%)",
+  "res_stat_3": "14.7 kg",
+  "schedule": "<tr><td><strong>Essential Fat</strong></td><td>2% - 5%</td><td>10% - 13%</td><td>Minimum physiological baseline</td></tr> <tr><td><strong>Athletes</strong></td><td>6% - 13%</td><td>14% - 20%</td><td>High muscle definition</td></tr> <tr><td><strong>Fitness</strong></td><td>14% - 17%</td><td>21% - 24%</td><td>Optimal athletic conditioning</td></tr> <tr><td><strong>Average</strong></td><td>18% - 24%</td><td>25% - 31%</td><td>Healthy standard range</td></tr> <tr><td><strong>Obese</strong></td><td>25%+</td><td>32%+</td><td>Elevated metabolic health risk</td></tr>"
+ },
+ "break_even": {
+  "res_breakdown_interest": "$20.00",
+  "res_breakdown_total": "$25,000.00",
+  "res_pct_interest": "40.0% Var Ratio",
+  "res_pct_principal": "60.0% CM Ratio",
+  "res_primary": "500 Units",
+  "res_stat_1": "$25,000.00",
+  "res_stat_2": "$30.00",
+  "res_stat_3": "60.0% CM",
+  "schedule": "<tr> <td><strong>250 Units (50%)</strong></td> <td>$12,500.00</td> <td>$20,000.00</td> <td style=\"color:#ef4444;\"><strong>$-7,500.00</strong></td> </tr> <tr> <td><strong>375 Units (75%)</strong></td> <td>$18,750.00</td> <td>$22,500.00</td> <td style=\"color:#ef4444;\"><strong>$-3,750.00</strong></td> </tr> <tr> <td><strong>500 Units (100%)</strong></td> <td>$25,000.00</td> <td>$25,000.00</td> <td style=\"color:#10b981;\"><strong>$0.00</strong></td> </tr> <tr> <td><strong>625 Units (125%)</strong></td> <td>$31,250.00</td> <td>$27,500.00</td> <td style=\"color:#10b981;\"><strong>$3,750.00</strong></td> </tr> <tr> <td><strong>750 Units (150%)</strong></td> <td>$37,500.00</td> <td>$30,000.00</td> <td style=\"color:#10b981;\"><strong>$7,500.00</strong></td> </tr> <tr> <td><strong>1,000 Units (200%)</strong></td> <td>$50,000.00</td> <td>$35,000.00</td> <td style=\"color:#10b981;\"><strong>$15,000.00</strong></td> </tr>"
+ },
+ "cagr": {
+  "res_breakdown_interest": "$35,000.00",
+  "res_breakdown_total": "$45,000.00",
+  "res_pct_interest": "77.8% Capital Profit",
+  "res_pct_principal": "22.2% Initial Capital",
+  "res_primary": "28.49% CAGR",
+  "res_stat_1": "$10,000.00",
+  "res_stat_2": "$35,000.00",
+  "res_stat_3": "+350.0%",
+  "schedule": "<tr> <td><strong>Year 1</strong></td> <td>$10,000.00</td> <td>+$2,848.98</td> <td><strong>$12,848.98</strong></td> </tr> <tr> <td><strong>Year 2</strong></td> <td>$10,000.00</td> <td>+$3,660.65</td> <td><strong>$16,509.64</strong></td> </tr> <tr> <td><strong>Year 3</strong></td> <td>$10,000.00</td> <td>+$4,703.57</td> <td><strong>$21,213.20</strong></td> </tr> <tr> <td><strong>Year 4</strong></td> <td>$10,000.00</td> <td>+$6,043.61</td> <td><strong>$27,256.81</strong></td> </tr> <tr> <td><strong>Year 5</strong></td> <td>$10,000.00</td> <td>+$7,765.42</td> <td><strong>$35,022.23</strong></td> </tr> <tr> <td><strong>Year 6</strong></td> <td>$10,000.00</td> <td>+$9,977.77</td> <td><strong>$45,000.00</strong></td> </tr>"
+ },
+ "calorie": {
+  "res_breakdown_interest": "934 kcal",
+  "res_breakdown_total": "2,633 kcal/day",
+  "res_pct_interest": "934 kcal (Activity)",
+  "res_pct_principal": "1,699 kcal (BMR)",
+  "res_primary": "2,633 kcal/day",
+  "res_stat_1": "1,699 kcal",
+  "res_stat_2": "2,133 kcal",
+  "res_stat_3": "3,133 kcal",
+  "schedule": "<tr><td><strong>Maintenance (TDEE)</strong></td><td>2,633 kcal/day</td><td>0 kcal</td><td>Maintains current weight (75 kg)</td></tr> <tr><td><strong>Mild Weight Loss</strong></td><td>2,383 kcal/day</td><td>-250 kcal</td><td>-0.25 kg / week pace</td></tr> <tr><td><strong>Standard Weight Loss</strong></td><td>2,133 kcal/day</td><td>-500 kcal</td><td>-0.50 kg / week pace</td></tr> <tr><td><strong>Faster Weight Loss</strong> (medical advice recommended)</td><td>1,633 kcal/day</td><td>-1,000 kcal</td><td>-1.00 kg / week pace</td></tr> <tr><td><strong>Clean Muscle Gain</strong></td><td>2,883 kcal/day</td><td>+250 kcal</td><td>+0.25 kg / week lean surplus</td></tr> <tr><td><strong>Fast Weight Gain</strong></td><td>3,133 kcal/day</td><td>+500 kcal</td><td>+0.50 kg / week surplus</td></tr>"
+ },
+ "cash_flow": {
+  "res_breakdown_interest": "$33,000.00",
+  "res_breakdown_total": "$12,000.00",
+  "res_pct_interest": "42.3% Outflows",
+  "res_pct_principal": "57.7% Inflows",
+  "res_primary": "$12,000.00",
+  "res_stat_1": "$45,000.00",
+  "res_stat_2": "$33,000.00",
+  "res_stat_3": "$5,000.00",
+  "schedule": "<tr> <td><strong>Quarter 1</strong></td> <td>$135,000.00</td> <td>$99,000.00</td> <td><strong>$61,000.00</strong></td> </tr> <tr> <td><strong>Quarter 2</strong></td> <td>$135,000.00</td> <td>$99,000.00</td> <td><strong>$97,000.00</strong></td> </tr> <tr> <td><strong>Quarter 3</strong></td> <td>$135,000.00</td> <td>$99,000.00</td> <td><strong>$133,000.00</strong></td> </tr> <tr> <td><strong>Quarter 4</strong></td> <td>$135,000.00</td> <td>$99,000.00</td> <td><strong>$169,000.00</strong></td> </tr>"
+ },
+ "credit_card": {
+  "res_breakdown_interest": "$1,521.02",
+  "res_breakdown_total": "$6,521.02",
+  "res_pct_interest": "23.3% Interest",
+  "res_pct_principal": "76.7% Balance",
+  "res_primary": "33 Months",
+  "res_stat_1": "$5,000.00",
+  "res_stat_2": "$1,521.02",
+  "res_stat_3": "$6,521.02",
+  "schedule": "<tr> <td><strong>Month 1</strong></td> <td>$116.71</td> <td>$83.29</td> <td><strong>$4,883.29</strong></td> </tr> <tr> <td><strong>Month 2</strong></td> <td>$118.65</td> <td>$81.35</td> <td><strong>$4,764.64</strong></td> </tr> <tr> <td><strong>Month 3</strong></td> <td>$120.63</td> <td>$79.37</td> <td><strong>$4,644.01</strong></td> </tr> <tr> <td><strong>Month 4</strong></td> <td>$122.64</td> <td>$77.36</td> <td><strong>$4,521.37</strong></td> </tr> <tr> <td><strong>Month 5</strong></td> <td>$124.68</td> <td>$75.32</td> <td><strong>$4,396.69</strong></td> </tr> <tr> <td><strong>Month 6</strong></td> <td>$126.76</td> <td>$73.24</td> <td><strong>$4,269.93</strong></td> </tr> <tr> <td><strong>Month 7</strong></td> <td>$128.87</td> <td>$71.13</td> <td><strong>$4,141.06</strong></td> </tr> <tr> <td><strong>Month 8</strong></td> <td>$131.02</td> <td>$68.98</td> <td><strong>$4,010.04</strong></td> </tr> <tr> <td><strong>Month 9</strong></td> <td>$133.20</td> <td>$66.80</td> <td><strong>$3,876.85</strong></td> </tr> <tr> <td><strong>Month 10</strong></td> <td>$135.42</td> <td>$64.58</td> <td><strong>$3,741.43</strong></td> </tr> <tr> <td><strong>Month 11</strong></td> <td>$137.67</td> <td>$62.33</td> <td><strong>$3,603.75</strong></td> </tr> <tr> <td><strong>Month 12</strong></td> <td>$139.97</td> <td>$60.03</td> <td><strong>$3,463.79</strong></td> </tr> <tr> <td><strong>Month 24</strong></td> <td>$170.66</td> <td>$29.34</td> <td><strong>$1,590.72</strong></td> </tr> <tr> <td><strong>Month 33</strong></td> <td>$119.03</td> <td>$1.98</td> <td><strong>$0.00</strong></td> </tr>"
+ },
+ "currency": {
+  "res_breakdown_interest": "$5.00",
+  "res_breakdown_total": "915.40",
+  "res_pct_interest": "0.5% Bank Fee",
+  "res_pct_principal": "99.5% Net Output",
+  "res_primary": "915.40",
+  "res_stat_1": "$1,000.00",
+  "res_stat_2": "$5.00",
+  "res_stat_3": "1 : 0.92",
+  "schedule": "<tr> <td><strong>EUR (Euro)</strong></td> <td>1 USD = 0.9200</td> <td>0.5% Fee</td> <td><strong>€ 915.40</strong></td> </tr> <tr> <td><strong>GBP (British Pound)</strong></td> <td>1 USD = 0.7900</td> <td>0.5% Fee</td> <td><strong>£ 786.05</strong></td> </tr> <tr> <td><strong>JPY (Japanese Yen)</strong></td> <td>1 USD = 154.5000</td> <td>0.5% Fee</td> <td><strong>¥ 153,727.50</strong></td> </tr> <tr> <td><strong>CAD (Canadian Dollar)</strong></td> <td>1 USD = 1.3600</td> <td>0.5% Fee</td> <td><strong>CA$ 1,353.20</strong></td> </tr> <tr> <td><strong>AUD (Australian Dollar)</strong></td> <td>1 USD = 1.5200</td> <td>0.5% Fee</td> <td><strong>A$ 1,512.40</strong></td> </tr> <tr> <td><strong>INR (Indian Rupee)</strong></td> <td>1 USD = 83.4500</td> <td>0.5% Fee</td> <td><strong>₹ 83,032.75</strong></td> </tr> <tr> <td><strong>CHF (Swiss Franc)</strong></td> <td>1 USD = 0.8900</td> <td>0.5% Fee</td> <td><strong>CHF 885.55</strong></td> </tr>"
+ },
+ "fd": {
+  "res_breakdown_interest": "₹10,806.51",
+  "res_breakdown_total": "₹35,806.51",
+  "res_pct_interest": "30.2%",
+  "res_pct_principal": "69.8%",
+  "res_primary": "₹35,806.51",
+  "res_stat_1": "₹25,000.00",
+  "res_stat_2": "₹10,806.51",
+  "res_stat_3": "₹25,000.00",
+  "schedule": "<tr> <td><strong>Year 1</strong></td> <td>₹25,000.00</td> <td>₹1,862.38</td> <td><strong>₹26,862.38</strong></td> </tr> <tr> <td><strong>Year 2</strong></td> <td>₹25,000.00</td> <td>₹2,001.11</td> <td><strong>₹28,863.49</strong></td> </tr> <tr> <td><strong>Year 3</strong></td> <td>₹25,000.00</td> <td>₹2,150.19</td> <td><strong>₹31,013.67</strong></td> </tr> <tr> <td><strong>Year 4</strong></td> <td>₹25,000.00</td> <td>₹2,310.36</td> <td><strong>₹33,324.04</strong></td> </tr> <tr> <td><strong>Year 5</strong></td> <td>₹25,000.00</td> <td>₹2,482.47</td> <td><strong>₹35,806.51</strong></td> </tr>"
+ },
+ "gst": {
+  "res_breakdown_interest": "₹1,800.00",
+  "res_breakdown_total": "₹11,800.00",
+  "res_pct_interest": "15.3% Tax",
+  "res_pct_principal": "84.7% Base",
+  "res_primary": "₹11,800.00",
+  "res_stat_1": "₹10,000.00",
+  "res_stat_2": "₹1,800.00",
+  "res_stat_3": "18% GST",
+  "schedule": "<tr> <td><strong>5% Slab</strong></td> <td>₹10,000.00</td> <td>₹500.00</td> <td><strong>₹10,500.00</strong></td> </tr> <tr> <td><strong>18% Slab</strong></td> <td>₹10,000.00</td> <td>₹1,800.00</td> <td><strong>₹11,800.00</strong></td> </tr> <tr> <td><strong>40% Slab</strong></td> <td>₹10,000.00</td> <td>₹4,000.00</td> <td><strong>₹14,000.00</strong></td> </tr>"
+ },
+ "inflation": {
+  "res_breakdown_interest": "$4,673.94",
+  "res_breakdown_total": "$18,775.61",
+  "res_pct_interest": "46.7% Lost",
+  "res_pct_principal": "53.3% Retained",
+  "res_primary": "$18,775.61",
+  "res_stat_1": "$10,000.00",
+  "res_stat_2": "$4,673.94",
+  "res_stat_3": "46.7% Loss",
+  "schedule": "<tr> <td><strong>Year 1</strong></td> <td>$10,320.00</td> <td>-$310.08</td> <td><strong>$9,689.92 Power</strong></td> </tr> <tr> <td><strong>Year 2</strong></td> <td>$10,650.24</td> <td>-$610.54</td> <td><strong>$9,389.46 Power</strong></td> </tr> <tr> <td><strong>Year 3</strong></td> <td>$10,991.05</td> <td>-$901.69</td> <td><strong>$9,098.31 Power</strong></td> </tr> <tr> <td><strong>Year 4</strong></td> <td>$11,342.76</td> <td>-$1,183.80</td> <td><strong>$8,816.20 Power</strong></td> </tr> <tr> <td><strong>Year 5</strong></td> <td>$11,705.73</td> <td>-$1,457.17</td> <td><strong>$8,542.83 Power</strong></td> </tr> <tr> <td><strong>Year 6</strong></td> <td>$12,080.31</td> <td>-$1,722.07</td> <td><strong>$8,277.93 Power</strong></td> </tr> <tr> <td><strong>Year 7</strong></td> <td>$12,466.88</td> <td>-$1,978.75</td> <td><strong>$8,021.25 Power</strong></td> </tr> <tr> <td><strong>Year 8</strong></td> <td>$12,865.82</td> <td>-$2,227.47</td> <td><strong>$7,772.53 Power</strong></td> </tr> <tr> <td><strong>Year 9</strong></td> <td>$13,277.53</td> <td>-$2,468.48</td> <td><strong>$7,531.52 Power</strong></td> </tr> <tr> <td><strong>Year 10</strong></td> <td>$13,702.41</td> <td>-$2,702.01</td> <td><strong>$7,297.99 Power</strong></td> </tr> <tr> <td><strong>Year 11</strong></td> <td>$14,140.89</td> <td>-$2,928.31</td> <td><strong>$7,071.69 Power</strong></td> </tr> <tr> <td><strong>Year 12</strong></td> <td>$14,593.40</td> <td>-$3,147.59</td> <td><strong>$6,852.41 Power</strong></td> </tr> <tr> <td><strong>Year 13</strong></td> <td>$15,060.38</td> <td>-$3,360.06</td> <td><strong>$6,639.94 Power</strong></td> </tr> <tr> <td><strong>Year 14</strong></td> <td>$15,542.32</td> <td>-$3,565.95</td> <td><strong>$6,434.05 Power</strong></td> </tr> <tr> <td><strong>Year 15</strong></td> <td>$16,039.67</td> <td>-$3,765.46</td> <td><strong>$6,234.54 Power</strong></td> </tr> <tr> <td><strong>Year 16</strong></td> <td>$16,552.94</td> <td>-$3,958.78</td> <td><strong>$6,041.22 Power</strong></td> </tr> <tr> <td><strong>Year 17</strong></td> <td>$17,082.63</td> <td>-$4,146.10</td> <td><strong>$5,853.90 Power</strong></td> </tr> <tr> <td><strong>Year 18</strong></td> <td>$17,629.28</td> <td>-$4,327.62</td> <td><strong>$5,672.38 Power</strong></td> </tr> <tr> <td><strong>Year 19</strong></td> <td>$18,193.42</td> <td>-$4,503.51</td> <td><strong>$5,496.49 Power</strong></td> </tr> <tr> <td><strong>Year 20</strong></td> <td>$18,775.61</td> <td>-$4,673.94</td> <td><strong>$5,326.06 Power</strong></td> </tr>"
+ },
+ "interest": {
+  "res_breakdown_interest": "$9,998.32",
+  "res_breakdown_total": "$31,998.32",
+  "res_pct_interest": "31.2%",
+  "res_pct_principal": "68.8%",
+  "res_primary": "$31,998.32",
+  "res_stat_1": "$10,000.00",
+  "res_stat_2": "$9,998.32",
+  "res_stat_3": "$22,000.00",
+  "schedule": "<tr> <td><strong>Year 1</strong></td> <td>$11,200.00</td> <td>$539.50</td> <td><strong>$11,739.50</strong></td> </tr> <tr> <td><strong>Year 2</strong></td> <td>$12,400.00</td> <td>$628.50</td> <td><strong>$13,568.01</strong></td> </tr> <tr> <td><strong>Year 3</strong></td> <td>$13,600.00</td> <td>$722.05</td> <td><strong>$15,490.06</strong></td> </tr> <tr> <td><strong>Year 4</strong></td> <td>$14,800.00</td> <td>$820.39</td> <td><strong>$17,510.44</strong></td> </tr> <tr> <td><strong>Year 5</strong></td> <td>$16,000.00</td> <td>$923.75</td> <td><strong>$19,634.20</strong></td> </tr> <tr> <td><strong>Year 6</strong></td> <td>$17,200.00</td> <td>$1,032.41</td> <td><strong>$21,866.60</strong></td> </tr> <tr> <td><strong>Year 7</strong></td> <td>$18,400.00</td> <td>$1,146.62</td> <td><strong>$24,213.23</strong></td> </tr> <tr> <td><strong>Year 8</strong></td> <td>$19,600.00</td> <td>$1,266.68</td> <td><strong>$26,679.91</strong></td> </tr> <tr> <td><strong>Year 9</strong></td> <td>$20,800.00</td> <td>$1,392.88</td> <td><strong>$29,272.79</strong></td> </tr> <tr> <td><strong>Year 10</strong></td> <td>$22,000.00</td> <td>$1,525.54</td> <td><strong>$31,998.32</strong></td> </tr>"
+ },
+ "investment": {
+  "res_breakdown_interest": "$216,431.80",
+  "res_breakdown_total": "$361,431.80",
+  "res_pct_interest": "$255,448.84",
+  "res_pct_principal": "$361,431.80",
+  "res_primary": "$361,431.80",
+  "res_real_val": "$255,448.84",
+  "res_stat_1": "$25,000.00",
+  "res_stat_2": "$145,000.00",
+  "res_stat_3": "$216,431.80",
+  "schedule": "<tr> <td><strong>Year 1</strong></td> <td>$31,000.00</td> <td>$2,003.54</td> <td><strong>$33,003.54</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $32,273.81)</span></td> </tr> <tr> <td><strong>Year 2</strong></td> <td>$37,000.00</td> <td>$2,582.12</td> <td><strong>$41,585.67</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $39,881.77)</span></td> </tr> <tr> <td><strong>Year 3</strong></td> <td>$43,000.00</td> <td>$3,202.52</td> <td><strong>$50,788.19</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $47,839.24)</span></td> </tr> <tr> <td><strong>Year 4</strong></td> <td>$49,000.00</td> <td>$3,867.78</td> <td><strong>$60,655.97</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $56,162.28)</span></td> </tr> <tr> <td><strong>Year 5</strong></td> <td>$55,000.00</td> <td>$4,581.12</td> <td><strong>$71,237.08</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $64,867.67)</span></td> </tr> <tr> <td><strong>Year 6</strong></td> <td>$61,000.00</td> <td>$5,346.03</td> <td><strong>$82,583.11</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $73,972.99)</span></td> </tr> <tr> <td><strong>Year 7</strong></td> <td>$67,000.00</td> <td>$6,166.23</td> <td><strong>$94,749.34</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $83,496.61)</span></td> </tr> <tr> <td><strong>Year 8</strong></td> <td>$73,000.00</td> <td>$7,045.73</td> <td><strong>$107,795.07</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $93,457.74)</span></td> </tr> <tr> <td><strong>Year 9</strong></td> <td>$79,000.00</td> <td>$7,988.81</td> <td><strong>$121,783.88</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $103,876.48)</span></td> </tr> <tr> <td><strong>Year 10</strong></td> <td>$85,000.00</td> <td>$9,000.06</td> <td><strong>$136,783.94</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $114,773.86)</span></td> </tr> <tr> <td><strong>Year 11</strong></td> <td>$91,000.00</td> <td>$10,084.41</td> <td><strong>$152,868.35</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $126,171.86)</span></td> </tr> <tr> <td><strong>Year 12</strong></td> <td>$97,000.00</td> <td>$11,247.16</td> <td><strong>$170,115.51</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $138,093.48)</span></td> </tr> <tr> <td><strong>Year 13</strong></td> <td>$103,000.00</td> <td>$12,493.96</td> <td><strong>$188,609.47</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $150,562.78)</span></td> </tr> <tr> <td><strong>Year 14</strong></td> <td>$109,000.00</td> <td>$13,830.89</td> <td><strong>$208,440.35</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $163,604.92)</span></td> </tr> <tr> <td><strong>Year 15</strong></td> <td>$115,000.00</td> <td>$15,264.46</td> <td><strong>$229,704.82</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $177,246.21)</span></td> </tr> <tr> <td><strong>Year 16</strong></td> <td>$121,000.00</td> <td>$16,801.67</td> <td><strong>$252,506.49</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $191,514.18)</span></td> </tr> <tr> <td><strong>Year 17</strong></td> <td>$127,000.00</td> <td>$18,450.01</td> <td><strong>$276,956.50</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $206,437.62)</span></td> </tr> <tr> <td><strong>Year 18</strong></td> <td>$133,000.00</td> <td>$20,217.50</td> <td><strong>$303,174.00</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $222,046.64)</span></td> </tr> <tr> <td><strong>Year 19</strong></td> <td>$139,000.00</td> <td>$22,112.77</td> <td><strong>$331,286.76</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $238,372.73)</span></td> </tr> <tr> <td><strong>Year 20</strong></td> <td>$145,000.00</td> <td>$24,145.04</td> <td><strong>$361,431.80</strong> <span style=\"font-size:0.75rem; color:#0891b2;\">(Real: $255,448.84)</span></td> </tr>"
+ },
+ "loan": {
+  "res_breakdown_interest": "$5,219.07",
+  "res_breakdown_total": "$35,219.07",
+  "res_pct_interest": "14.8%",
+  "res_pct_principal": "85.2%",
+  "res_primary": "$586.98",
+  "res_stat_1": "$30,000.00",
+  "res_stat_2": "$5,219.07",
+  "res_stat_3": "$35,219.07",
+  "schedule": "<tr> <td>Year 1</td> <td>$5,248.34</td> <td>$1,795.47</td> <td>$24,751.66</td> </tr> <tr> <td>Year 2</td> <td>$5,599.83</td> <td>$1,443.98</td> <td>$19,151.83</td> </tr> <tr> <td>Year 3</td> <td>$5,974.86</td> <td>$1,068.95</td> <td>$13,176.97</td> </tr> <tr> <td>Year 4</td> <td>$6,375.01</td> <td>$668.80</td> <td>$6,801.96</td> </tr> <tr> <td>Year 5</td> <td>$6,801.96</td> <td>$241.86</td> <td>$0.00</td> </tr>"
+ },
+ "loan_eligibility": {
+  "res_breakdown_interest": "$399,261.31",
+  "res_breakdown_total": "$768,000.00",
+  "res_pct_interest": "$399,261.31",
+  "res_pct_principal": "$368,738.69",
+  "res_primary": "$368,738.69",
+  "res_stat_1": "$3,200.00",
+  "res_stat_2": "50% DTI Limit",
+  "res_stat_3": "$8,000.00",
+  "schedule": "<tr> <td><strong>Year 1</strong></td> <td>$7,338.74</td> <td>$31,061.26</td> <td><strong>$361,399.94</strong></td> </tr> <tr> <td><strong>Year 2</strong></td> <td>$7,987.42</td> <td>$30,412.58</td> <td><strong>$353,412.52</strong></td> </tr> <tr> <td><strong>Year 3</strong></td> <td>$8,693.44</td> <td>$29,706.56</td> <td><strong>$344,719.08</strong></td> </tr> <tr> <td><strong>Year 4</strong></td> <td>$9,461.86</td> <td>$28,938.14</td> <td><strong>$335,257.22</strong></td> </tr> <tr> <td><strong>Year 5</strong></td> <td>$10,298.20</td> <td>$28,101.80</td> <td><strong>$324,959.02</strong></td> </tr> <tr> <td><strong>Year 6</strong></td> <td>$11,208.47</td> <td>$27,191.53</td> <td><strong>$313,750.55</strong></td> </tr> <tr> <td><strong>Year 7</strong></td> <td>$12,199.20</td> <td>$26,200.80</td> <td><strong>$301,551.35</strong></td> </tr> <tr> <td><strong>Year 8</strong></td> <td>$13,277.49</td> <td>$25,122.51</td> <td><strong>$288,273.86</strong></td> </tr> <tr> <td><strong>Year 9</strong></td> <td>$14,451.10</td> <td>$23,948.90</td> <td><strong>$273,822.75</strong></td> </tr> <tr> <td><strong>Year 10</strong></td> <td>$15,728.45</td> <td>$22,671.55</td> <td><strong>$258,094.30</strong></td> </tr> <tr> <td><strong>Year 11</strong></td> <td>$17,118.70</td> <td>$21,281.30</td> <td><strong>$240,975.60</strong></td> </tr> <tr> <td><strong>Year 12</strong></td> <td>$18,631.84</td> <td>$19,768.16</td> <td><strong>$222,343.76</strong></td> </tr> <tr> <td><strong>Year 13</strong></td> <td>$20,278.73</td> <td>$18,121.27</td> <td><strong>$202,065.04</strong></td> </tr> <tr> <td><strong>Year 14</strong></td> <td>$22,071.18</td> <td>$16,328.82</td> <td><strong>$179,993.86</strong></td> </tr> <tr> <td><strong>Year 15</strong></td> <td>$24,022.07</td> <td>$14,377.93</td> <td><strong>$155,971.78</strong></td> </tr> <tr> <td><strong>Year 16</strong></td> <td>$26,145.40</td> <td>$12,254.60</td> <td><strong>$129,826.38</strong></td> </tr> <tr> <td><strong>Year 17</strong></td> <td>$28,456.42</td> <td>$9,943.58</td> <td><strong>$101,369.96</strong></td> </tr> <tr> <td><strong>Year 18</strong></td> <td>$30,971.71</td> <td>$7,428.29</td> <td><strong>$70,398.25</strong></td> </tr> <tr> <td><strong>Year 19</strong></td> <td>$33,709.33</td> <td>$4,690.67</td> <td><strong>$36,688.92</strong></td> </tr> <tr> <td><strong>Year 20</strong></td> <td>$36,688.92</td> <td>$1,711.08</td> <td><strong>$0.00</strong></td> </tr>"
+ },
+ "margin": {
+  "res_breakdown_interest": "$40.00",
+  "res_breakdown_total": "$100.00",
+  "res_pct_interest": "40.0% Margin",
+  "res_pct_principal": "60.0% Cost",
+  "res_primary": "40.00%",
+  "res_stat_1": "$60.00",
+  "res_stat_2": "$40.00",
+  "res_stat_3": "66.67%",
+  "schedule": "<tr> <td><strong>15% Margin</strong></td> <td>$70.59</td> <td>17.6% Markup</td> <td><strong>$10.59 / unit</strong></td> </tr> <tr> <td><strong>25% Margin</strong></td> <td>$80.00</td> <td>33.3% Markup</td> <td><strong>$20.00 / unit</strong></td> </tr> <tr> <td><strong>35% Margin</strong></td> <td>$92.31</td> <td>53.8% Markup</td> <td><strong>$32.31 / unit</strong></td> </tr> <tr> <td><strong>45% Margin</strong></td> <td>$109.09</td> <td>81.8% Markup</td> <td><strong>$49.09 / unit</strong></td> </tr> <tr> <td><strong>50% Margin</strong></td> <td>$120.00</td> <td>100.0% Markup</td> <td><strong>$60.00 / unit</strong></td> </tr> <tr> <td><strong>60% Margin</strong></td> <td>$150.00</td> <td>150.0% Markup</td> <td><strong>$90.00 / unit</strong></td> </tr> <tr> <td><strong>75% Margin</strong></td> <td>$240.00</td> <td>300.0% Markup</td> <td><strong>$180.00 / unit</strong></td> </tr>"
+ },
+ "mortgage": {
+  "res_breakdown_interest": "$427,185.01",
+  "res_breakdown_total": "$927,185.01",
+  "res_pct_interest": "57.2%",
+  "res_pct_principal": "42.8%",
+  "res_primary": "$2,575.51",
+  "res_stat_1": "$2,075.51",
+  "res_stat_2": "$427,185.01",
+  "res_stat_3": "$927,185.01",
+  "schedule": "<tr> <td>Year 1</td> <td>$3,410.39</td> <td>$21,495.77</td> <td>$316,589.61</td> </tr> <tr> <td>Year 2</td> <td>$3,647.85</td> <td>$21,258.31</td> <td>$312,941.75</td> </tr> <tr> <td>Year 3</td> <td>$3,901.84</td> <td>$21,004.32</td> <td>$309,039.91</td> </tr> <tr> <td>Year 4</td> <td>$4,173.52</td> <td>$20,732.64</td> <td>$304,866.39</td> </tr> <tr> <td>Year 5</td> <td>$4,464.12</td> <td>$20,442.05</td> <td>$300,402.27</td> </tr> <tr> <td>Year 6</td> <td>$4,774.94</td> <td>$20,131.22</td> <td>$295,627.33</td> </tr> <tr> <td>Year 7</td> <td>$5,107.41</td> <td>$19,798.75</td> <td>$290,519.91</td> </tr> <tr> <td>Year 8</td> <td>$5,463.03</td> <td>$19,443.14</td> <td>$285,056.88</td> </tr> <tr> <td>Year 9</td> <td>$5,843.41</td> <td>$19,062.76</td> <td>$279,213.47</td> </tr> <tr> <td>Year 10</td> <td>$6,250.28</td> <td>$18,655.89</td> <td>$272,963.20</td> </tr> <tr> <td>Year 11</td> <td>$6,685.47</td> <td>$18,220.70</td> <td>$266,277.73</td> </tr> <tr> <td>Year 12</td> <td>$7,150.96</td> <td>$17,755.20</td> <td>$259,126.76</td> </tr> <tr> <td>Year 13</td> <td>$7,648.87</td> <td>$17,257.30</td> <td>$251,477.89</td> </tr> <tr> <td>Year 14</td> <td>$8,181.45</td> <td>$16,724.72</td> <td>$243,296.44</td> </tr> <tr> <td>Year 15</td> <td>$8,751.10</td> <td>$16,155.06</td> <td>$234,545.34</td> </tr> <tr> <td>Year 16</td> <td>$9,360.43</td> <td>$15,545.74</td> <td>$225,184.91</td> </tr> <tr> <td>Year 17</td> <td>$10,012.17</td> <td>$14,893.99</td> <td>$215,172.74</td> </tr> <tr> <td>Year 18</td> <td>$10,709.30</td> <td>$14,196.87</td> <td>$204,463.44</td> </tr> <tr> <td>Year 19</td> <td>$11,454.97</td> <td>$13,451.20</td> <td>$193,008.48</td> </tr> <tr> <td>Year 20</td> <td>$12,252.55</td> <td>$12,653.62</td> <td>$180,755.93</td> </tr> <tr> <td>Year 21</td> <td>$13,105.67</td> <td>$11,800.50</td> <td>$167,650.25</td> </tr> <tr> <td>Year 22</td> <td>$14,018.19</td> <td>$10,887.97</td> <td>$153,632.06</td> </tr> <tr> <td>Year 23</td> <td>$14,994.25</td> <td>$9,911.92</td> <td>$138,637.81</td> </tr> <tr> <td>Year 24</td> <td>$16,038.27</td> <td>$8,867.90</td> <td>$122,599.54</td> </tr> <tr> <td>Year 25</td> <td>$17,154.98</td> <td>$7,751.19</td> <td>$105,444.56</td> </tr> <tr> <td>Year 26</td> <td>$18,349.45</td> <td>$6,556.72</td> <td>$87,095.12</td> </tr> <tr> <td>Year 27</td> <td>$19,627.08</td> <td>$5,279.09</td> <td>$67,468.04</td> </tr> <tr> <td>Year 28</td> <td>$20,993.67</td> <td>$3,912.49</td> <td>$46,474.36</td> </tr> <tr> <td>Year 29</td> <td>$22,455.42</td> <td>$2,450.75</td> <td>$24,018.94</td> </tr> <tr> <td>Year 30</td> <td>$24,018.94</td> <td>$887.22</td> <td>$0.00</td> </tr>"
+ },
+ "salary": {
+  "res_breakdown_interest": "$23,400.00",
+  "res_breakdown_total": "$93,600.00",
+  "res_pct_interest": "$23,400.00",
+  "res_pct_principal": "$70,200.00",
+  "res_primary": "$93,600.00",
+  "res_stat_1": "$7,800.00",
+  "res_stat_2": "$3,600.00",
+  "res_stat_3": "$45.00/hr",
+  "schedule": "<tr><td><strong>Hourly</strong></td><td>$45.00</td><td>$33.75</td><td>Based on 40 hrs/week</td></tr> <tr><td><strong>Daily</strong></td><td>$360.00</td><td>$270.00</td><td>8 hours / day standard</td></tr> <tr><td><strong>Weekly</strong></td><td>$1,800.00</td><td>$1,350.00</td><td>52 pay cycles / year</td></tr> <tr><td><strong>Bi-Weekly</strong></td><td>$3,600.00</td><td>$2,700.00</td><td>26 pay cycles / year</td></tr> <tr><td><strong>Monthly</strong></td><td>$7,800.00</td><td>$5,850.00</td><td>12 calendar months</td></tr> <tr><td><strong>Annual Gross</strong></td><td>$93,600.00</td><td>$70,200.00</td><td>Total yearly compensation</td></tr>"
+ },
+ "sip": {
+  "res_breakdown_interest": "₹56,169.54",
+  "res_breakdown_total": "₹116,169.54",
+  "res_pct_interest": "48.4% Growth",
+  "res_pct_principal": "51.6% Capital",
+  "res_primary": "₹116,169.54",
+  "res_stat_1": "₹500.00",
+  "res_stat_2": "₹60,000.00",
+  "res_stat_3": "₹56,169.54",
+  "schedule": "<tr> <td><strong>Year 1</strong></td> <td>₹6,000.00</td> <td>₹404.66</td> <td><strong>₹6,404.66</strong></td> </tr> <tr> <td><strong>Year 2</strong></td> <td>₹12,000.00</td> <td>₹1,216.94</td> <td><strong>₹13,621.60</strong></td> </tr> <tr> <td><strong>Year 3</strong></td> <td>₹18,000.00</td> <td>₹2,132.22</td> <td><strong>₹21,753.82</strong></td> </tr> <tr> <td><strong>Year 4</strong></td> <td>₹24,000.00</td> <td>₹3,163.59</td> <td><strong>₹30,917.42</strong></td> </tr> <tr> <td><strong>Year 5</strong></td> <td>₹30,000.00</td> <td>₹4,325.77</td> <td><strong>₹41,243.18</strong></td> </tr> <tr> <td><strong>Year 6</strong></td> <td>₹36,000.00</td> <td>₹5,635.33</td> <td><strong>₹52,878.52</strong></td> </tr> <tr> <td><strong>Year 7</strong></td> <td>₹42,000.00</td> <td>₹7,110.98</td> <td><strong>₹65,989.50</strong></td> </tr> <tr> <td><strong>Year 8</strong></td> <td>₹48,000.00</td> <td>₹8,773.78</td> <td><strong>₹80,763.28</strong></td> </tr> <tr> <td><strong>Year 9</strong></td> <td>₹54,000.00</td> <td>₹10,647.47</td> <td><strong>₹97,410.75</strong></td> </tr> <tr> <td><strong>Year 10</strong></td> <td>₹60,000.00</td> <td>₹12,758.79</td> <td><strong>₹116,169.54</strong></td> </tr>"
+ }
+}
