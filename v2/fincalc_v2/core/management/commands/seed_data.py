@@ -700,10 +700,10 @@ class Command(BaseCommand):
                     (
                         "expert_review",
                         {
-                            "reviewer_name": "FinanceToolsLab Editorial Board",
-                            "reviewer_title": "Editorial Team",
+                            "reviewer_name": "FinanceToolsLab.com",
+                            "reviewer_title": "Publisher",
                             "reviewed_date": datetime.date.today(),
-                            "methodology_note": "The formula and worked example on this page were checked against the calculator output."
+                            "methodology_note": "The worked example on this page is covered by an automated test against the calculator."
                         }
                     )
                 ]
@@ -734,7 +734,7 @@ class Command(BaseCommand):
                     ("heading", "Our Mission"),
                     ("paragraph", "<p>We believe financial literacy starts with clear, transparent tools. Unlike commercial sites laden with intrusive ads and trackers, FinanceToolsLab.com runs with verified mathematical equations and instant server-rendered performance.</p>"),
                     ("heading", "Our Editorial Standards"),
-                    ("paragraph", "<p>Every calculator uses a standard published method, links to its primary source and includes a worked example that we check by hand against the calculator.</p>")
+                    ("paragraph", "<p>Every calculator uses a standard published method, links to its primary source and includes a worked example covered by an automated test.</p>")
                 ]
             },
             {

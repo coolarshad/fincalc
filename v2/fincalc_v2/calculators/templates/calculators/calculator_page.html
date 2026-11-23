@@ -36,7 +36,7 @@
   {% endif %}
 
   {# Interactive Calculator Workspace #}
-  <div class="calc-3col-grid" data-calculator-type="{{ page.calculator_type }}">
+  <div class="calc-3col-grid" data-calculator-type="{{ page.calculator_type }}" data-currency="{{ currency }}">
     
     {# 1/3 Left Column: Input Form & Result Card #}
     <div class="calc-left-col">
@@ -251,8 +251,8 @@
         {% elif page.calculator_type == 'sip' %}
           <div class="input-field-block calc-form-group">
             <div class="input-label-between">
-              <label for="input-monthly" class="input-label-text">Monthly SIP Investment ($/mo)</label>
-              <span id="live-monthly" class="input-live-val">$500</span>
+              <label for="input-monthly" class="input-label-text">Monthly SIP Investment (₹/mo)</label>
+              <span id="live-monthly" class="input-live-val">₹500</span>
             </div>
             <input type="number" id="input-monthly" class="input-text-box" value="500" min="25" max="10000" step="25">
             <input type="range" class="custom-range-slider calc-range-slider" min="25" max="10000" step="25" value="500">
@@ -289,8 +289,8 @@
         {% elif page.calculator_type == 'fd' %}
           <div class="input-field-block calc-form-group">
             <div class="input-label-between">
-              <label for="input-fd-amount" class="input-label-text">Total Deposit Amount ($)</label>
-              <span id="live-fd-amount" class="input-live-val">$25,000</span>
+              <label for="input-fd-amount" class="input-label-text">Total Deposit Amount (₹)</label>
+              <span id="live-fd-amount" class="input-live-val">₹25,000</span>
             </div>
             <input type="number" id="input-fd-amount" class="input-text-box" value="25000" min="500" max="500000" step="500">
             <input type="range" class="custom-range-slider calc-range-slider" min="500" max="500000" step="500" value="25000">
@@ -798,8 +798,8 @@
         {% elif page.calculator_type == 'gst' %}
           <div class="input-field-block calc-form-group">
             <div class="input-label-between">
-              <label for="input-amount" class="input-label-text">Base Amount ($)</label>
-              <span id="live-amount" class="input-live-val">$10,000</span>
+              <label for="input-amount" class="input-label-text">Base Amount (₹)</label>
+              <span id="live-amount" class="input-live-val">₹10,000</span>
             </div>
             <input type="number" id="input-amount" class="input-text-box" value="10000" min="10" max="1000000" step="100">
             <input type="range" class="custom-range-slider calc-range-slider" min="10" max="100000" step="100" value="10000">
@@ -861,48 +861,52 @@
           {% elif page.calculator_type == 'gst' %}Gross Total Amount
           {% elif page.calculator_type == 'cagr' %}Compound Annual Growth Rate (CAGR)
           {% elif page.calculator_type == 'loan_eligibility' %}Max Eligible Loan Amount
+          {% elif page.calculator_type == 'currency' %}Amount Received
+          {% elif page.calculator_type == 'inflation' %}Future Cost
           {% else %}Calculated Result
           {% endif %}
         </div>
-        <div id="res-primary" class="result-card-huge-val">&mdash;</div>
+        <div id="res-primary" class="result-card-huge-val">{{ defaults.res_primary|default:"&mdash;" }}</div>
 
         {% if page.calculator_type == 'investment' %}
         <div style="padding: 0.75rem 0; border-top: 1px solid rgba(255,255,255,0.25); border-bottom: 1px solid rgba(255,255,255,0.25); margin-bottom: 0.75rem;">
           <div class="result-sub-label" style="letter-spacing: 0.08em;">Inflation Adjusted (Today's Purchasing Power)</div>
-          <div id="res-real-val" style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">&mdash;</div>
+          <div id="res-real-val" style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">{{ defaults.res_real_val|default:"&mdash;" }}</div>
         </div>
         {% endif %}
 
         <div class="result-card-subgrid">
           <div>
             <div class="result-sub-label">
-              {% if page.calculator_type == 'bmi' %}Weight Category
-              {% elif page.calculator_type == 'calorie' %}Basal Metabolic Rate
+              {% if page.calculator_type == 'bmi' %}Healthy Weight Range
+              {% elif page.calculator_type == 'calorie' %}Weight Loss Target
               {% elif page.calculator_type == 'body_fat' %}Body Fat Category
-              {% elif page.calculator_type == 'pregnancy' %}Gestational Age
+              {% elif page.calculator_type == 'pregnancy' %}Current Trimester
               {% elif page.calculator_type == 'interest' %}Total Interest Earned
               {% elif page.calculator_type == 'investment' %}Total Capital Contributed
               {% elif page.calculator_type == 'sip' %}Total Invested Capital
               {% elif page.calculator_type == 'cagr' %}Total Profit Gain
               {% elif page.calculator_type == 'fd' %}Total Interest Earned
               {% elif page.calculator_type == 'credit_card' %}Total Interest Paid
-              {% elif page.calculator_type == 'salary' %}Monthly Pay
+              {% elif page.calculator_type == 'salary' %}Bi-Weekly Pay
               {% elif page.calculator_type == 'margin' %}Gross Unit Profit
-              {% elif page.calculator_type == 'break_even' %}Break-even Revenue
-              {% elif page.calculator_type == 'cash_flow' %}Total Cash Inflows
+              {% elif page.calculator_type == 'break_even' %}Contribution per Unit
+              {% elif page.calculator_type == 'cash_flow' %}Total Cash Outflows
               {% elif page.calculator_type == 'gst' %}Tax Payable (GST)
-              {% elif page.calculator_type == 'loan_eligibility' %}Max Monthly EMI
+              {% elif page.calculator_type == 'loan_eligibility' %}DTI Limit Used
+              {% elif page.calculator_type == 'currency' %}Transfer Fee
+              {% elif page.calculator_type == 'inflation' %}Purchasing Power Lost
               {% else %}Total Interest
               {% endif %}
             </div>
-            <div id="res-stat-2" class="result-sub-val">&mdash;</div>
+            <div id="res-stat-2" class="result-sub-val">{{ defaults.res_stat_2|default:"&mdash;" }}</div>
           </div>
           <div>
             <div class="result-sub-label">
-              {% if page.calculator_type == 'bmi' %}Healthy Range
-              {% elif page.calculator_type == 'calorie' %}Weight Loss Target
+              {% if page.calculator_type == 'bmi' %}BMI Prime (BMI ÷ 25)
+              {% elif page.calculator_type == 'calorie' %}Weight Gain Target
               {% elif page.calculator_type == 'body_fat' %}Fat Mass
-              {% elif page.calculator_type == 'pregnancy' %}Current Trimester
+              {% elif page.calculator_type == 'pregnancy' %}Days Remaining
               {% elif page.calculator_type == 'interest' %}Total Deposits
               {% elif page.calculator_type == 'investment' %}Total Capital Gains
               {% elif page.calculator_type == 'sip' %}Estimated Wealth Returns
@@ -912,13 +916,15 @@
               {% elif page.calculator_type == 'salary' %}Hourly Pay
               {% elif page.calculator_type == 'margin' %}Markup Percentage
               {% elif page.calculator_type == 'break_even' %}Contribution Margin
-              {% elif page.calculator_type == 'cash_flow' %}Total Cash Outflows
-              {% elif page.calculator_type == 'gst' %}Net Pre-Tax Base
-              {% elif page.calculator_type == 'loan_eligibility' %}Benchmark DTI
+              {% elif page.calculator_type == 'cash_flow' %}Debt Payments
+              {% elif page.calculator_type == 'gst' %}GST Rate
+              {% elif page.calculator_type == 'loan_eligibility' %}Monthly Income
+              {% elif page.calculator_type == 'currency' %}Exchange Rate
+              {% elif page.calculator_type == 'inflation' %}Share of Value Lost
               {% else %}Total Payment
               {% endif %}
             </div>
-            <div id="res-stat-3" class="result-sub-val">&mdash;</div>
+            <div id="res-stat-3" class="result-sub-val">{{ defaults.res_stat_3|default:"&mdash;" }}</div>
           </div>
         </div>
       </div>
@@ -968,7 +974,7 @@
           <h3 class="card-title-lg" style="margin-bottom: 1rem;">
             {% if page.calculator_type in 'loan mortgage' %}Loan Repayment & Interest Breakdown
             {% elif page.calculator_type == 'cagr' %}Annualized Return & Holding Gain Breakdown
-            {% elif page.calculator_type == 'sip' %}Systematic Wealth Accumulation Breakdown
+            {% elif page.calculator_type == 'sip' %}SIP Growth Breakdown
             {% elif page.calculator_type == 'fd' %}Fixed Deposit & Maturity Yield Breakdown
             {% elif page.calculator_type == 'interest' %}Savings Growth & Compound Yield Breakdown
             {% elif page.calculator_type == 'investment' %}Portfolio Wealth & Capital Growth Strategy
@@ -992,7 +998,8 @@
             <div>
               <div class="stat-row-slate">
                 <span class="stat-row-label">
-                  {% if page.calculator_type in 'loan mortgage' %}Principal Financed
+                  {% if page.calculator_type == 'mortgage' %}Monthly Principal & Interest
+                  {% elif page.calculator_type == 'loan' %}Principal Financed
                   {% elif page.calculator_type == 'cagr' %}Initial Investment Capital
                   {% elif page.calculator_type == 'sip' %}Monthly Investment Amount
                   {% elif page.calculator_type == 'fd' %}Principal Deposit Amount
@@ -1003,18 +1010,18 @@
                   {% elif page.calculator_type == 'inflation' %}Present Dollar Value
                   {% elif page.calculator_type == 'loan_eligibility' %}Max Allowed Monthly EMI
                   {% elif page.calculator_type == 'currency' %}Base Amount Sent
-                  {% elif page.calculator_type == 'bmi' %}Current Body Weight
+                  {% elif page.calculator_type == 'bmi' %}Weight Category
                   {% elif page.calculator_type == 'calorie' %}Basal Metabolic Rate (BMR)
-                  {% elif page.calculator_type == 'body_fat' %}Lean Muscle Mass
-                  {% elif page.calculator_type == 'pregnancy' %}Gestational Progress
+                  {% elif page.calculator_type == 'body_fat' %}Lean Mass
+                  {% elif page.calculator_type == 'pregnancy' %}Gestational Age
                   {% elif page.calculator_type == 'margin' %}Cost of Goods Sold (COGS)
-                  {% elif page.calculator_type == 'break_even' %}Monthly Fixed Overhead
+                  {% elif page.calculator_type == 'break_even' %}Break-even Revenue
                   {% elif page.calculator_type == 'cash_flow' %}Total Cash Receipts
                   {% elif page.calculator_type == 'gst' %}Pre-Tax Base Amount
                   {% else %}Primary Base Amount
                   {% endif %}
                 </span>
-                <span id="res-stat-1" class="stat-row-val">&mdash;</span>
+                <span id="res-stat-1" class="stat-row-val">{{ defaults.res_stat_1|default:"&mdash;" }}</span>
               </div>
               <div class="stat-row-slate">
                 <span class="stat-row-label">
@@ -1025,14 +1032,14 @@
                   {% elif page.calculator_type == 'interest' %}Total Compound Interest
                   {% elif page.calculator_type == 'investment' %}Total Market Return Gains
                   {% elif page.calculator_type == 'credit_card' %}Total Finance Charges
-                  {% elif page.calculator_type == 'salary' %}Bi-Weekly Pay
+                  {% elif page.calculator_type == 'salary' %}Illustrative Tax (flat 25%)
                   {% elif page.calculator_type == 'inflation' %}Value Lost to Inflation
-                  {% elif page.calculator_type == 'loan_eligibility' %}Existing Debt EMIs
+                  {% elif page.calculator_type == 'loan_eligibility' %}Total Interest
                   {% elif page.calculator_type == 'currency' %}Transfer / Spread Fee
                   {% elif page.calculator_type == 'bmi' %}Weight Category
                   {% elif page.calculator_type == 'calorie' %}Daily Activity Energy Burn
                   {% elif page.calculator_type == 'body_fat' %}Total Body Fat Mass
-                  {% elif page.calculator_type == 'pregnancy' %}Current Trimester
+                  {% elif page.calculator_type == 'pregnancy' %}Estimated Conception Date
                   {% elif page.calculator_type == 'margin' %}Gross Profit per Unit
                   {% elif page.calculator_type == 'break_even' %}Unit Variable Cost
                   {% elif page.calculator_type == 'cash_flow' %}Total Operating Outflows
@@ -1040,14 +1047,14 @@
                   {% else %}Additional Component
                   {% endif %}
                 </span>
-                <span id="res-breakdown-interest" class="stat-row-val" style="color:var(--rose-500);">&mdash;</span>
+                <span id="res-breakdown-interest" class="stat-row-val" style="color:var(--rose-500);">{{ defaults.res_breakdown_interest|default:"&mdash;" }}</span>
               </div>
               <div class="stat-row-slate">
                 <span class="stat-row-label">
                   {% if page.calculator_type in 'loan mortgage' %}Total Lifetime Payment
                   {% elif page.calculator_type == 'cagr' %}Final Ending Portfolio Value
                   {% elif page.calculator_type == 'sip' %}Total Expected Maturity Value
-                  {% elif page.calculator_type == 'fd' %}Guaranteed Maturity Value
+                  {% elif page.calculator_type == 'fd' %}Maturity Value
                   {% elif page.calculator_type == 'interest' %}Ending Account Balance
                   {% elif page.calculator_type == 'investment' %}Nominal Future Portfolio Value
                   {% elif page.calculator_type == 'credit_card' %}Total Debt Payoff Cost
@@ -1055,7 +1062,7 @@
                   {% elif page.calculator_type == 'inflation' %}Future Dollar Equivalent
                   {% elif page.calculator_type == 'loan_eligibility' %}Total Repayment Commitment
                   {% elif page.calculator_type == 'currency' %}Net Converted Amount
-                  {% elif page.calculator_type == 'bmi' %}Ideal Weight Benchmark
+                  {% elif page.calculator_type == 'bmi' %}Healthy Weight Range
                   {% elif page.calculator_type == 'calorie' %}Total Daily TDEE
                   {% elif page.calculator_type == 'body_fat' %}Total Body Weight
                   {% elif page.calculator_type == 'pregnancy' %}Estimated Due Date
@@ -1066,7 +1073,7 @@
                   {% else %}Total Combined Value
                   {% endif %}
                 </span>
-                <span id="res-breakdown-total" class="stat-row-val" style="color:var(--indigo-600);">&mdash;</span>
+                <span id="res-breakdown-total" class="stat-row-val" style="color:var(--indigo-600);">{{ defaults.res_breakdown_total|default:"&mdash;" }}</span>
               </div>
             </div>
           </div>
@@ -1088,7 +1095,8 @@
             {% elif page.calculator_type == 'inflation' %}Inflation Impact & Real Purchasing Power
             {% elif page.calculator_type == 'loan_eligibility' %}Debt-to-Income (DTI) Allocation
             {% elif page.calculator_type == 'currency' %}Conversion Efficiency & Fee Ratio
-            {% elif page.calculator_type in 'bmi body_fat' %}Lean Muscle vs Fat Ratio
+            {% elif page.calculator_type == 'bmi' %}Your BMI vs Healthy Range
+            {% elif page.calculator_type == 'body_fat' %}Lean Mass vs Fat Mass
             {% elif page.calculator_type == 'calorie' %}Resting BMR vs Active Expenditure
             {% elif page.calculator_type == 'pregnancy' %}Trimester Timeline Progression
             {% elif page.calculator_type == 'margin' %}Gross Margin & Markup Ratios
@@ -1102,11 +1110,11 @@
             {% if page.calculator_type in 'loan mortgage credit_card' %}
               Review how each payment is allocated between principal reduction and lender interest charges.
             {% elif page.calculator_type == 'cagr' %}
-              Compare your annualized return with long-run reference points, such as the roughly 10% average nominal annual return of the S&amp;P 500 since 1957 and US CPI inflation (see sources below). Past returns do not predict future results.
+              Compare your annualized return with a long-run stock or inflation figure from the sources below. Past returns do not predict future results.
             {% elif page.calculator_type == 'sip' %}
               Analyze how monthly dollar-cost averaging expands your wealth beyond direct capital contributions.
             {% elif page.calculator_type == 'fd' %}
-              Review guaranteed capital safety and compounding interest earnings over the term deposit period.
+              See how compounding builds interest over the deposit term.
             {% elif page.calculator_type == 'interest' %}
               Discover how compounding frequency boosts your overall savings account yield over time.
             {% elif page.calculator_type == 'investment' %}
@@ -1143,7 +1151,8 @@
               {% elif page.calculator_type == 'inflation' %}Retained Purchasing Power
               {% elif page.calculator_type == 'loan_eligibility' %}Max Eligible Loan Principal
               {% elif page.calculator_type == 'currency' %}Net Converted Output
-              {% elif page.calculator_type in 'bmi body_fat' %}Lean Muscle Mass Ratio
+              {% elif page.calculator_type == 'bmi' %}Your BMI
+              {% elif page.calculator_type == 'body_fat' %}Lean Mass Ratio
               {% elif page.calculator_type == 'calorie' %}Resting BMR Proportion
               {% elif page.calculator_type == 'pregnancy' %}Completed Timeline
               {% elif page.calculator_type == 'margin' %}Cost Proportion
@@ -1153,7 +1162,7 @@
               {% else %}Primary Component Ratio
               {% endif %}
             </span>
-            <span id="res-pct-principal" class="stat-row-val">&mdash;</span>
+            <span id="res-pct-principal" class="stat-row-val">{{ defaults.res_pct_principal|default:"&mdash;" }}</span>
           </div>
           <div class="stat-row-slate">
             <span class="stat-row-label">
@@ -1167,7 +1176,8 @@
               {% elif page.calculator_type == 'inflation' %}Inflation Purchasing Power Loss
               {% elif page.calculator_type == 'loan_eligibility' %}Total Financing Interest
               {% elif page.calculator_type == 'currency' %}Bank Transfer Fee
-              {% elif page.calculator_type in 'bmi body_fat' %}Body Fat Ratio
+              {% elif page.calculator_type == 'bmi' %}Healthy BMI Range
+              {% elif page.calculator_type == 'body_fat' %}Body Fat Ratio
               {% elif page.calculator_type == 'calorie' %}Active Energy Proportion
               {% elif page.calculator_type == 'pregnancy' %}Remaining Timeline
               {% elif page.calculator_type == 'margin' %}Gross Profit Margin
@@ -1177,7 +1187,7 @@
               {% else %}Secondary Component Ratio
               {% endif %}
             </span>
-            <span id="res-pct-interest" class="stat-row-val" style="color:var(--emerald-600);">&mdash;</span>
+            <span id="res-pct-interest" class="stat-row-val" style="color:var(--emerald-600);">{{ defaults.res_pct_interest|default:"&mdash;" }}</span>
           </div>
         </div>
       </div>
@@ -1252,7 +1262,7 @@
                     {% elif page.calculator_type == 'body_fat' %}Fitness Classification
                     {% elif page.calculator_type == 'bmi' %}Health Risk Assessment
                     {% elif page.calculator_type == 'pregnancy' %}Clinical Note
-                    {% elif page.calculator_type == 'salary' %}Hourly Equivalent
+                    {% elif page.calculator_type == 'salary' %}Basis
                     {% elif page.calculator_type == 'margin' %}Gross Profit / Unit
                     {% elif page.calculator_type == 'break_even' %}Net Operating Profit
                     {% elif page.calculator_type == 'cash_flow' %}Ending Liquidity Reserve
@@ -1264,7 +1274,7 @@
                   </th>
                 </tr>
               </thead>
-              <tbody id="schedule-table-body"></tbody>
+              <tbody id="schedule-table-body">{{ defaults.schedule|default:""|safe }}</tbody>
             </table>
           </div>
         </div>

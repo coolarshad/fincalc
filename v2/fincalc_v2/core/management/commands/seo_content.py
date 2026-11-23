@@ -26,7 +26,7 @@ SRC = {
     "who_bmi": ("Body mass index (BMI)", "World Health Organization", "https://www.who.int/data/gho/data/themes/topics/topic-details/GHO/body-mass-index"),
     "cdc_bmi": ("Adult BMI categories", "U.S. Centers for Disease Control and Prevention", "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"),
     "mifflin": ("Mifflin MD, St Jeor ST et al. A new predictive equation for resting energy expenditure in healthy individuals. Am J Clin Nutr. 1990;51(2):241-247", "PubMed", "https://pubmed.ncbi.nlm.nih.gov/2305711/"),
-    "navy": ("Hodgdon JA, Beckett MB. Prediction of percent body fat for U.S. Navy men and women from body circumferences and height (Reports 84-11 and 84-29)", "Naval Health Research Center via DTIC", "https://apps.dtic.mil/sti/"),
+    "navy": ("Hodgdon JA, Beckett MB. Prediction of percent body fat for U.S. Navy men and women from body circumferences and height (Reports 84-11 and 84-29)", "Naval Health Research Center, 1984", ""),
     "acog": ("Methods for Estimating the Due Date (Committee Opinion No. 700)", "American College of Obstetricians and Gynecologists", "https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2017/05/methods-for-estimating-the-due-date"),
     "cbic_gst": ("GST rates for goods and services", "Central Board of Indirect Taxes and Customs (India)", "https://cbic-gst.gov.in/gst-goods-services-rates.html"),
     "gst_portal": ("GST portal", "Goods and Services Tax Network (India)", "https://www.gst.gov.in/"),
@@ -49,11 +49,11 @@ HOME = {
 CATEGORIES = {
     "finance": {
         "seo_title": "Finance Calculators: Loan, Mortgage, SIP & More | FinanceToolsLab",
-        "search_description": "13 free personal finance calculators: loan EMI, mortgage, SIP, FD, investment, CAGR, inflation, credit card payoff and more, each with formula and worked example.",
+        "search_description": "12 free personal finance calculators: loan EMI, mortgage, SIP, FD, investment, CAGR, inflation, credit card and more, with formulas and worked examples.",
     },
     "health": {
         "seo_title": "Health Calculators: BMI, Calories, Body Fat & Due Date",
-        "search_description": "Free BMI, calorie (TDEE), body fat and pregnancy due date calculators based on WHO categories, the Mifflin-St Jeor equation, the US Navy method and Naegele's rule.",
+        "search_description": "Free BMI, calorie (TDEE), body fat and due date calculators using WHO categories, the Mifflin-St Jeor equation, the US Navy method and Naegele's rule.",
     },
     "business": {
         "seo_title": "Business Calculators: Margin, GST, Break-Even & Cash Flow",
@@ -64,8 +64,8 @@ CATEGORIES = {
 # ---------------------------------------------------------------------------
 # Calculator pages (keyed by slug)
 # ---------------------------------------------------------------------------
-FIN_REVIEW = "The formula, variable definitions and worked example on this page were recalculated by hand and checked against the calculator output."
-HEALTH_REVIEW = "This tool applies the published method cited in the sources below. It gives a population-level estimate, not a clinical assessment."
+FIN_REVIEW = "The worked example on this page is covered by an automated test that runs the calculator with the same inputs and compares the result."
+HEALTH_REVIEW = "This tool applies the published method cited in the sources below. It gives a population-level estimate, not a clinical assessment, and has not been reviewed by a clinician. The worked example is covered by an automated test against the calculator."
 BIZ_REVIEW = FIN_REVIEW
 
 CALCULATORS = {
@@ -81,7 +81,7 @@ CALCULATORS = {
             "notes": "Assumes a fixed rate, monthly payments and no fees. Origination fees and insurance are not included.",
         },
         "example_patch": {
-            "result_highlight": "Monthly EMI: $586.98 | Total Interest: $5,218.80 | Total Repayment: $35,218.80",
+            "result_highlight": "Monthly EMI: $586.98 | Total Interest: $5,219.07 | Total Repayment: $35,219.07",
             "key_observation": "A 4-year term on the same loan raises the payment to $711.45 but cuts total interest to about $4,150, a saving of roughly $1,070.",
         },
         "table": {
@@ -90,9 +90,9 @@ CALCULATORS = {
             "headers": ["Term", "Monthly Payment", "Total Interest", "Total Repaid"],
             "rows": [
                 ["3 years", "$919.47", "$3,100.92", "$33,100.92"],
-                ["4 years", "$711.45", "$4,149.60", "$34,149.60"],
-                ["5 years", "$586.98", "$5,218.80", "$35,218.80"],
-                ["7 years", "$445.48", "$7,420.32", "$37,420.32"],
+                ["4 years", "$711.45", "$4,149.53", "$34,149.53"],
+                ["5 years", "$586.98", "$5,219.07", "$35,219.07"],
+                ["7 years", "$445.48", "$7,420.58", "$37,420.58"],
             ],
             "takeaway": "Pick the shortest term whose payment you can comfortably afford every month.",
         },
@@ -107,7 +107,7 @@ CALCULATORS = {
     # -------------------------------------------------------------- MORTGAGE
     "mortgage-calculator": {
         "seo_title": "Mortgage Calculator with Taxes, Insurance, PMI & HOA",
-        "search_description": "Estimate your full monthly mortgage payment including principal, interest, property tax, home insurance and HOA dues. See how down payment and rate change the cost.",
+        "search_description": "Estimate your full monthly mortgage payment with principal, interest, property tax, home insurance and HOA dues. See how rate and down payment change it.",
         "intro_question": "What is a mortgage calculator?",
         "intro_answer": "<p>A mortgage calculator estimates your total monthly housing payment. It adds the principal and interest on the loan to one-twelfth of your annual property tax and homeowner's insurance, plus any HOA dues. Lenders call this full figure PITI, and it is the number they compare with your income.</p>",
         "formula": {
@@ -134,7 +134,7 @@ CALCULATORS = {
     # ---------------------------------------------------------------- SALARY
     "salary-calculator": {
         "seo_title": "Salary Calculator: Hourly to Annual, Monthly & Weekly Pay",
-        "search_description": "Convert an hourly wage to annual, monthly, bi-weekly and weekly gross pay, or work back from salary to hourly. Includes an overtime example and a pay frequency table.",
+        "search_description": "Convert an hourly wage to annual, monthly, bi-weekly and weekly gross pay, or salary to hourly. Includes an overtime example and pay frequency table.",
         "intro_question": "How do you convert an hourly wage to an annual salary?",
         "intro_answer": "<p>Multiply your hourly rate by the hours you work each week, then by 52 weeks. At $35 an hour and 40 hours a week that is $72,800 a year before tax. Divide by 12 for monthly pay or by 26 for bi-weekly pay. The result is gross pay; take-home pay depends on your taxes and deductions.</p>",
         "formula": {
@@ -155,13 +155,18 @@ CALCULATORS = {
     # -------------------------------------------------------------- INTEREST
     "interest-calculator": {
         "seo_title": "Compound Interest Calculator: Daily, Monthly & Yearly",
-        "search_description": "Calculate compound interest on savings or deposits with monthly, quarterly or yearly compounding. Includes the formula, a worked example and simple interest comparison.",
+        "search_description": "Calculate compound interest on savings with daily, monthly, quarterly or yearly compounding. Includes the formula, an example and a simple interest table.",
         "summary": "Calculate compound interest on savings and deposits over any period, with monthly, quarterly or annual compounding.",
         "intro_question": "What is compound interest?",
         "intro_answer": "<p>Compound interest is interest earned on both your original deposit and on interest already added to the account. Because the balance grows each period, the interest grows too. $10,000 at 6% compounded monthly becomes $13,488.50 after 5 years, compared with $13,000 under simple interest.</p>",
         "formula": {
-            "explanation": "<p>The rate per period is r ÷ n and the number of periods is n × t. The more often interest compounds, the higher the ending balance, although the gain from moving monthly to daily compounding is small.</p>",
-            "notes": "Assumes a constant rate and no further deposits or withdrawals.",
+            "expression": "A = P × (1 + r/n)^(n × t) + PMT × [ ((1 + r/n)^(n × t) − 1) / ((1 + r/n)^(n/12) − 1) ]",
+            "extra_vars": [
+                {"symbol": "t", "name": "Years", "description": "Number of years the money stays invested"},
+                {"symbol": "PMT", "name": "Monthly Contribution", "description": "Amount added at the end of each month (0 in the example below)"},
+            ],
+            "explanation": "<p>The first term grows the starting balance; the second adds the future value of monthly contributions. The rate per period is r ÷ n and the number of periods is n × t. The more often interest compounds, the higher the ending balance, although the gain from moving monthly to daily compounding is small.</p>",
+            "notes": "Assumes a constant rate and no withdrawals. The calculator starts with a $100 monthly contribution; set it to 0 to reproduce the example.",
         },
         "table": {
             "title": "Simple vs Compound Interest ($10,000 at 6% for 5 years)",
@@ -184,13 +189,15 @@ CALCULATORS = {
     # ------------------------------------------------------------ INVESTMENT
     "investment-calculator": {
         "seo_title": "Investment Calculator: Future Value with Monthly Contributions",
-        "search_description": "Project the future value of a lump sum plus monthly contributions at an expected return, and see the inflation-adjusted real value. Formula and worked example included.",
+        "search_description": "Project the future value of a lump sum plus monthly contributions, and see the inflation-adjusted real value. Formula and worked example included.",
         "intro_question": "How does an investment calculator work?",
         "intro_answer": "<p>An investment calculator projects how a starting amount and regular monthly contributions could grow at an assumed annual return. It compounds the balance monthly, adds each contribution and shows how much of the final value comes from your deposits versus growth. Real returns vary year to year, so treat the result as an estimate.</p>",
         "formula": {
             "expression": "FV = P × (1 + r/12)^(12t) + PMT × [ ((1 + r/12)^(12t) − 1) / (r/12) ]",
             "explanation": "<p>The first term grows your starting balance P for 12t months at the monthly rate r/12. The second term is the future value of a monthly contribution PMT made at the end of each month. Here t is the number of years and r the expected annual return as a decimal.</p>",
             "notes": "Interest is compounded monthly and contributions are made at the end of each month, matching the calculator above.",
+            "var_desc": {"r": "Expected annual return as a decimal (8% = 0.08)", "PMT": "Amount added at the end of each month"},
+            "var_name": {"r": "Expected Annual Return", "PMT": "Monthly Contribution"},
             "extra_vars": [{"symbol": "t", "name": "Years Invested", "description": "Number of years the money stays invested"}],
         },
         "example_patch": {
@@ -214,7 +221,7 @@ CALCULATORS = {
     # ----------------------------------------------------------- CREDIT CARD
     "credit-card-calculator": {
         "seo_title": "Credit Card Payoff Calculator: Months & Interest to Debt-Free",
-        "search_description": "See how many months it takes to pay off a credit card balance and the total interest you will pay at a fixed monthly payment. Compare payment amounts side by side.",
+        "search_description": "See how many months it takes to pay off a credit card and the total interest at a fixed monthly payment. Compare payment amounts side by side.",
         "intro_question": "How long will it take to pay off my credit card?",
         "intro_answer": "<p>It depends on your balance, APR and monthly payment. Each month interest is added at APR ÷ 12 and your payment is subtracted. A $5,000 balance at 21.99% APR takes 52 months to clear at $150 a month and costs about $2,796 in interest. Paying $200 a month cuts that to 34 months.</p>",
         "formula": {
@@ -250,7 +257,7 @@ CALCULATORS = {
     # ------------------------------------------------------------------- BMI
     "bmi-calculator": {
         "seo_title": "BMI Calculator: Body Mass Index with WHO Categories",
-        "search_description": "Calculate your adult BMI from height and weight and see your WHO weight category and healthy weight range. Includes the formula, BMI table and limitations of BMI.",
+        "search_description": "Calculate your adult BMI from height and weight, and see your WHO weight category and healthy weight range. Includes the formula, BMI table and limits.",
         "intro_question": "What is BMI?",
         "intro_answer": "<p>Body mass index (BMI) is your weight in kilograms divided by your height in metres squared. The World Health Organization uses it to screen adults for underweight (below 18.5), healthy weight (18.5 to 24.9), overweight (25 to 29.9) and obesity (30 or more). It does not measure body fat directly.</p>",
         "formula": {
@@ -283,7 +290,7 @@ CALCULATORS = {
         "seo_title": "Calorie Calculator: TDEE & BMR (Mifflin-St Jeor)",
         "search_description": "Estimate your BMR and total daily calories (TDEE) using the Mifflin-St Jeor equation for men and women, with activity multipliers and weight loss targets.",
         "intro_question": "How many calories do I need a day?",
-        "intro_answer": "<p>Your daily calorie need is your basal metabolic rate (BMR) multiplied by an activity factor. This calculator estimates BMR with the Mifflin-St Jeor equation, then multiplies by 1.2 for sedentary up to 1.9 for very active. The result, called TDEE, is the intake that roughly maintains your current weight.</p>",
+        "intro_answer": "<p>Your daily calorie need is your basal metabolic rate (BMR) multiplied by an activity factor. This calculator estimates BMR with the Mifflin-St Jeor equation, then multiplies by 1.2 for sedentary up to 1.9 for extra active. The result, called TDEE, is the intake that roughly maintains your current weight.</p>",
         "formula": {
             "expression": "BMR (men) = 10W + 6.25H − 5A + 5 | BMR (women) = 10W + 6.25H − 5A − 161 | TDEE = BMR × Activity Factor",
             "explanation": "<p>W is weight in kg, H is height in cm and A is age in years. The Mifflin-St Jeor equation was published in 1990 and is widely used by dietitians to estimate resting energy needs in healthy adults.</p>",
@@ -340,7 +347,7 @@ CALCULATORS = {
             ],
         },
         "faqs": [
-            {"q": "How accurate is the US Navy body fat method?", "a": "<p>Studies generally find it within about 3 to 4 percentage points of reference methods for most people, with larger errors at very low or very high body fat. Consistent measuring technique matters more than the formula.</p>"},
+            {"q": "How accurate is the US Navy body fat method?", "a": "<p>It is an estimate and can differ from lab methods such as DEXA by several percentage points. Measure the same way each time and watch the trend rather than a single reading.</p>"},
             {"q": "Where should women measure waist and hips?", "a": "<p>Measure the waist at its narrowest point, usually just above the navel, and the hips at the widest point of the buttocks, keeping the tape level.</p>"},
             {"q": "Is body fat percentage better than BMI?", "a": "<p>Body fat percentage separates fat from muscle, which BMI cannot. BMI is still useful as a quick screen. Using both gives a fuller picture.</p>"},
         ],
@@ -354,6 +361,7 @@ CALCULATORS = {
         "intro_question": "How is a due date calculated?",
         "intro_answer": "<p>The standard method, Naegele's rule, adds 280 days (40 weeks) to the first day of your last menstrual period. That is the same as adding one year, subtracting three months and adding seven days. It assumes a 28-day cycle. An early ultrasound is more accurate, and doctors may update your date after one.</p>",
         "formula": {
+            "expression": "Due Date = First Day of Last Period + 280 days + (Cycle Length − 28)",
             "explanation": "<p>Pregnancy is dated from the first day of the last period, about two weeks before conception, so a full-term pregnancy is counted as 40 weeks. Cycles longer or shorter than 28 days shift ovulation and therefore the due date.</p>",
             "notes": "An estimate only. Your care provider's dating, especially from a first-trimester ultrasound, takes priority.",
         },
@@ -378,7 +386,7 @@ CALCULATORS = {
     # -------------------------------------------------------------- CURRENCY
     "currency-calculator": {
         "seo_title": "Currency Converter with Transfer Fee Calculator",
-        "search_description": "Convert an amount between currencies at the exchange rate you are quoted, and see how bank fees and spreads reduce the amount received. Includes the formula and example.",
+        "search_description": "Convert an amount at the exchange rate you are quoted, and see how bank fees reduce the amount received. Includes the formula and a worked example.",
         "summary": "Convert between currencies at the exchange rate your bank or provider quotes, and see how transfer fees reduce what you receive.",
         "intro_question": "How do you calculate a currency conversion?",
         "intro_answer": "<p>Multiply the amount you send by the exchange rate, after taking off any percentage fee. Sending $1,000 at 0.92 EUR per USD with a 0.5% fee converts $995 and delivers €915.40. Enter the rate your provider actually quotes; the sample rates in the table are illustrative, not live market rates.</p>",
@@ -406,7 +414,7 @@ CALCULATORS = {
     # ------------------------------------------------------------- INFLATION
     "inflation-calculator": {
         "seo_title": "Inflation Calculator: Future Cost & Purchasing Power",
-        "search_description": "See how inflation raises future costs and erodes the purchasing power of money over time. Enter an amount, rate and years; includes formula, example and Rule of 72.",
+        "search_description": "See how inflation raises future costs and erodes purchasing power. Enter an amount, rate and years; includes the formula, an example and the Rule of 72.",
         "intro_question": "How does inflation affect the value of money?",
         "intro_answer": "<p>Inflation is the rise in prices over time, so each unit of money buys less. To keep the same lifestyle, the money you need grows by (1 + inflation rate) every year. At 3% inflation, $50,000 of spending today would cost about $90,306 in 20 years, and today's dollar would buy about 55 cents' worth.</p>",
         "formula": {
@@ -424,7 +432,7 @@ CALCULATORS = {
     # ---------------------------------------------------------------- MARGIN
     "margin-calculator": {
         "seo_title": "Profit Margin Calculator: Gross Margin & Markup",
-        "search_description": "Calculate gross profit, profit margin and markup from cost and selling price, or find the price needed for a target margin. Includes formula, example and margin table.",
+        "search_description": "Calculate gross profit, margin and markup from cost and price, or find the price for a target margin. Includes the formula, example and margin table.",
         "summary": "Calculate gross profit, profit margin and markup from cost and selling price, or find the price that hits a target margin.",
         "intro_question": "How do you calculate profit margin?",
         "intro_answer": "<p>Profit margin is profit as a percentage of the selling price: (price − cost) ÷ price × 100. Markup is profit as a percentage of cost: (price − cost) ÷ cost × 100. An item that costs $60 and sells for $100 has a $40 gross profit, a 40% margin and a 66.7% markup.</p>",
@@ -448,7 +456,7 @@ CALCULATORS = {
     # ------------------------------------------------------------ BREAK-EVEN
     "break-even-calculator": {
         "seo_title": "Break-Even Calculator: Units & Revenue to Cover Costs",
-        "search_description": "Find the number of units and the sales revenue needed to cover fixed and variable costs. Includes the contribution margin formula, a worked example and a sensitivity table.",
+        "search_description": "Find the units and revenue needed to cover fixed and variable costs. Includes the contribution margin formula, a worked example and a profit table.",
         "intro_question": "What is a break-even point?",
         "intro_answer": "<p>The break-even point is the sales level at which revenue exactly covers all costs, so profit is zero. Divide fixed costs by the contribution margin per unit (price minus variable cost). With $15,000 of monthly fixed costs, a $50 price and $20 variable cost, you break even at 500 units, or $25,000 of sales.</p>",
         "formula": {
@@ -476,12 +484,12 @@ CALCULATORS = {
     # ------------------------------------------------------------- CASH FLOW
     "cash-flow-calculator": {
         "seo_title": "Cash Flow Calculator: Monthly Net Cash for Businesses",
-        "search_description": "Calculate monthly net cash flow from cash receipts, operating expenses and debt payments, and project your cash reserve. Includes the formula and a worked example.",
+        "search_description": "Calculate monthly net cash flow from cash receipts, operating expenses and debt payments, and project your cash. Includes the formula and an example.",
         "intro_question": "What is net cash flow?",
         "intro_answer": "<p>Net cash flow is the cash that comes into a business in a period minus the cash that goes out. If you collect $45,000 from customers and pay $28,000 in operating costs and $5,000 in loan repayments, net cash flow is +$12,000 for the month. Negative cash flow drains your reserves even if you are profitable on paper.</p>",
         "formula": {
             "explanation": "<p>Count cash only when it actually moves: customer payments received, not invoices sent; bills paid, not bills received. Loan principal repayments are cash outflows even though they are not expenses on the income statement.</p>",
-            "notes": "A simple direct-method view. It does not separate operating, investing and financing activities.",
+            "notes": "The quarterly table assumes a $25,000 opening cash reserve and repeats the same month. A simple direct-method view. It does not separate operating, investing and financing activities.",
         },
         "faqs": [
             {"q": "How does cash flow differ from net profit?", "a": "<p>Net profit follows accrual accounting. It counts sales when invoiced, even before customers pay, and deducts non-cash expenses such as depreciation. Cash flow only counts money that actually enters or leaves the bank, so the two can differ widely.</p>"},
@@ -494,21 +502,23 @@ CALCULATORS = {
     # -------------------------------------------------------------------- FD
     "fd-calculator": {
         "seo_title": "FD Calculator: Fixed Deposit Maturity & Interest",
-        "search_description": "Calculate fixed deposit maturity value and interest earned with quarterly, monthly or annual compounding. Includes the FD formula, a worked example and a TDS note.",
+        "search_description": "Calculate fixed deposit maturity value and interest with quarterly, monthly or annual compounding. Includes the FD formula, an example and a TDS note.",
         "intro_question": "How is fixed deposit interest calculated?",
-        "intro_answer": "<p>Most bank fixed deposits use compound interest, usually compounded quarterly. Maturity value A = P × (1 + r/n)<sup>n×t</sup>, where n is the number of compounding periods per year. A 25,000 deposit at 7.25% for 5 years, compounded quarterly, matures at about 35,806.51, earning 10,806.51 in interest.</p>",
+        "intro_answer": "<p>Most bank fixed deposits use compound interest, usually compounded quarterly. Maturity value A = P × (1 + r/n)<sup>n×t</sup>, where n is the number of compounding periods per year. A ₹25,000 deposit at 7.25% for 5 years, compounded quarterly, matures at about ₹35,806.51, earning ₹10,806.51 in interest.</p>",
         "formula": {
             "explanation": "<p>The rate per period is r/n (annual rate ÷ periods per year) and the number of periods is n × t. Many Indian banks compound FDs quarterly; some short deposits pay simple interest at maturity.</p>",
+            "var_desc": {"r": "Nominal annual rate as a decimal (7.25% = 0.0725)"},
             "notes": "Pre-tax. Interest on FDs is usually taxable and may be subject to TDS in India.",
         },
         "example_patch": {
+            "scenario_description": "Depositing ₹25,000 in a 5-year Fixed Deposit at 7.25% interest compounded quarterly.",
             "steps": [
                 {"step_number": 1, "step_title": "Rate per Quarter", "step_math": "0.0725 / 4 = 0.018125", "description": "Interest rate applied each quarter."},
                 {"step_number": 2, "step_title": "Number of Quarters", "step_math": "5 years × 4 = 20 quarters", "description": "Total compounding periods."},
-                {"step_number": 3, "step_title": "Maturity Value", "step_math": "25,000 × (1.018125)^20 = 25,000 × 1.43226 = 35,806.51", "description": "Principal plus compounded interest."},
+                {"step_number": 3, "step_title": "Maturity Value", "step_math": "₹25,000 × (1.018125)^20 = ₹25,000 × 1.43226 = ₹35,806.51", "description": "Principal plus compounded interest."},
             ],
-            "result_highlight": "Principal: 25,000 | Interest: 10,806.51 | Maturity: 35,806.51",
-            "key_observation": "The same deposit at 7.25% simple interest would earn 9,062.50, so quarterly compounding adds about 1,744.",
+            "result_highlight": "Principal: ₹25,000 | Interest: ₹10,806.51 | Maturity: ₹35,806.51",
+            "key_observation": "The same deposit at 7.25% simple interest would earn ₹9,062.50, so quarterly compounding adds about ₹1,744.",
         },
         "faqs": [
             {"q": "Is FD interest taxable?", "a": "<p>In most countries, yes. In India, FD interest is added to your income and taxed at your slab rate, and banks deduct TDS when interest crosses the annual threshold. Check current limits with your bank or the Income Tax Department.</p>"},
@@ -521,12 +531,13 @@ CALCULATORS = {
     # ------------------------------------------------------ LOAN ELIGIBILITY
     "loan-eligibility-calculator": {
         "seo_title": "Loan Eligibility Calculator: How Much Can I Borrow (DTI)?",
-        "search_description": "Estimate the maximum loan you can qualify for from your income, existing debts, interest rate and term using a debt-to-income (DTI) limit. Formula and example included.",
+        "search_description": "Estimate the maximum loan your income, existing debts, rate and term support under a debt-to-income (DTI) limit. Formula and example included.",
         "intro_question": "How much loan am I eligible for?",
         "intro_answer": "<p>Lenders cap your total monthly debt payments at a share of gross income, called the debt-to-income (DTI) ratio. Multiply income by the DTI limit, subtract existing debt payments, and the remainder is the most you can pay on a new loan. That payment, at the loan's rate and term, sets your maximum loan amount.</p>",
         "formula": {
             "explanation": "<p>Once the maximum EMI is known, the loan amount is its present value: Loan = EMI × (1 − (1 + r)<sup>−n</sup>) ÷ r, where r is the monthly rate and n the number of months.</p>",
-            "notes": "Lenders also look at credit score, employment history, assets and the property itself.",
+            "var_desc": {"DTI": "Share of gross income your lender allows for all debt payments"},
+            "notes": "Choose Custom Parameters to enter your own DTI limit and rate. Lenders also look at credit score, employment history, assets and the property itself.",
         },
         "example_patch": {
             "steps": [
@@ -538,17 +549,17 @@ CALCULATORS = {
         },
         "table": {
             "title": "Common DTI Benchmarks",
-            "intro": "Exact limits depend on the lender, loan type and your credit profile.",
+            "intro": "Common rules of thumb, not lender rules. The CFPB notes that different loan products and lenders have different DTI limits.",
             "headers": ["Total DTI", "What it usually means"],
             "rows": [
-                ["36% or less", "Comfortable; qualifies for the best terms with most lenders"],
-                ["37% – 43%", "Often acceptable; 43% is a widely used ceiling for many mortgages"],
-                ["44% – 50%", "Possible with strong credit or certain loan programs"],
-                ["Above 50%", "Most lenders will decline"],
+                ["36% or less", "Widely used as a comfortable target"],
+                ["37% – 43%", "Often workable; check the lender's limit"],
+                ["44% – 50%", "Harder; may need strong credit or a specific loan program"],
+                ["Above 50%", "Often too high for a new loan"],
             ],
         },
         "faqs": [
-            {"q": "What DTI ratio do lenders want?", "a": "<p>Many lenders prefer a total DTI of 36% or less and treat 43% as a common upper limit for mortgages. Some programs allow up to about 50% with strong credit or large reserves. This calculator lets you set the limit your lender uses.</p>"},
+            {"q": "What DTI ratio do lenders want?", "a": "<p>There is no single figure: the CFPB notes that limits differ by lender and loan product. A total DTI of about 36% or less is a common rule of thumb. This calculator lets you set the limit your lender uses.</p>"},
             {"q": "Is DTI based on gross or net income?", "a": "<p>Usually gross monthly income, before tax and deductions.</p>"},
             {"q": "How can I increase my loan eligibility?", "a": "<p>Pay off small debts, add a co-borrower's income, choose a longer term or improve your credit score to get a lower rate. In the example, clearing a $300 monthly payment raises the maximum loan by about $40,200.</p>"},
         ],
@@ -558,7 +569,7 @@ CALCULATORS = {
     # ------------------------------------------------------------------- SIP
     "sip-calculator": {
         "seo_title": "SIP Calculator: Mutual Fund SIP Returns & Maturity Value",
-        "search_description": "Calculate the future value of a monthly SIP in mutual funds from amount, expected return and years, with optional annual step-up. Formula and worked example included.",
+        "search_description": "Calculate the future value of a monthly mutual fund SIP from amount, expected return and years, with optional yearly step-up. Formula and example included.",
         "intro_question": "What is a SIP?",
         "intro_answer": "<p>A systematic investment plan (SIP) invests a fixed amount in a mutual fund at regular intervals, usually monthly. Because each instalment compounds from the date it is invested, small monthly amounts can grow substantially over time. A SIP calculator estimates the maturity value from your monthly amount, expected annual return and investment period.</p>",
         "formula": {
@@ -566,16 +577,16 @@ CALCULATORS = {
             "notes": "Returns from equity funds are not guaranteed and vary from year to year. With step-up, each year's instalment rises by the chosen percentage.",
         },
         "example_patch": {
-            "scenario_description": "Investing 500 per month for 15 years (180 months) at an expected annual return of 12%, invested at the start of each month.",
+            "scenario_description": "Investing ₹500 per month for 15 years (180 months) at an expected annual return of 12%, invested at the start of each month.",
             "steps": [
-                {"step_number": 1, "step_title": "Total Capital Invested", "step_math": "500 × 180 = 90,000", "description": "Your direct contributions."},
-                {"step_number": 2, "step_title": "Apply the SIP Formula", "step_math": "500 × [(1.01)^180 − 1] / 0.01 × 1.01 = 252,288", "description": "Monthly rate i = 12% / 12 = 1%."},
+                {"step_number": 1, "step_title": "Total Capital Invested", "step_math": "₹500 × 180 = ₹90,000", "description": "Your direct contributions."},
+                {"step_number": 2, "step_title": "Apply the SIP Formula", "step_math": "₹500 × [(1.01)^180 − 1] / 0.01 × 1.01 = ₹252,288", "description": "Monthly rate i = 12% / 12 = 1%."},
             ],
-            "result_highlight": "Invested: 90,000 | Estimated Gains: 162,288 | Maturity Value: 252,288",
+            "result_highlight": "Invested: ₹90,000 | Estimated Gains: ₹162,288 | Maturity Value: ₹252,288",
             "key_observation": "About 64% of the final value comes from compounding rather than your own deposits.",
         },
         "faqs": [
-            {"q": "How is SIP return calculated?", "a": "<p>M = P × [(1 + i)<sup>n</sup> − 1] ÷ i × (1 + i). For 500 a month at 12% for 15 years, i = 0.01 and n = 180, giving about 252,288.</p>"},
+            {"q": "How is SIP return calculated?", "a": "<p>M = P × [(1 + i)<sup>n</sup> − 1] ÷ i × (1 + i). For ₹500 a month at 12% for 15 years, i = 0.01 and n = 180, giving about ₹252,288.</p>"},
             {"q": "Is SIP better than a lump sum?", "a": "<p>A SIP spreads purchases over time (rupee- or dollar-cost averaging), which reduces the risk of investing everything at a market peak. A lump sum invested early can earn more if markets rise steadily. Neither is always better.</p>"},
             {"q": "What is a step-up SIP?", "a": "<p>A step-up SIP raises the monthly instalment by a set percentage each year, for example 10%, so contributions keep pace with salary growth.</p>"},
         ],
@@ -585,7 +596,7 @@ CALCULATORS = {
     # ------------------------------------------------------------------ CAGR
     "cagr-calculator": {
         "seo_title": "CAGR Calculator: Compound Annual Growth Rate Formula",
-        "search_description": "Calculate the compound annual growth rate (CAGR) of an investment or revenue from start value, end value and years. Includes the formula, example and benchmarks.",
+        "search_description": "Calculate compound annual growth rate (CAGR) from start value, end value and years. Includes the formula, a worked example and context for the result.",
         "intro_question": "What is CAGR?",
         "intro_answer": "<p>CAGR (compound annual growth rate) is the constant yearly rate at which a value would have to grow to go from its starting value to its ending value over a given number of years. It smooths out ups and downs. $20,000 growing to $45,000 over 6 years is a CAGR of 14.47%.</p>",
         "formula": {
@@ -609,7 +620,7 @@ CALCULATORS = {
         "intro_answer": "<p>To add GST, multiply the pre-tax amount by the GST rate. To remove GST from an inclusive price, divide by (1 + rate). For an intra-state sale in India the tax is split equally between CGST and SGST; inter-state sales carry IGST instead. ₹10,000 at 18% means ₹1,800 GST: ₹900 CGST and ₹900 SGST.</p>",
         "formula": {
             "explanation": "<p>GST-exclusive: GST = amount × rate ÷ 100; total = amount + GST. GST-inclusive: pre-tax amount = total ÷ (1 + rate ÷ 100); GST = total − pre-tax amount. Intra-state: CGST = SGST = GST ÷ 2. Inter-state: IGST = full GST.</p>",
-            "notes": "From 22 September 2025 India moved to main GST rates of 5% and 18%, with 40% for selected demerit goods. Older 12% and 28% slabs remain available in the calculator for past invoices. Always confirm an item's rate on the CBIC rate schedule.",
+            "notes": "Some goods, such as tobacco, follow separate tax rules. From 22 September 2025 India moved to main GST rates of 5% and 18%, with 40% for selected demerit goods. Older 12% and 28% slabs remain available in the calculator for past invoices. Always confirm an item's rate on the CBIC rate schedule.",
             "var_desc": {"Rate": "GST rate in percent (in India: 5%, 18% or 40% from 22 Sep 2025)"},
         },
         "example_patch": {

@@ -7,7 +7,10 @@
   'use strict';
 
   // Currency & Number Formatters
-  const formatCurrency = (val, currencySymbol = '$') => {
+  // Page currency, read from data-currency on the calculator workspace
+  let CUR = '$';
+
+  const formatCurrency = (val, currencySymbol = CUR) => {
     if (isNaN(val) || !isFinite(val)) return `${currencySymbol}0.00`;
     return `${currencySymbol}${Number(val).toLocaleString('en-US', {
       minimumFractionDigits: 2,
@@ -228,6 +231,39 @@
         { label: 'Home Insurance', value: insMonthly, color: '#f59e0b' },
         { label: 'HOA Fees', value: hoaMonth, color: '#8b5cf6' }
       ]);
+
+      const piTotal = piMonthly * totalMonths;
+      const elPctPrincipal = document.getElementById('res-pct-principal');
+      if (elPctPrincipal) elPctPrincipal.textContent = `${((loanAmount / (piTotal || 1)) * 100).toFixed(1)}%`;
+
+      const elPctInterest = document.getElementById('res-pct-interest');
+      if (elPctInterest) elPctInterest.textContent = `${((totalInterest / (piTotal || 1)) * 100).toFixed(1)}%`;
+
+      const tableBody = document.getElementById('schedule-table-body');
+      if (tableBody && loanAmount > 0) {
+        let balance = loanAmount;
+        let html = '';
+        for (let yr = 1; yr <= term; yr++) {
+          let yrInterest = 0;
+          let yrPrincipal = 0;
+          for (let mo = 1; mo <= 12; mo++) {
+            const mInterest = balance * monthlyRate;
+            const mPrincipal = piMonthly - mInterest;
+            yrInterest += mInterest;
+            yrPrincipal += mPrincipal;
+            balance -= mPrincipal;
+          }
+          html += `
+            <tr>
+              <td>Year ${yr}</td>
+              <td>${formatCurrency(yrPrincipal)}</td>
+              <td>${formatCurrency(yrInterest)}</td>
+              <td>${formatCurrency(Math.max(0, balance))}</td>
+            </tr>
+          `;
+        }
+        tableBody.innerHTML = html;
+      }
     },
 
     // 3. SIP (Systematic Investment Plan) with Optional Step-Up
@@ -237,7 +273,7 @@
       const years = parseFloat(document.getElementById('input-years')?.value) || 1;
       const stepUpPct = parseFloat(document.getElementById('input-step-up')?.value) || 0;
 
-      updateLiveLabel('live-monthly', '$' + Number(monthlyInvest).toLocaleString());
+      updateLiveLabel('live-monthly', CUR + Number(monthlyInvest).toLocaleString());
       updateLiveLabel('live-rate', returnRate + '%');
       updateLiveLabel('live-years', years + ' Years');
       updateLiveLabel('live-step-up', stepUpPct + '%');
@@ -319,24 +355,51 @@
 
     // 4. Fixed Deposit (FD)
     fd: function () {
-      const principal = parseFloat(document.getElementById('input-deposit')?.value) || 0;
-      const rate = parseFloat(document.getElementById('input-rate')?.value) || 0;
-      const years = parseFloat(document.getElementById('input-years')?.value) || 0;
-      const freq = parseInt(document.getElementById('select-freq')?.value || '4'); // 4 = quarterly
+      const principal = parseFloat(document.getElementById('input-fd-amount')?.value) || 0;
+      const rate = parseFloat(document.getElementById('input-fd-rate')?.value) || 0;
+      const years = parseFloat(document.getElementById('input-fd-years')?.value) || 0;
+      const freq = parseInt(document.getElementById('select-fd-freq')?.value || '4');
+
+      updateLiveLabel('live-fd-amount', CUR + Number(principal).toLocaleString());
+      updateLiveLabel('live-fd-rate', rate + '%');
+      updateLiveLabel('live-fd-years', years + ' Years');
 
       const r = rate / 100;
-      const maturity = principal * Math.pow(1 + r / freq, freq * years);
+      const valueAt = (t) => principal * Math.pow(1 + r / freq, freq * t);
+      const maturity = valueAt(years);
       const interestEarned = Math.max(0, maturity - principal);
 
       document.getElementById('res-primary').textContent = formatCurrency(maturity);
       document.getElementById('res-stat-1').textContent = formatCurrency(principal);
       document.getElementById('res-stat-2').textContent = formatCurrency(interestEarned);
-      document.getElementById('res-stat-3').textContent = `${((interestEarned / (principal || 1)) * 100).toFixed(1)}%`;
+      document.getElementById('res-stat-3').textContent = formatCurrency(principal);
+
+      const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+      set('res-breakdown-interest', formatCurrency(interestEarned));
+      set('res-breakdown-total', formatCurrency(maturity));
+      set('res-pct-principal', `${((principal / (maturity || 1)) * 100).toFixed(1)}%`);
+      set('res-pct-interest', `${((interestEarned / (maturity || 1)) * 100).toFixed(1)}%`);
 
       renderDonutChart('chart-container', [
         { label: 'Deposit Principal', value: principal, color: '#3b82f6' },
         { label: 'Total Interest', value: interestEarned, color: '#10b981' }
       ]);
+
+      const tableBody = document.getElementById('schedule-table-body');
+      if (tableBody) {
+        let html = '';
+        for (let y = 1; y <= years; y++) {
+          html += `
+            <tr>
+              <td><strong>Year ${y}</strong></td>
+              <td>${formatCurrency(principal)}</td>
+              <td>${formatCurrency(valueAt(y) - valueAt(y - 1))}</td>
+              <td><strong>${formatCurrency(valueAt(y))}</strong></td>
+            </tr>
+          `;
+        }
+        tableBody.innerHTML = html;
+      }
     },
 
     // 5. Investment & Wealth Strategy (Inflation-Adjusted Real vs Nominal Growth)
@@ -454,7 +517,7 @@
         let yrContrib = 0;
 
         for (let m = 1; m <= 12; m++) {
-          const mInterest = balance * (r / freq) * (freq / 12);
+          const mInterest = balance * (Math.pow(1 + r / freq, freq / 12) - 1);
           balance = balance + mInterest + monthlyContribution;
           totalContributed += monthlyContribution;
 
@@ -795,7 +858,7 @@
       document.getElementById('res-primary').textContent = bmi.toFixed(1);
       document.getElementById('res-stat-1').textContent = category;
       document.getElementById('res-stat-2').textContent = `${minHealthyKg.toFixed(1)} - ${maxHealthyKg.toFixed(1)} kg`;
-      document.getElementById('res-stat-3').textContent = `${(bmi / 22).toFixed(2)} (BMI Prime)`;
+      document.getElementById('res-stat-3').textContent = `${(bmi / 25).toFixed(2)}`;
 
       const elBreakdownInterest = document.getElementById('res-breakdown-interest');
       if (elBreakdownInterest) elBreakdownInterest.textContent = category;
@@ -818,6 +881,7 @@
       if (tableBody) {
         tableBody.innerHTML = `
           <tr><td><strong>Severe Thinness</strong></td><td>&lt; 16.0</td><td>Underweight</td><td>Elevated Health Risk</td></tr>
+          <tr><td><strong>Moderate Thinness</strong></td><td>16.0 – 16.9</td><td>Underweight</td><td>Elevated Health Risk</td></tr>
           <tr><td><strong>Mild Thinness</strong></td><td>17.0 – 18.4</td><td>Underweight</td><td>Slight Risk</td></tr>
           <tr><td><strong>Normal Weight</strong></td><td>18.5 – 24.9</td><td>Healthy Range</td><td>Optimal Metabolic Benchmark</td></tr>
           <tr><td><strong>Overweight</strong></td><td>25.0 – 29.9</td><td>Overweight</td><td>Increased Risk</td></tr>
@@ -874,7 +938,7 @@
           <tr><td><strong>Maintenance (TDEE)</strong></td><td>${tdee.toLocaleString()} kcal/day</td><td>0 kcal</td><td>Maintains current weight (${weightKg} kg)</td></tr>
           <tr><td><strong>Mild Weight Loss</strong></td><td>${Math.max(1000, tdee - 250).toLocaleString()} kcal/day</td><td>-250 kcal</td><td>-0.25 kg / week pace</td></tr>
           <tr><td><strong>Standard Weight Loss</strong></td><td>${weightLossCal.toLocaleString()} kcal/day</td><td>-500 kcal</td><td>-0.50 kg / week pace</td></tr>
-          <tr><td><strong>Extreme Weight Loss</strong></td><td>${Math.max(1000, tdee - 1000).toLocaleString()} kcal/day</td><td>-1,000 kcal</td><td>-1.00 kg / week pace</td></tr>
+          <tr><td><strong>Faster Weight Loss</strong> (medical advice recommended)</td><td>${Math.max(1000, tdee - 1000).toLocaleString()} kcal/day</td><td>-1,000 kcal</td><td>-1.00 kg / week pace</td></tr>
           <tr><td><strong>Clean Muscle Gain</strong></td><td>${Math.round(tdee + 250).toLocaleString()} kcal/day</td><td>+250 kcal</td><td>+0.25 kg / week lean surplus</td></tr>
           <tr><td><strong>Fast Weight Gain</strong></td><td>${weightGainCal.toLocaleString()} kcal/day</td><td>+500 kcal</td><td>+0.50 kg / week surplus</td></tr>
         `;
@@ -887,7 +951,7 @@
       const rate = parseFloat(document.getElementById('input-rate')?.value) || 18;
       const type = document.getElementById('select-type')?.value || 'exclusive';
 
-      updateLiveLabel('live-amount', '$' + Number(amount).toLocaleString());
+      updateLiveLabel('live-amount', CUR + Number(amount).toLocaleString());
 
       let netAmount = 0;
       let gstAmount = 0;
@@ -1351,7 +1415,7 @@
       if (elPctInterest) elPctInterest.textContent = `${bf.toFixed(1)}%`;
 
       renderDonutChart('chart-container', [
-        { label: 'Lean Muscle Mass', value: leanMass, color: '#10b981' },
+        { label: 'Lean Mass', value: leanMass, color: '#10b981' },
         { label: 'Body Fat Mass', value: fatMass, color: '#f43f5e' }
       ]);
 
@@ -1564,6 +1628,7 @@
     if (!calcWorkspace) return;
 
     const calcType = calcWorkspace.getAttribute('data-calculator-type');
+    CUR = calcWorkspace.getAttribute('data-currency') || '$';
     const runner = CalculatorEngines[calcType] || CalculatorEngines.loan;
 
     // Sync dual controls: Range Sliders <-> Number Inputs

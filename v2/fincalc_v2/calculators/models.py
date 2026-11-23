@@ -1,3 +1,7 @@
+import json
+from functools import lru_cache
+from pathlib import Path
+
 from django.db import models
 from django.utils.html import strip_tags
 from wagtail.models import Page
@@ -48,6 +52,20 @@ CALCULATOR_CHOICES = [
 HEALTH_TYPES = ['bmi', 'calorie', 'body_fat', 'pregnancy']
 BUSINESS_TYPES = ['margin', 'break_even', 'cash_flow', 'gst']
 
+# India-specific tools show rupees; everything else shows dollars.
+INR_TYPES = ['gst', 'sip', 'fd']
+
+_DEFAULTS_PATH = Path(__file__).with_name('default_results.json')
+
+
+@lru_cache(maxsize=1)
+def load_default_results():
+    """Engine output for each tool's default inputs (see snapshot_results command)."""
+    try:
+        return json.loads(_DEFAULTS_PATH.read_text(encoding='utf-8'))
+    except FileNotFoundError:
+        return {}
+
 
 class CalculatorPage(Page):
     """
@@ -79,8 +97,8 @@ class CalculatorPage(Page):
     )
 
     # Author / E-E-A-T credentials for Google
-    author_name = models.CharField(max_length=100, default="FinanceToolsLab Editorial Team")
-    author_role = models.CharField(max_length=150, default="Editorial Team")
+    author_name = models.CharField(max_length=100, default="FinanceToolsLab.com")
+    author_role = models.CharField(max_length=150, default="Publisher")
     last_updated_date = models.DateField(auto_now=True)
 
     # Modular editorial content for ranking & indexing
@@ -144,6 +162,8 @@ class CalculatorPage(Page):
         parent = self.get_parent().specific
         context['category_page'] = parent
         context['health_types'] = HEALTH_TYPES
+        context['currency'] = '₹' if self.calculator_type in INR_TYPES else '$'
+        context['defaults'] = load_default_results().get(self.calculator_type, {})
         
         # Related tools in the same category
         context['related_calculators'] = (

@@ -1,0 +1,27 @@
+{% extends "core/base.html" %}
+{% load wagtailcore_tags seo_tags %}
+
+{% block content %}
+<div class="page-wrapper bg-slate-50">
+  <div class="max-w-7xl" style="padding-top: 2.5rem; padding-bottom: 4.5rem;">
+    {% render_breadcrumbs page %}
+    <h1 class="about-hero-title" style="text-align:left; font-size:2.25rem;">{{ page.title }}</h1>
+    <p class="section-desc" style="text-align:left; margin-top:1rem; max-width:52rem;">{{ page.intro }}</p>
+
+    {% for category, calculators in groups %}
+    <section style="margin-top:2.5rem;">
+      <h2 style="font-size:1.5rem; font-weight:800; color:var(--text-primary); margin-bottom:1.5rem;"><a href="{% pageurl category %}">{{ category.title }}</a></h2>
+      <div class="v1-calc-grid">
+        {% for calc in calculators %}
+        <a href="{% pageurl calc %}" class="v1-calc-card">
+          <div class="v1-calc-icon-box bg-{{ category.badge_color }}-500">{% render_icon "calculator" %}</div>
+          <h3 class="v1-calc-title">{{ calc.title }}</h3>
+          <p class="v1-calc-desc">{{ calc.short_summary }}</p>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
